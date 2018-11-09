@@ -1,0 +1,41 @@
+{
+	"tests":[
+		{
+			"title":"Validate HTML File",
+			"test":"./001-100/001-validate-html.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/003/"
+			}
+		}, {
+			"title":"Check for <img> Tag inside <figure> Tag in 'index.html' / FAILURE",
+			"test":"./001-100/002-element-exists.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/003/index.html",
+        		"SELECTOR":"figure img"
+			}
+		}, {
+			"title":"Check for <img> Tag inside <figure> Tag in 'success.html' / SUCCESS",
+			"test":"./001-100/002-element-exists.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/003/success.html",
+        		"SELECTOR":"figure img"
+			}
+		}, {
+			"title":"Check if 'figure img' Resources Exist in 'index.html' | FAILURE",
+			"test":"./001-100/003-resource-exists.js",
+			"variables":{
+				"DIR_PATH":"tests/001-100/003/",
+				"FILES":["index.html"],
+				"SELECTOR":"figure img"
+			}
+		}, {
+			"title":"Check if 'figure img' Resources Exist in success.html' | SUCCESS",
+			"test":"./001-100/003-resource-exists.js",
+			"variables":{
+				"DIR_PATH":"tests/001-100/003/",
+				"FILES":["success.html"],
+				"SELECTOR":"figure img"
+			}
+		}
+	]
+}

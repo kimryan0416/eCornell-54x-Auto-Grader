@@ -1,0 +1,749 @@
+{
+  "stats": {
+    "suites": 10,
+    "tests": 10,
+    "passes": 8,
+    "pending": 0,
+    "failures": 2,
+    "start": "2018-11-08T20:50:59.681Z",
+    "end": "2018-11-08T20:50:59.748Z",
+    "duration": 67,
+    "testsRegistered": 10,
+    "passPercent": 80,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "passPercentClass": "success",
+    "pendingPercentClass": "danger"
+  },
+  "suites": {
+    "uuid": "e7934393-59ad-478d-9888-3bcfb00e4d7a",
+    "title": "",
+    "fullFile": "",
+    "file": "",
+    "beforeHooks": [],
+    "afterHooks": [],
+    "tests": [],
+    "suites": [
+      {
+        "uuid": "961404af-5467-479e-9df1-a258784c669b",
+        "title": "304: 100%, Content Only",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "304: 100%, Content Only \"before all\" hook",
+            "timedOut": false,
+            "duration": 11,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "68b8d166-7288-4d31-80c5-30950db27d37",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "304: 100%, Content Only \"after each\" hook",
+            "timedOut": false,
+            "duration": 1,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "b2b4b633-f663-4601-82da-5fe904f7d9c8",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking only content",
+            "fullTitle": "304: 100%, Content Only Checking only content",
+            "timedOut": false,
+            "duration": 2,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The similarity rate between the two files is too low:\\nSimilarity Rate: 0.9571511291256514\\nExpected Similarity Minimum: 1\"\n}",
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {
+              "message": "tests/301-400/304/toCheck.html",
+              "estack": "AssertionError: tests/301-400/304/toCheck.html: Similarity rate between two file contents was too low!: expected 95.71511291256513 to be at least 100\n    at /Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/301-400/304-compare-files.js:122:63\n    at Array.forEach (<anonymous>)\n    at Context.<anonymous> (301-400/304-compare-files.js:121:11)",
+              "diff": "- 95.71511291256513\n+ 100\n"
+            },
+            "isRoot": false,
+            "uuid": "bd4285c0-52cf-4a6b-809a-029fc850173f",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [],
+        "failures": [
+          "bd4285c0-52cf-4a6b-809a-029fc850173f"
+        ],
+        "pending": [],
+        "skipped": [],
+        "duration": 2,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "9a1dddc9-1d89-43cc-a6d3-144bbc11bb93",
+        "title": "100%, Whole format",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "100%, Whole format \"before all\" hook",
+            "timedOut": false,
+            "duration": 5,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "5aa3f29f-956f-40b0-a768-49929909e6b9",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "100%, Whole format \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "897e5a18-a8f0-4819-a127-1cbcef7ba966",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking whole format",
+            "fullTitle": "100%, Whole format Checking whole format",
+            "timedOut": false,
+            "duration": 1,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
+            "pending": false,
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The similarity rate between the two files is too low:\\nSimilarity Rate: 0.9535410764872522\\nExpected Similarity Minimum: 1\"\n}",
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {
+              "message": "tests/301-400/304/toCheck.html",
+              "estack": "AssertionError: tests/301-400/304/toCheck.html: Similarity rate between two file contents was too low!: expected 95.35410764872522 to be at least 100\n    at /Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/301-400/304-compare-files.js:122:63\n    at Array.forEach (<anonymous>)\n    at Context.<anonymous> (301-400/304-compare-files.js:121:11)",
+              "diff": "- 95.35410764872522\n+ 100\n"
+            },
+            "isRoot": false,
+            "uuid": "a2124b60-eba5-4024-8e3b-6ee11407027e",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [],
+        "failures": [
+          "a2124b60-eba5-4024-8e3b-6ee11407027e"
+        ],
+        "pending": [],
+        "skipped": [],
+        "duration": 1,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "17fcd19d-23cf-40e8-91a0-0c04ce0d0650",
+        "title": "304: 90%, Content Only",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "304: 90%, Content Only \"before all\" hook",
+            "timedOut": false,
+            "duration": 3,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "c50895ad-8753-4d4d-b26a-51341142dad2",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "304: 90%, Content Only \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "9e7a1ebf-4730-4014-8a9d-0cf44a8c9261",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking only content",
+            "fullTitle": "304: 90%, Content Only Checking only content",
+            "timedOut": false,
+            "duration": 1,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "40fedc04-698e-4260-ac50-ea8be62c4bac",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "40fedc04-698e-4260-ac50-ea8be62c4bac"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 1,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "9bc1aeed-99da-4efc-b7a4-19143c2b6706",
+        "title": "90%, Whole format",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "90%, Whole format \"before all\" hook",
+            "timedOut": false,
+            "duration": 6,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2096db5c-3b22-4b7b-a48c-e5bc995c53a5",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "90%, Whole format \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "d7157b1c-6bff-486f-9a32-09092e740039",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking whole format",
+            "fullTitle": "90%, Whole format Checking whole format",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "0a27c9d5-fa8c-47c4-973f-a19beef7f6b4",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "0a27c9d5-fa8c-47c4-973f-a19beef7f6b4"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "4486b6d9-42da-4f1d-8311-ed841add6dbe",
+        "title": "304: 75%, Content Only",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "304: 75%, Content Only \"before all\" hook",
+            "timedOut": false,
+            "duration": 4,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "22ea9796-10e2-4dcb-8c27-2fb5fa8ec2c6",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "304: 75%, Content Only \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "f98bbfa0-11a0-42e9-bceb-e05693775721",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking only content",
+            "fullTitle": "304: 75%, Content Only Checking only content",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2a87e757-b131-4052-917b-b6022916c30c",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "2a87e757-b131-4052-917b-b6022916c30c"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "90792655-6bf0-467e-bd31-253828f61870",
+        "title": "75%, Whole format",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "75%, Whole format \"before all\" hook",
+            "timedOut": false,
+            "duration": 3,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "82cc218c-c10b-44e5-b984-6f6facdbda93",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "75%, Whole format \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a6d62391-7f6b-46e5-b9ca-466183cfa563",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking whole format",
+            "fullTitle": "75%, Whole format Checking whole format",
+            "timedOut": false,
+            "duration": 1,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "b4e3e414-9631-4837-a4f5-21450a743444",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "b4e3e414-9631-4837-a4f5-21450a743444"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 1,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "fae7b138-fb9d-49e7-88fb-908791b71e94",
+        "title": "304: 50%, Content Only",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "304: 50%, Content Only \"before all\" hook",
+            "timedOut": false,
+            "duration": 3,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "de6e32d5-02a6-4da8-9526-d5f1b2c0085c",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "304: 50%, Content Only \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "2de0560e-5d3b-4465-b589-4a7e9d3ecb33",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking only content",
+            "fullTitle": "304: 50%, Content Only Checking only content",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "c88cc585-3b2b-480e-97b7-d238cad42553",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "c88cc585-3b2b-480e-97b7-d238cad42553"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "296b9211-325f-4a34-9737-1deabcb3cad4",
+        "title": "50%, Whole format",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "50%, Whole format \"before all\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "0a74fe3a-29d7-4b56-b188-cd43cb40bbe9",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "50%, Whole format \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "9229fb16-c2f9-482d-b550-340cd96d4010",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking whole format",
+            "fullTitle": "50%, Whole format Checking whole format",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "0785f59a-181a-41c6-a1dd-88721bffac0d",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "0785f59a-181a-41c6-a1dd-88721bffac0d"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "5b7fc358-35c4-41c9-8086-b7064cbd66e3",
+        "title": "304: 25%, Content Only",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "304: 25%, Content Only \"before all\" hook",
+            "timedOut": false,
+            "duration": 2,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "ab8f0d8c-dcbd-420e-89ae-119168101078",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "304: 25%, Content Only \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "8235e0c2-8c33-49b9-96e6-0962cf00ea6a",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking only content",
+            "fullTitle": "304: 25%, Content Only Checking only content",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "e94871cb-ed4d-4e9d-9ac4-f70eb0072cf5",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "e94871cb-ed4d-4e9d-9ac4-f70eb0072cf5"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "a6c98648-5c26-412b-a7ff-19e668ec4ce5",
+        "title": "25%, Whole format",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "25%, Whole format \"before all\" hook",
+            "timedOut": false,
+            "duration": 3,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a7387b9e-9cd8-4471-83bd-2c8c51a35c3e",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "25%, Whole format \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "10a2048e-90a9-4a1b-949b-10317dd1b468",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Checking whole format",
+            "fullTitle": "25%, Whole format Checking whole format",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\tconsole.log(d['rate']);\n\t\tconsole.log(similarity)\n\t});\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "1f933e73-8a76-40a6-9aa7-5cc3e139bc03",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "1f933e73-8a76-40a6-9aa7-5cc3e139bc03"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      }
+    ],
+    "passes": [],
+    "failures": [],
+    "pending": [],
+    "skipped": [],
+    "duration": 0,
+    "root": true,
+    "rootEmpty": true,
+    "_timeout": 20000
+  },
+  "copyrightYear": 2018
+}

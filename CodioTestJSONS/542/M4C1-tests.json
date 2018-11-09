@@ -1,0 +1,54 @@
+{
+  "tests":[
+    {
+      "title":"\"index.html\" File Present:",
+      "test":"./301-file-exists.js",
+      "statement":"\"home.html\" should have been renamed to \"index.html\"",
+      "error_message":"\"index.html\" was not found!",
+      "variables":{
+        "PATH":"assignment/index.html"
+      }
+    }, {
+      "title":"\"education.html\" File Present:",
+      "test":"./301-file-exists.js",
+      "statement":"\"education.html\" file should have been created",
+      "error_message":"\"education.html\" was not found!",
+      "variables":{
+        "PATH":"assignment/education.html"
+      }
+    }, {
+      "title":"\"animals.html\" File Present:",
+      "test":"./301-file-exists.js",
+      "statement":"\"animals.html\" file should have been created",
+      "error_message":"\"animals.html\" was not found!",
+      "variables":{
+        "PATH":"assignment/animals.html"
+      }
+    }, {
+      "title":"\"news.html\" File Present:",
+      "test":"./301-file-exists.js",
+      "statement":"\"news.html\" file should have been created",
+      "error_message":"\"news.html\" was not found!",
+      "variables":{
+        "PATH":"assignment/news.html"
+      }
+    }, {
+      "title":"\"images/\" Directory Present:",
+      "test":"./301-file-exists.js",
+      "statement":"\"images\" directory should have been created",
+      "error_message":"\"images/\" was not found!",
+      "variables":{
+        "PATH":"assignment/images/"
+      }
+    }, {
+      "title":"Image File Location(s):",
+      "test":"./302-image-files.js",
+      "statement":"All images should be within \"images/\"",
+      "error_message":"Not all images are within \"images/\"!",
+      "variables":{
+        "ROOT_DIR":"assignment/",
+        "IMAGES_DIR":"images/"
+      }
+    }
+  ]
+}

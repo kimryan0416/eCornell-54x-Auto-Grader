@@ -1,0 +1,24 @@
+{
+	"tests":[
+		{
+			"title":"Validate HTML File NO SUPPRESS",
+			"test":"./001-100/001-validate-html.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/001/about.html"
+			}
+		},{
+			"title":"Validate HTML File SUPPRESS",
+			"test":"./001-100/001-validate-html.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/001/about.html",
+				"SUPPRESS":true
+			}
+		},{
+			"title":"Validate HTML File SUCCESS",
+			"test":"./001-100/001-validate-html.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/001/index.html"
+			}
+		}
+	]
+}

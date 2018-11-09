@@ -1,0 +1,225 @@
+{
+  "stats": {
+    "suites": 13,
+    "tests": 13,
+    "passes": 11,
+    "pending": 0,
+    "failures": 2,
+    "start": "2018-08-29T12:14:09.798Z",
+    "end": "2018-08-29T12:14:11.531Z",
+    "duration": 1733
+  },
+  "tests": [
+    {
+      "title": "Should return 0 files with HTML errors if no HTML errors are present",
+      "fullTitle": "Validate HTML File Should return 0 files with HTML errors if no HTML errors are present",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;html&gt; Tag Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;head&gt; Tag inside &lt;html&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;meta&gt; Tag with \"charset\" Attribute inside &lt;head&gt; Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;title&gt; Tag inside &lt;head&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;body&gt; Tag inside &lt;html&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {
+        "message": "Element Wasn't Found!: expected false to be true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "stack": "AssertionError: Element Wasn't Found!: expected false to be true\n    at Context.<anonymous> (001-100/002-element-exists.js:96:47)"
+      }
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "message": "Element Wasn't Found!: expected false to be true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "stack": "AssertionError: Element Wasn't Found!: expected false to be true\n    at Context.<anonymous> (001-100/002-element-exists.js:96:47)"
+      }
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt; &lt;h3&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt; &lt;p&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;footer&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ],
+  "pending": [],
+  "failures": [
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {
+        "message": "Element Wasn't Found!: expected false to be true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "stack": "AssertionError: Element Wasn't Found!: expected false to be true\n    at Context.<anonymous> (001-100/002-element-exists.js:96:47)"
+      }
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {
+        "message": "Element Wasn't Found!: expected false to be true",
+        "showDiff": true,
+        "actual": "false",
+        "expected": "true",
+        "stack": "AssertionError: Element Wasn't Found!: expected false to be true\n    at Context.<anonymous> (001-100/002-element-exists.js:96:47)"
+      }
+    }
+  ],
+  "passes": [
+    {
+      "title": "Should return 0 files with HTML errors if no HTML errors are present",
+      "fullTitle": "Validate HTML File Should return 0 files with HTML errors if no HTML errors are present",
+      "duration": 2,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;html&gt; Tag Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;head&gt; Tag inside &lt;html&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;meta&gt; Tag with \"charset\" Attribute inside &lt;head&gt; Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;title&gt; Tag inside &lt;head&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "Check for &lt;body&gt; Tag inside &lt;html&gt; Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "&lt;img&gt; test for multiple attributes Should return \"true\" if HTML element was found",
+      "duration": 1,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt; &lt;h3&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;article&gt; &lt;section&gt; &lt;p&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    },
+    {
+      "title": "Should return \"true\" if HTML element was found",
+      "fullTitle": "\"&lt;footer&gt;\" Element Exists Should return \"true\" if HTML element was found",
+      "duration": 0,
+      "currentRetry": 0,
+      "err": {}
+    }
+  ]
+}

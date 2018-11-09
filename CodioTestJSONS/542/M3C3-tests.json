@@ -1,0 +1,43 @@
+{
+	"tests":[
+		{
+			"title":"HTML Validation:",
+			"test":"./001-validate-html.js",
+			"statement":"No HTML errors should be present",
+			"error_message":"HTML errors found! Click to see more...",
+			"variables":{
+				"HTML_PATH":"assignment/index.html"
+			}
+		}, {
+			"title":"Check For <hr>:",
+			"test":"./002-element-exists.js",
+			"statement":"An <hr> tag should be present",
+			"error_message":"No <hr> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+        		"SELECTOR":"hr"
+			}
+		}, {
+			"title":"Check For <ul>:",
+			"test":"./002-element-exists.js",
+			"statement":"A <ul> tag should be present",
+			"error_message":"No <ul> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+        		"SELECTOR":"ul"
+			}
+		}, {
+			"title":"Check For <li> Within <ul>",
+			"test":"./002-element-exists.js",
+			"statement":"An <li> tag inside a <ul> tag should be present",
+			"error_message":"No <li> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+        		"SELECTOR":"ul li"
+			}
+		}
+	]
+}

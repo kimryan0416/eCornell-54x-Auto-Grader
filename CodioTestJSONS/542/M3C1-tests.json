@@ -1,0 +1,63 @@
+{
+	"tests":[
+		{
+			"title":"HTML Validation:",
+			"test":"./001-validate-html.js",
+			"statement":"No HTML errors should be present",
+			"error_message":"HTML errors found! Click to see more...",
+			"variables":{
+				"HTML_PATH":"assignment/index.html"
+			}
+		}, {
+			"title":"Check For <html> Tag:",
+			"test":"./002-element-exists.js",
+			"statement":"An <html> tag should be present",
+			"error_message":"No <html> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"html"
+			}
+		}, {
+			"title":"Check For <head> Within <html> Tag:",
+			"test":"./002-element-exists.js",
+			"statement":"A <head> tag inside the <html> tag should be present",
+			"error_message":"No <head> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"html head"
+			}
+		}, {
+			"title":"Check For <meta> With \"charset\" Attribute Within <head> Tag:",
+			"test":"./002-element-exists.js",
+			"statement":"A <meta> tag inside the <head> tag should be present",
+			"error_message":"No <meta> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				 "SELECTOR":"html head meta[charset=\"UTF-8\"]"
+			}
+		}, {
+			"title":"Check For <title> Within <head> Tag:",
+			"test":"./002-element-exists.js",
+			"statement":"A <title> tag inside of the <head> tag should be present",
+			"error_message":"No <title> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"html head title"
+			}
+    	}, {
+			"title":"Check For <body> Within <html> Tag:",
+			"test":"./002-element-exists.js",
+			"statement":"A <body> tag inside the <html> tag should be present",
+			"error_message":"No <body> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"html body"
+			}
+    	}
+	]
+}

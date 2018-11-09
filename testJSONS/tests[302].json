@@ -1,0 +1,15 @@
+{
+	"tests":[
+		{
+			"title":"302 Test:",
+			"test":"./301-400/302-image-files.js",
+			"statement":"Example Custom Test Statement",
+			"error_message":"Example Custom Error Statement",
+			"hints":"Example Custom Hint(s)",
+			"variables":{
+				"ROOT_DIR":"./tests/301-400/302",
+				"IMAGES_DIR":"images/"
+			}
+		}
+	]
+}

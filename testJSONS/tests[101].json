@@ -1,0 +1,13 @@
+{
+	"tests":[
+		{
+			"title":"Validate CSS File(s)",
+			"test":"./101-200/101-validate-css.js",
+			"statement":"Expecting no CSS errors for sure",
+			"error_message":"Check your CSS files for errors",
+			"variables":{
+				"CSS_PATH":"tests/101-200/101/"
+			}
+		}
+	]
+}

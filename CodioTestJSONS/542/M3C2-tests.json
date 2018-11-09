@@ -1,0 +1,52 @@
+{
+	"tests":[
+		{
+			"title":"HTML Validation:",
+			"test":"./001-validate-html.js",
+			"statement":"No HTML errors should be present",
+			"error_message":"HTML errors found! Click to see more...",
+			"variables":{
+				"HTML_PATH":"assignment/index.html"
+			}
+		}, {
+			"title":"Check For <figure>:",
+			"test":"./002-element-exists.js",
+			"statement":"A <figure> tag should be present",
+			"error_message":"No <figure> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"figure"
+			}
+		}, {
+			"title":"Check For <img> Within <figure>:",
+			"test":"./002-element-exists.js",
+			"statement":"An <img> tag inside a <figure> tag should be present",
+			"error_message":"No <img> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"figure img"
+			}
+		}, {
+			"title":"Check For <figcaption> Within <figure>:",
+			"test":"./002-element-exists.js",
+			"statement":"A <figcaption> tag inside a <figure> tag should be present",
+			"error_message":"No <figcaption> tag found!",
+			"hints":false,
+			"variables":{
+				"HTML_PATH":"assignment/index.html",
+				"SELECTOR":"figure figcaption"
+			}
+		}, {
+			"title":"Check if Resource(s) exists and Load:",
+			"test":"./003-resource-exists.js",
+			"statement":"All images inside figures should exist and load properly",
+			"error_message":"Some images either didn't exist or haven't loaded properly!",
+			"variables":{
+				"DIR_PATH":"assignment/",
+				"SELECTOR":"figure img"
+			}
+		}
+	]
+}
