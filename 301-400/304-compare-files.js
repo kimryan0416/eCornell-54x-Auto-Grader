@@ -40,7 +40,7 @@ function findDifference(file1, file2, contentOnly, callback) {
 	});
 	//process.stdout.write(results['file1Length']);
 	results['data'] = diff;
-	console.log(results);
+	//console.log(results);
 	callback(results);
 }
 
@@ -120,8 +120,8 @@ function main(title, variables, statement, errorMessage, hints) {
 			if (conditions) {
 				queue.forEach(function(d) {
 					expect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);
-					console.log(d['rate']);
-					console.log(similarity)
+					//console.log(d['rate']);
+					//console.log(similarity)
 				});
 			}
 		});
