@@ -1,25 +1,25 @@
 {
   "stats": {
-    "suites": 10,
-    "tests": 10,
-    "passes": 8,
+    "suites": 7,
+    "tests": 7,
+    "passes": 5,
     "pending": 0,
     "failures": 2,
-    "start": "2018-11-13T17:15:53.715Z",
-    "end": "2018-11-13T17:15:53.781Z",
-    "duration": 66,
-    "testsRegistered": 10,
-    "passPercent": 80,
+    "start": "2018-11-14T20:00:05.879Z",
+    "end": "2018-11-14T20:00:07.887Z",
+    "duration": 2008,
+    "testsRegistered": 7,
+    "passPercent": 71.4,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "passPercentClass": "success",
+    "passPercentClass": "warning",
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "1539d656-b527-40fc-a721-25608fd95932",
+    "uuid": "4049ab3d-75d8-49eb-aa4f-fad501ae7b19",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,23 +28,23 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "97363329-7b22-4c5c-acad-e85943e391f8",
-        "title": "304: 100%, Content Only",
+        "uuid": "5a5401e6-35c3-4b29-a8b8-2760e2dff5bf",
+        "title": "HTML validation / SUCCESS:",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "304: 100%, Content Only \"before all\" hook",
+            "fullTitle": "HTML validation / SUCCESS: \"before all\" hook",
             "timedOut": false,
-            "duration": 8,
+            "duration": 1947,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// set timeout of test to 20,000 milliseconds (20 seconds)\n// htmlPath = gets path of either HTML file or directory that contains HTML files\n// suppress = should we filter out errors like 'expected doctype' and 'missing title'?\n*/\nthis.timeout(20000);\nvar htmlPath = variables['HTML_PATH'];\nvar suppress = ( variables['SUPPRESS'] != null ) ? variables['SUPPRESS'] : false;\n\n/* --- STEP 2.1: child process executes java command to find HTML errors --- */\nvar child = exec('java -jar '+vnuPath+' --skip-non-html --format json --errors-only '+ htmlPath, function (error, stdout, stderr){\n\t/*\n\t// STEP 2.2: first parse errors as JSON...\n\t// \t\tThen filter out 'expected doctype' and 'missing title' errors if necessary\n\t// \t\tUse 'messages' global variable to refer to returned errors\n\t// \t\tdone()\n\t*/\n\tvar parsedErrors = JSON.parse(stderr);\n\tmessages = (suppress) ? parsedErrors.messages.filter(mes=>{\n\t\tvar newMes = mes.message.toLowerCase().replace(/[^a-zA-Z ]/g, '');\n\t\tif ( (newMes.indexOf('expected doctype html') == -1) && (newMes.indexOf('element head is missing a required instance of child element title') == -1) ) return mes;\n\t}) : parsedErrors.messages;\n\tdone();\n});",
             "err": {},
             "isRoot": false,
-            "uuid": "de534828-fd07-46d5-8d9b-d7bf638898dc",
+            "uuid": "c78d8cc8-69dd-4f98-b5d2-0c9bb9164247",
             "isHook": true,
             "skipped": false
           }
@@ -52,73 +52,139 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "304: 100%, Content Only \"after each\" hook",
+            "fullTitle": "HTML validation / SUCCESS: \"after each\" hook",
             "timedOut": false,
             "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (messages.length > 0) {\n\t/*\n\t// parsedMessages = object storing each file's errors, compiled into a string per file\n\t// errors = string to be printed to mochawesome, compiles all errors into one single string\n\t*/\n\tvar parsedMessages = {}, errors = '';\n\t/* --- STEP 4.1: Reduce all errors per file into a string, and saves new object of strings into 'parsedMessages' --- */\n\tmessages.forEach(mes=>{\n\t\tvar thisURL = mes.url.replace(process.cwd(), '').replace('file:/','');\n\t\tparsedMessages[thisURL] = (typeof parsedMessages[thisURL] === 'undefined') ? '' : parsedMessages[thisURL];\n\t\tparsedMessages[thisURL] += '- ' + forceUnicodeEncoding('[Line '+mes.lastLine+']: '+ mes.message) + '\\n';\n\t\treturn;\n\t});\n\t/* --- STEP 4.2: Reduce 'parsedMessages' into one string, 'errors' --- */\n\tObject.keys(parsedMessages).forEach(file => {\terrors += 'FILE: \"'+file+'\"\\n' + parsedMessages[file];\t});\n\t/* --- STEP 4.3: send errors to mochawesome as CONTEXT for this test --- */\n\tthis.currentTest.context = {'title':'Error Messages','value':errors};\n}\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "8c2a26c1-d81e-443f-80da-9e9a299a074c",
+            "uuid": "c6afecc3-d58a-4f20-893d-5e653346048d",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking only content",
-            "fullTitle": "304: 100%, Content Only Checking only content",
+            "title": "Expecting no HTML errors",
+            "fullTitle": "HTML validation / SUCCESS: Expecting no HTML errors",
             "timedOut": false,
-            "duration": 2,
-            "state": "failed",
-            "pass": false,
-            "fail": true,
+            "duration": 1,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
             "pending": false,
-            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The similarity rate between the two files is too low:\\nSimilarity Rate: 0.9571511291256514\\nExpected Similarity Minimum: 1\"\n}",
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {
-              "message": "tests/301-400/304/toCheck.html",
-              "estack": "AssertionError: tests/301-400/304/toCheck.html: Similarity rate between two file contents was too low!: expected 95.71511291256513 to be at least 100\n    at /Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/301-400/304-compare-files.js:121:63\n    at Array.forEach (<anonymous>)\n    at Context.<anonymous> (301-400/304-compare-files.js:120:11)",
-              "diff": "- 95.71511291256513\n+ 100\n"
-            },
+            "code": "expect(messages.length, errorStatement).to.equal(0);\ndone();",
+            "err": {},
             "isRoot": false,
-            "uuid": "bda87caf-1f5c-4d0d-b005-02b3d8bc4e2b",
+            "uuid": "71cf39a3-b696-42a7-b14a-4b0b46cc41d3",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
-        "passes": [],
-        "failures": [
-          "bda87caf-1f5c-4d0d-b005-02b3d8bc4e2b"
+        "passes": [
+          "71cf39a3-b696-42a7-b14a-4b0b46cc41d3"
         ],
+        "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 2,
+        "duration": 1,
         "root": false,
         "rootEmpty": false,
         "_timeout": 20000
       },
       {
-        "uuid": "4eb3509d-36f8-48d5-8aa4-f3513656ab92",
-        "title": "100%, Whole format",
+        "uuid": "be249b47-7263-4536-a4bd-98a04d5667ba",
+        "title": "004 - Order of children within 'body' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "100%, Whole format \"before all\" hook",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS \"before all\" hook",
+            "timedOut": false,
+            "duration": 18,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "44970e2f-ef59-4c5c-adff-19c5bc7bf7e4",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "3a107122-aaf2-45bd-8686-6abac83440ae",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Expect parent element that matches [body] to contain children in the order of [h1, article, footer]",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS Expect parent element that matches [body] to contain children in the order of [h1, article, footer]",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "a68c297c-aa16-40e6-84a1-5e7445580938",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "a68c297c-aa16-40e6-84a1-5e7445580938"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "4e8d1fa6-6b29-4181-94b4-116027a04919",
+        "title": "004 - Order of children within 'body' / FAILURE",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "004 - Order of children within 'body' / FAILURE \"before all\" hook",
             "timedOut": false,
             "duration": 6,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "01e80e99-0bfc-4695-b466-17539433494c",
+            "uuid": "5488380c-ba39-49f7-9113-46da1c65c24e",
             "isHook": true,
             "skipped": false
           }
@@ -126,39 +192,39 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "100%, Whole format \"after each\" hook",
+            "fullTitle": "004 - Order of children within 'body' / FAILURE \"after each\" hook",
             "timedOut": false,
-            "duration": 0,
+            "duration": 1,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "9bca784c-ead9-498f-a450-0d39a99582fb",
+            "uuid": "83a1ee67-eb40-4425-bf22-40ccd695e942",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking whole format",
-            "fullTitle": "100%, Whole format Checking whole format",
+            "title": "Expect parent element that matches [body] to contain children in the order of [h1, footer, article]",
+            "fullTitle": "004 - Order of children within 'body' / FAILURE Expect parent element that matches [body] to contain children in the order of [h1, footer, article]",
             "timedOut": false,
             "duration": 1,
             "state": "failed",
             "pass": false,
             "fail": true,
             "pending": false,
-            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The similarity rate between the two files is too low:\\nSimilarity Rate: 0.9535410764872522\\nExpected Similarity Minimum: 1\"\n}",
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [body] was:\\n- h1\\n- footer\\n- article\\n----------\\nA portion of your code that matches the selector [body] has this order:\\n- h1\\n- footer\\nThis portion has the following elements misplaced:\\n- article\\n\\nPlease make sure these elements are ordered properly within your code\"\n}",
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {
-              "message": "tests/301-400/304/toCheck.html",
-              "estack": "AssertionError: tests/301-400/304/toCheck.html: Similarity rate between two file contents was too low!: expected 95.35410764872522 to be at least 100\n    at /Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/301-400/304-compare-files.js:121:63\n    at Array.forEach (<anonymous>)\n    at Context.<anonymous> (301-400/304-compare-files.js:120:11)",
-              "diff": "- 95.35410764872522\n+ 100\n"
+              "message": "Parent element found, but order of children is incorrect!",
+              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:187:37)",
+              "diff": "- false\n+ true\n"
             },
             "isRoot": false,
-            "uuid": "d7faa58c-a86e-4cd3-8c1a-0dd70f237658",
+            "uuid": "2a333a64-ca79-4d3b-92af-198378c11087",
             "isHook": false,
             "skipped": false
           }
@@ -166,7 +232,7 @@
         "suites": [],
         "passes": [],
         "failures": [
-          "d7faa58c-a86e-4cd3-8c1a-0dd70f237658"
+          "2a333a64-ca79-4d3b-92af-198378c11087"
         ],
         "pending": [],
         "skipped": [],
@@ -176,23 +242,23 @@
         "_timeout": 20000
       },
       {
-        "uuid": "a0597de7-22d4-43a1-9d2d-187ac1e3dc7d",
-        "title": "304: 90%, Content Only",
+        "uuid": "0cb79ce9-99ed-468e-9a39-e917e5fb9dd0",
+        "title": "004 - Order of children within 'section' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "304: 90%, Content Only \"before all\" hook",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 4,
+            "duration": 3,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "a29feafb-fe92-49f9-a00d-dc4f26af278d",
+            "uuid": "43102c21-3a91-4e7f-bf55-91c29c3f2cd4",
             "isHook": true,
             "skipped": false
           }
@@ -200,24 +266,24 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "304: 90%, Content Only \"after each\" hook",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS \"after each\" hook",
             "timedOut": false,
             "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "5651acd0-4128-4a8d-9576-e760066a7de0",
+            "uuid": "15494f15-ab5b-4a15-ba83-eb4497a8a70a",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking only content",
-            "fullTitle": "304: 90%, Content Only Checking only content",
+            "title": "Expect parent element that matches [section] to contain children in the order of [h2, p, h3, p, h3, p]",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS Expect parent element that matches [section] to contain children in the order of [h2, p, h3, p, h3, p]",
             "timedOut": false,
             "duration": 0,
             "state": "passed",
@@ -225,17 +291,17 @@
             "pass": true,
             "fail": false,
             "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "849f610a-a2ec-4179-9b4b-569b9a815dcb",
+            "uuid": "2397a06c-4d82-4832-964f-0c3c81f57b62",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "849f610a-a2ec-4179-9b4b-569b9a815dcb"
+          "2397a06c-4d82-4832-964f-0c3c81f57b62"
         ],
         "failures": [],
         "pending": [],
@@ -246,23 +312,23 @@
         "_timeout": 20000
       },
       {
-        "uuid": "34d3ad84-426e-4c36-abfa-3a351c5d9cd3",
-        "title": "90%, Whole format",
+        "uuid": "57b6029e-71fc-4b32-90c0-8aad64f19193",
+        "title": "004 - Order of children within 'section' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "90%, Whole format \"before all\" hook",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 5,
+            "duration": 3,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "8811afcf-eac7-483d-bcbd-4bc625c55995",
+            "uuid": "fe79b3b6-de5a-4a21-ab74-786d22c03c4b",
             "isHook": true,
             "skipped": false
           }
@@ -270,94 +336,24 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "90%, Whole format \"after each\" hook",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS \"after each\" hook",
             "timedOut": false,
-            "duration": 1,
+            "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "91df0ac4-6f90-4a37-800f-fa1d70fdf981",
+            "uuid": "8300c94a-01ba-4705-b451-a252181da697",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking whole format",
-            "fullTitle": "90%, Whole format Checking whole format",
-            "timedOut": false,
-            "duration": 0,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {},
-            "isRoot": false,
-            "uuid": "6d4b066d-4d21-4afc-9ee4-9599b082a2b7",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "suites": [],
-        "passes": [
-          "6d4b066d-4d21-4afc-9ee4-9599b082a2b7"
-        ],
-        "failures": [],
-        "pending": [],
-        "skipped": [],
-        "duration": 0,
-        "root": false,
-        "rootEmpty": false,
-        "_timeout": 20000
-      },
-      {
-        "uuid": "7f0634e3-1cf0-4401-859d-b9cf1f1246d9",
-        "title": "304: 75%, Content Only",
-        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
-        "file": "/runner.js",
-        "beforeHooks": [
-          {
-            "title": "\"before all\" hook",
-            "fullTitle": "304: 75%, Content Only \"before all\" hook",
-            "timedOut": false,
-            "duration": 4,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
-            "err": {},
-            "isRoot": false,
-            "uuid": "2383c9f4-464d-4a2f-abc2-734f92fc79d5",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "afterHooks": [
-          {
-            "title": "\"after each\" hook",
-            "fullTitle": "304: 75%, Content Only \"after each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
-            "err": {},
-            "isRoot": false,
-            "uuid": "f8f7b09e-e877-4c87-85b2-246f536e4745",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "tests": [
-          {
-            "title": "Checking only content",
-            "fullTitle": "304: 75%, Content Only Checking only content",
+            "title": "Expect parent element that matches [section] to contain children in the order of [h2, img, img, p, h3, p, h3, p]",
+            "fullTitle": "004 - Order of children within 'section' / SUCCESS Expect parent element that matches [section] to contain children in the order of [h2, img, img, p, h3, p, h3, p]",
             "timedOut": false,
             "duration": 1,
             "state": "passed",
@@ -365,17 +361,17 @@
             "pass": true,
             "fail": false,
             "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "b1656d85-88f2-4a14-bf32-ce0877fe91d6",
+            "uuid": "e19bf789-8cdb-4347-be47-f5e62200eb02",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "b1656d85-88f2-4a14-bf32-ce0877fe91d6"
+          "e19bf789-8cdb-4347-be47-f5e62200eb02"
         ],
         "failures": [],
         "pending": [],
@@ -386,233 +382,23 @@
         "_timeout": 20000
       },
       {
-        "uuid": "088de3a5-311d-4022-92ed-8afb8cd89491",
-        "title": "75%, Whole format",
+        "uuid": "5d3f4f85-d772-48ec-ac73-4300d6c170f8",
+        "title": "004 - Order of children within 'section' with only section / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "75%, Whole format \"before all\" hook",
-            "timedOut": false,
-            "duration": 3,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
-            "err": {},
-            "isRoot": false,
-            "uuid": "ab10f1c3-93e6-47ca-b135-23fd22231674",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "afterHooks": [
-          {
-            "title": "\"after each\" hook",
-            "fullTitle": "75%, Whole format \"after each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
-            "err": {},
-            "isRoot": false,
-            "uuid": "4deadebc-cf8d-4d4c-b84d-0dc25c526b2d",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "tests": [
-          {
-            "title": "Checking whole format",
-            "fullTitle": "75%, Whole format Checking whole format",
-            "timedOut": false,
-            "duration": 0,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {},
-            "isRoot": false,
-            "uuid": "b252ea41-ba2c-4d6a-b7ba-80d4fe9ee833",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "suites": [],
-        "passes": [
-          "b252ea41-ba2c-4d6a-b7ba-80d4fe9ee833"
-        ],
-        "failures": [],
-        "pending": [],
-        "skipped": [],
-        "duration": 0,
-        "root": false,
-        "rootEmpty": false,
-        "_timeout": 20000
-      },
-      {
-        "uuid": "aa5d9da2-d63a-4d68-947c-4ff9c176bd21",
-        "title": "304: 50%, Content Only",
-        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
-        "file": "/runner.js",
-        "beforeHooks": [
-          {
-            "title": "\"before all\" hook",
-            "fullTitle": "304: 50%, Content Only \"before all\" hook",
-            "timedOut": false,
-            "duration": 5,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
-            "err": {},
-            "isRoot": false,
-            "uuid": "2ffccaa2-7cb4-46fb-b442-5ad4831cd9e5",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "afterHooks": [
-          {
-            "title": "\"after each\" hook",
-            "fullTitle": "304: 50%, Content Only \"after each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
-            "err": {},
-            "isRoot": false,
-            "uuid": "94110fab-83ee-4043-9828-f4c86a5ecc10",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "tests": [
-          {
-            "title": "Checking only content",
-            "fullTitle": "304: 50%, Content Only Checking only content",
-            "timedOut": false,
-            "duration": 0,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {},
-            "isRoot": false,
-            "uuid": "d06eaf48-cbef-40f8-a8e9-c4725ae65472",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "suites": [],
-        "passes": [
-          "d06eaf48-cbef-40f8-a8e9-c4725ae65472"
-        ],
-        "failures": [],
-        "pending": [],
-        "skipped": [],
-        "duration": 0,
-        "root": false,
-        "rootEmpty": false,
-        "_timeout": 20000
-      },
-      {
-        "uuid": "75743415-b0c6-4e46-898d-557f52240461",
-        "title": "50%, Whole format",
-        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
-        "file": "/runner.js",
-        "beforeHooks": [
-          {
-            "title": "\"before all\" hook",
-            "fullTitle": "50%, Whole format \"before all\" hook",
-            "timedOut": false,
-            "duration": 3,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
-            "err": {},
-            "isRoot": false,
-            "uuid": "a0614d96-d969-4de4-a718-ca343a01000e",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "afterHooks": [
-          {
-            "title": "\"after each\" hook",
-            "fullTitle": "50%, Whole format \"after each\" hook",
-            "timedOut": false,
-            "duration": 0,
-            "pass": false,
-            "fail": false,
-            "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
-            "err": {},
-            "isRoot": false,
-            "uuid": "eccb8632-c980-48cc-96c2-884e1835f488",
-            "isHook": true,
-            "skipped": false
-          }
-        ],
-        "tests": [
-          {
-            "title": "Checking whole format",
-            "fullTitle": "50%, Whole format Checking whole format",
-            "timedOut": false,
-            "duration": 0,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
-            "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {},
-            "isRoot": false,
-            "uuid": "e9ffd1e4-9625-42a1-b0e1-5619304f4622",
-            "isHook": false,
-            "skipped": false
-          }
-        ],
-        "suites": [],
-        "passes": [
-          "e9ffd1e4-9625-42a1-b0e1-5619304f4622"
-        ],
-        "failures": [],
-        "pending": [],
-        "skipped": [],
-        "duration": 0,
-        "root": false,
-        "rootEmpty": false,
-        "_timeout": 20000
-      },
-      {
-        "uuid": "311d672a-9426-46ca-a684-dc02adca38d2",
-        "title": "304: 25%, Content Only",
-        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
-        "file": "/runner.js",
-        "beforeHooks": [
-          {
-            "title": "\"before all\" hook",
-            "fullTitle": "304: 25%, Content Only \"before all\" hook",
+            "fullTitle": "004 - Order of children within 'section' with only section / SUCCESS \"before all\" hook",
             "timedOut": false,
             "duration": 2,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "e9a6774a-e2d1-44e2-9e5b-e75264ed0ee1",
+            "uuid": "c0ee3a7a-d2b4-4bb0-b328-8c840d95ff52",
             "isHook": true,
             "skipped": false
           }
@@ -620,24 +406,24 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "304: 25%, Content Only \"after each\" hook",
+            "fullTitle": "004 - Order of children within 'section' with only section / SUCCESS \"after each\" hook",
             "timedOut": false,
             "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "de3a19f5-8d13-45b6-b765-2440002cd4e9",
+            "uuid": "e7d890f6-ae10-40a6-8596-7daa52c8b3c2",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking only content",
-            "fullTitle": "304: 25%, Content Only Checking only content",
+            "title": "Expect parent element that matches [section] to contain children in the order of [h2, img, p, h3, p]",
+            "fullTitle": "004 - Order of children within 'section' with only section / SUCCESS Expect parent element that matches [section] to contain children in the order of [h2, img, p, h3, p]",
             "timedOut": false,
             "duration": 0,
             "state": "passed",
@@ -645,17 +431,17 @@
             "pass": true,
             "fail": false,
             "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "eae2aff3-5b18-4a08-866a-12202ef0739b",
+            "uuid": "d1c4d686-26b2-4652-90b8-1a22867ded1f",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "eae2aff3-5b18-4a08-866a-12202ef0739b"
+          "d1c4d686-26b2-4652-90b8-1a22867ded1f"
         ],
         "failures": [],
         "pending": [],
@@ -666,23 +452,23 @@
         "_timeout": 20000
       },
       {
-        "uuid": "e0a29923-199c-4c63-9dc0-66ed744c68a6",
-        "title": "25%, Whole format",
+        "uuid": "3a290cff-bc2a-43e6-b6b2-519844da3eaf",
+        "title": "004 - Order of children within 'section' with only section / FAILURE",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
         "beforeHooks": [
           {
             "title": "\"before all\" hook",
-            "fullTitle": "25%, Whole format \"before all\" hook",
+            "fullTitle": "004 - Order of children within 'section' with only section / FAILURE \"before all\" hook",
             "timedOut": false,
             "duration": 2,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "determineIfFile(file1, res1=>{\n\tif (res1 == 0) {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'File 1 is not a file...';\n\t\tdone();\n\t}\n\telse if (res1 == 1) {\n\t\tdetermineIfFile(file2, res2=>{\n\t\t\tif (res2 == 0) {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'File 2 is not a file...';\n\t\t\t\tdone();\n\t\t\t}\n\t\t\telse if (res2 == 1) {\n\t\t\t\tfindDifference(file1, file2, contentOnly, diffRes=>{\n\t\t\t\t\tqueue.push({\n\t\t\t\t\t\t'file':file1,\n\t\t\t\t\t\t'rate':diffRes['file1Length']/diffRes['file2Length']\n\t\t\t\t\t});\n\t\t\t\t\tif ( diffRes['file1Length']/diffRes['file2Length'] < similarity ) hintsStatement += 'Similarity Rate: ' + (diffRes['file1Length']/diffRes['file2Length']) + '\\nExpected Similarity Minimum: ' + similarity;\n\t\t\t\t\tdone();\n\t\t\t\t});\n\t\t\t} else {\n\t\t\t\tconditions = false;\n\t\t\t\tconditionsErrorMessage = 'determineIfFile() for File 2 never returned anything';\n\t\t\t\tdone();\n\t\t\t}\n\t\t});\n\t} else {\n\t\tconditions = false;\n\t\tconditionsErrorMessage = 'determineIfFile() for File 1 never returned anything';\n\t\tdone();\n\t}\n});",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "f8de0ecd-3749-43f1-8d0c-c741717f9764",
+            "uuid": "7513e383-5f44-4d71-a319-762b88d9d494",
             "isHook": true,
             "skipped": false
           }
@@ -690,47 +476,51 @@
         "afterHooks": [
           {
             "title": "\"after each\" hook",
-            "fullTitle": "25%, Whole format \"after each\" hook",
+            "fullTitle": "004 - Order of children within 'section' with only section / FAILURE \"after each\" hook",
             "timedOut": false,
             "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "if ( conditions && hintsStatement.length > 0 ) this.currentTest.context = { \"title\":\"Hints\", \"value\":\"The similarity rate between the two files is too low:\\n\"+hintsStatement}\ndone();",
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "c154e6d6-40d5-4a5a-b299-1fe10b52a087",
+            "uuid": "58f4a6e9-21a8-4f24-85f5-a89055c42867",
             "isHook": true,
             "skipped": false
           }
         ],
         "tests": [
           {
-            "title": "Checking whole format",
-            "fullTitle": "25%, Whole format Checking whole format",
+            "title": "Expect parent element that matches [section] to contain children in the order of [h2, h4]",
+            "fullTitle": "004 - Order of children within 'section' with only section / FAILURE Expect parent element that matches [section] to contain children in the order of [h2, h4]",
             "timedOut": false,
-            "duration": 0,
-            "state": "passed",
-            "speed": "fast",
-            "pass": true,
-            "fail": false,
+            "duration": 1,
+            "state": "failed",
+            "pass": false,
+            "fail": true,
             "pending": false,
-            "code": "expect(conditions, conditionsErrorMessage).to.be.true;\nif (conditions) {\n\tqueue.forEach(function(d) {\n\t\texpect(d['rate']*100, d['file']+errorStatement).to.be.at.least(similarity*100);\n\t\t//console.log(d['rate']);\n\t\t//console.log(similarity)\n\t});\n}",
-            "err": {},
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [section] was:\\n- h2\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n\\nPlease make sure these elements are ordered properly within your code\"\n}",
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
+            "err": {
+              "message": "Parent element found, but order of children is incorrect!",
+              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:187:37)",
+              "diff": "- false\n+ true\n"
+            },
             "isRoot": false,
-            "uuid": "89abf2f4-397b-48ca-a046-e8f9fab185db",
+            "uuid": "dc258c38-c361-409d-9ab3-f4db06108b74",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
-        "passes": [
-          "89abf2f4-397b-48ca-a046-e8f9fab185db"
+        "passes": [],
+        "failures": [
+          "dc258c38-c361-409d-9ab3-f4db06108b74"
         ],
-        "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 0,
+        "duration": 1,
         "root": false,
         "rootEmpty": false,
         "_timeout": 20000
