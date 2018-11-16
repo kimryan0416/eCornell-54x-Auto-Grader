@@ -1,0 +1,29 @@
+{
+  "name": "cis54xpackages",
+  "version": "1.0.0",
+  "description": "Collection of unit tests to be utilized by the eCornell CIS54x web design course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Kim",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "mocha": "^5.2.0",
+    "mochawesome": "^3.0.3",
+    "testcafe": "^0.21.1"
+  },
+  "dependencies": {
+    "css": "^2.2.3",
+    "cssbeautify": "^0.3.1",
+    "diff": "^3.5.0",
+    "html": "^1.0.0",
+    "is-image": "^2.0.0",
+    "node-html-parser": "^1.1.10",
+    "request": "^2.88.0",
+    "testcafe-reporter-json": "^2.1.0",
+    "text-diff": "^1.0.1"
+  }
+}

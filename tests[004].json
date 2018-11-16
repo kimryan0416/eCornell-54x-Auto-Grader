@@ -6,14 +6,14 @@
 			"statement":"Expecting no HTML errors",
 			"error_message":"Errors found! Click to see more.",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
 				"SUPPRESS":false
 			}
 		}, {
 			"title":"004 - Order of children within 'body' / SUCCESS",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"body",
         		"ORDER":["h1","article","footer"]
 			}
@@ -21,7 +21,7 @@
 			"title":"004 - Order of children within 'body' / FAILURE",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"body",
         		"ORDER":["h1","footer","article"]
 			}
@@ -29,7 +29,7 @@
 			"title":"004 - Order of children within 'section' / SUCCESS",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"section",
         		"ORDER":["h2","p","h3","p","h3","p"]
 			}
@@ -37,7 +37,7 @@
 			"title":"004 - Order of children within 'section' / SUCCESS",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"section",
         		"ORDER":["h2","img","img","p","h3","p","h3","p"]
 			}
@@ -45,7 +45,7 @@
 			"title":"004 - Order of children within 'section' with only section / SUCCESS",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"section",
         		"ORDER":["h2","img","p","h3","p"]
 			}
@@ -53,9 +53,16 @@
 			"title":"004 - Order of children within 'section' with only section / FAILURE",
 			"test":"./001-100/004-element-order.js",
 			"variables":{
-				"HTML_PATH":"tests/001-100/002/index.html",
+				"HTML_PATH":"tests/001-100/004/index.html",
         		"SELECTOR":"section",
         		"ORDER":["h2","h4"]
+			}
+		}, {
+			"title":"004 - Order of children within 'body' / SUCCESS",
+			"test":"./001-100/004-element-order.js",
+			"variables":{
+				"HTML_PATH":"tests/001-100/004/plain.html",
+        		"ORDER":["article","footer"]
 			}
 		}
 	]

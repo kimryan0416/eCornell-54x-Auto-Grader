@@ -1,15 +1,15 @@
 {
   "stats": {
-    "suites": 7,
-    "tests": 7,
-    "passes": 5,
+    "suites": 8,
+    "tests": 8,
+    "passes": 6,
     "pending": 0,
     "failures": 2,
-    "start": "2018-11-14T20:00:05.879Z",
-    "end": "2018-11-14T20:00:07.887Z",
-    "duration": 2008,
-    "testsRegistered": 7,
-    "passPercent": 71.4,
+    "start": "2018-11-16T17:39:34.208Z",
+    "end": "2018-11-16T17:39:36.180Z",
+    "duration": 1972,
+    "testsRegistered": 8,
+    "passPercent": 75,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -19,7 +19,7 @@
     "pendingPercentClass": "danger"
   },
   "suites": {
-    "uuid": "4049ab3d-75d8-49eb-aa4f-fad501ae7b19",
+    "uuid": "f74a8704-631b-4420-a6c6-5c727bbf7159",
     "title": "",
     "fullFile": "",
     "file": "",
@@ -28,7 +28,7 @@
     "tests": [],
     "suites": [
       {
-        "uuid": "5a5401e6-35c3-4b29-a8b8-2760e2dff5bf",
+        "uuid": "9f07c997-9a1f-4cc4-a9cc-a0583e4c9281",
         "title": "HTML validation / SUCCESS:",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -37,14 +37,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "HTML validation / SUCCESS: \"before all\" hook",
             "timedOut": false,
-            "duration": 1947,
+            "duration": 1779,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "/*\n// set timeout of test to 20,000 milliseconds (20 seconds)\n// htmlPath = gets path of either HTML file or directory that contains HTML files\n// suppress = should we filter out errors like 'expected doctype' and 'missing title'?\n*/\nthis.timeout(20000);\nvar htmlPath = variables['HTML_PATH'];\nvar suppress = ( variables['SUPPRESS'] != null ) ? variables['SUPPRESS'] : false;\n\n/* --- STEP 2.1: child process executes java command to find HTML errors --- */\nvar child = exec('java -jar '+vnuPath+' --skip-non-html --format json --errors-only '+ htmlPath, function (error, stdout, stderr){\n\t/*\n\t// STEP 2.2: first parse errors as JSON...\n\t// \t\tThen filter out 'expected doctype' and 'missing title' errors if necessary\n\t// \t\tUse 'messages' global variable to refer to returned errors\n\t// \t\tdone()\n\t*/\n\tvar parsedErrors = JSON.parse(stderr);\n\tmessages = (suppress) ? parsedErrors.messages.filter(mes=>{\n\t\tvar newMes = mes.message.toLowerCase().replace(/[^a-zA-Z ]/g, '');\n\t\tif ( (newMes.indexOf('expected doctype html') == -1) && (newMes.indexOf('element head is missing a required instance of child element title') == -1) ) return mes;\n\t}) : parsedErrors.messages;\n\tdone();\n});",
             "err": {},
             "isRoot": false,
-            "uuid": "c78d8cc8-69dd-4f98-b5d2-0c9bb9164247",
+            "uuid": "9035b27b-0731-4c27-859a-a06c6437421a",
             "isHook": true,
             "skipped": false
           }
@@ -61,7 +61,7 @@
             "code": "if (messages.length > 0) {\n\t/*\n\t// parsedMessages = object storing each file's errors, compiled into a string per file\n\t// errors = string to be printed to mochawesome, compiles all errors into one single string\n\t*/\n\tvar parsedMessages = {}, errors = '';\n\t/* --- STEP 4.1: Reduce all errors per file into a string, and saves new object of strings into 'parsedMessages' --- */\n\tmessages.forEach(mes=>{\n\t\tvar thisURL = mes.url.replace(process.cwd(), '').replace('file:/','');\n\t\tparsedMessages[thisURL] = (typeof parsedMessages[thisURL] === 'undefined') ? '' : parsedMessages[thisURL];\n\t\tparsedMessages[thisURL] += '- ' + forceUnicodeEncoding('[Line '+mes.lastLine+']: '+ mes.message) + '\\n';\n\t\treturn;\n\t});\n\t/* --- STEP 4.2: Reduce 'parsedMessages' into one string, 'errors' --- */\n\tObject.keys(parsedMessages).forEach(file => {\terrors += 'FILE: \"'+file+'\"\\n' + parsedMessages[file];\t});\n\t/* --- STEP 4.3: send errors to mochawesome as CONTEXT for this test --- */\n\tthis.currentTest.context = {'title':'Error Messages','value':errors};\n}\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "c6afecc3-d58a-4f20-893d-5e653346048d",
+            "uuid": "7ab2bfb0-9e6c-4409-90b4-87fc6a7f3b41",
             "isHook": true,
             "skipped": false
           }
@@ -80,14 +80,14 @@
             "code": "expect(messages.length, errorStatement).to.equal(0);\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "71cf39a3-b696-42a7-b14a-4b0b46cc41d3",
+            "uuid": "b1dfb823-a736-46e4-b15d-42d8b1eb96cc",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "71cf39a3-b696-42a7-b14a-4b0b46cc41d3"
+          "b1dfb823-a736-46e4-b15d-42d8b1eb96cc"
         ],
         "failures": [],
         "pending": [],
@@ -98,7 +98,7 @@
         "_timeout": 20000
       },
       {
-        "uuid": "be249b47-7263-4536-a4bd-98a04d5667ba",
+        "uuid": "ca50c2be-8545-426b-bc3e-76272e5d9691",
         "title": "004 - Order of children within 'body' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -107,14 +107,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'body' / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 18,
+            "duration": 25,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "44970e2f-ef59-4c5c-adff-19c5bc7bf7e4",
+            "uuid": "25648be3-bde7-44a3-a64a-226ad20d94da",
             "isHook": true,
             "skipped": false
           }
@@ -131,7 +131,7 @@
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "3a107122-aaf2-45bd-8686-6abac83440ae",
+            "uuid": "5224b934-059c-440a-9a50-3d14f770d627",
             "isHook": true,
             "skipped": false
           }
@@ -150,14 +150,14 @@
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "a68c297c-aa16-40e6-84a1-5e7445580938",
+            "uuid": "f4c0eba8-1c16-42f6-8ebd-ada48be7d8c1",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "a68c297c-aa16-40e6-84a1-5e7445580938"
+          "f4c0eba8-1c16-42f6-8ebd-ada48be7d8c1"
         ],
         "failures": [],
         "pending": [],
@@ -168,7 +168,7 @@
         "_timeout": 20000
       },
       {
-        "uuid": "4e8d1fa6-6b29-4181-94b4-116027a04919",
+        "uuid": "0cf982ed-aa55-4bd9-a57b-6e79408950e1",
         "title": "004 - Order of children within 'body' / FAILURE",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -177,14 +177,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'body' / FAILURE \"before all\" hook",
             "timedOut": false,
-            "duration": 6,
+            "duration": 12,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "5488380c-ba39-49f7-9113-46da1c65c24e",
+            "uuid": "815e986a-c7ce-4595-b6e0-f2d7730fb534",
             "isHook": true,
             "skipped": false
           }
@@ -194,14 +194,14 @@
             "title": "\"after each\" hook",
             "fullTitle": "004 - Order of children within 'body' / FAILURE \"after each\" hook",
             "timedOut": false,
-            "duration": 1,
+            "duration": 0,
             "pass": false,
             "fail": false,
             "pending": false,
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "83a1ee67-eb40-4425-bf22-40ccd695e942",
+            "uuid": "9f43e39e-4c7f-4969-8668-b459e83c2ea2",
             "isHook": true,
             "skipped": false
           }
@@ -211,20 +211,20 @@
             "title": "Expect parent element that matches [body] to contain children in the order of [h1, footer, article]",
             "fullTitle": "004 - Order of children within 'body' / FAILURE Expect parent element that matches [body] to contain children in the order of [h1, footer, article]",
             "timedOut": false,
-            "duration": 1,
+            "duration": 2,
             "state": "failed",
             "pass": false,
             "fail": true,
             "pending": false,
-            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [body] was:\\n- h1\\n- footer\\n- article\\n----------\\nA portion of your code that matches the selector [body] has this order:\\n- h1\\n- footer\\nThis portion has the following elements misplaced:\\n- article\\n\\nPlease make sure these elements are ordered properly within your code\"\n}",
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [body] was:\\n- h1\\n- footer\\n- article\\n----------\\nA portion of your code that matches the selector [body] has this order:\\n- h1\\n- footer\\nThis portion has the following elements misplaced:\\n- article\\n\\nPlease make sure these elements are ordered properly within your code.\"\n}",
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {
               "message": "Parent element found, but order of children is incorrect!",
-              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:187:37)",
+              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:178:37)",
               "diff": "- false\n+ true\n"
             },
             "isRoot": false,
-            "uuid": "2a333a64-ca79-4d3b-92af-198378c11087",
+            "uuid": "61afe6c3-7f3a-43e1-8c24-1ac9d589e72d",
             "isHook": false,
             "skipped": false
           }
@@ -232,17 +232,17 @@
         "suites": [],
         "passes": [],
         "failures": [
-          "2a333a64-ca79-4d3b-92af-198378c11087"
+          "61afe6c3-7f3a-43e1-8c24-1ac9d589e72d"
         ],
         "pending": [],
         "skipped": [],
-        "duration": 1,
+        "duration": 2,
         "root": false,
         "rootEmpty": false,
         "_timeout": 20000
       },
       {
-        "uuid": "0cb79ce9-99ed-468e-9a39-e917e5fb9dd0",
+        "uuid": "c88a8465-08af-4fe2-ae4a-248241e568a2",
         "title": "004 - Order of children within 'section' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -251,14 +251,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'section' / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 3,
+            "duration": 31,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "43102c21-3a91-4e7f-bf55-91c29c3f2cd4",
+            "uuid": "e6b09203-f2ba-4576-8965-43c494d24b39",
             "isHook": true,
             "skipped": false
           }
@@ -275,7 +275,7 @@
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "15494f15-ab5b-4a15-ba83-eb4497a8a70a",
+            "uuid": "ff582bef-e42c-4dc0-964f-fdd8fbdc7c3b",
             "isHook": true,
             "skipped": false
           }
@@ -294,14 +294,14 @@
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "2397a06c-4d82-4832-964f-0c3c81f57b62",
+            "uuid": "a5521039-c0f7-43e7-a66b-d29d12dc0d95",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "2397a06c-4d82-4832-964f-0c3c81f57b62"
+          "a5521039-c0f7-43e7-a66b-d29d12dc0d95"
         ],
         "failures": [],
         "pending": [],
@@ -312,7 +312,7 @@
         "_timeout": 20000
       },
       {
-        "uuid": "57b6029e-71fc-4b32-90c0-8aad64f19193",
+        "uuid": "8357dd38-33a6-4cc2-a74f-29bbbb4676c5",
         "title": "004 - Order of children within 'section' / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -321,14 +321,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'section' / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 3,
+            "duration": 31,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "fe79b3b6-de5a-4a21-ab74-786d22c03c4b",
+            "uuid": "230ab704-db42-4019-a1f2-f8366c7c045e",
             "isHook": true,
             "skipped": false
           }
@@ -345,7 +345,7 @@
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "8300c94a-01ba-4705-b451-a252181da697",
+            "uuid": "c12b87e6-0e8c-4f29-9d8b-d8b0d1ed7ce8",
             "isHook": true,
             "skipped": false
           }
@@ -355,7 +355,7 @@
             "title": "Expect parent element that matches [section] to contain children in the order of [h2, img, img, p, h3, p, h3, p]",
             "fullTitle": "004 - Order of children within 'section' / SUCCESS Expect parent element that matches [section] to contain children in the order of [h2, img, img, p, h3, p, h3, p]",
             "timedOut": false,
-            "duration": 1,
+            "duration": 0,
             "state": "passed",
             "speed": "fast",
             "pass": true,
@@ -364,25 +364,25 @@
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "e19bf789-8cdb-4347-be47-f5e62200eb02",
+            "uuid": "7395c540-243b-4dbd-841b-556287fc27fb",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "e19bf789-8cdb-4347-be47-f5e62200eb02"
+          "7395c540-243b-4dbd-841b-556287fc27fb"
         ],
         "failures": [],
         "pending": [],
         "skipped": [],
-        "duration": 1,
+        "duration": 0,
         "root": false,
         "rootEmpty": false,
         "_timeout": 20000
       },
       {
-        "uuid": "5d3f4f85-d772-48ec-ac73-4300d6c170f8",
+        "uuid": "699ffe4b-eb0a-478b-8557-03f7dc823d7e",
         "title": "004 - Order of children within 'section' with only section / SUCCESS",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -391,14 +391,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'section' with only section / SUCCESS \"before all\" hook",
             "timedOut": false,
-            "duration": 2,
+            "duration": 30,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "c0ee3a7a-d2b4-4bb0-b328-8c840d95ff52",
+            "uuid": "510dde4a-eb30-4d2a-a344-d3e0e27de6ff",
             "isHook": true,
             "skipped": false
           }
@@ -415,7 +415,7 @@
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "e7d890f6-ae10-40a6-8596-7daa52c8b3c2",
+            "uuid": "83c5ff93-1ef3-4081-b136-0800965aa7a9",
             "isHook": true,
             "skipped": false
           }
@@ -434,14 +434,14 @@
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "d1c4d686-26b2-4652-90b8-1a22867ded1f",
+            "uuid": "a8cf20c8-fc7d-4376-bcc0-e9fdf4cfdcd0",
             "isHook": false,
             "skipped": false
           }
         ],
         "suites": [],
         "passes": [
-          "d1c4d686-26b2-4652-90b8-1a22867ded1f"
+          "a8cf20c8-fc7d-4376-bcc0-e9fdf4cfdcd0"
         ],
         "failures": [],
         "pending": [],
@@ -452,7 +452,7 @@
         "_timeout": 20000
       },
       {
-        "uuid": "3a290cff-bc2a-43e6-b6b2-519844da3eaf",
+        "uuid": "52098493-388a-47dc-8a97-fea626ddd5e7",
         "title": "004 - Order of children within 'section' with only section / FAILURE",
         "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
         "file": "/runner.js",
@@ -461,14 +461,14 @@
             "title": "\"before all\" hook",
             "fullTitle": "004 - Order of children within 'section' with only section / FAILURE \"before all\" hook",
             "timedOut": false,
-            "duration": 2,
+            "duration": 29,
             "pass": false,
             "fail": false,
             "pending": false,
-            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\t/*\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nThe following HTML elements were misplaced:\\n- ' \n\t\t\t\t\t+ notValidChildren.join('\\n- ') \n\t\t\t\t\t+ '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\t*/\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
             "err": {},
             "isRoot": false,
-            "uuid": "7513e383-5f44-4d71-a319-762b88d9d494",
+            "uuid": "6d2838d9-d60e-49fe-abdf-bcbdba65865b",
             "isHook": true,
             "skipped": false
           }
@@ -485,7 +485,7 @@
             "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
             "err": {},
             "isRoot": false,
-            "uuid": "58f4a6e9-21a8-4f24-85f5-a89055c42867",
+            "uuid": "fc9495f7-b383-4e04-b64f-99c609dc16b8",
             "isHook": true,
             "skipped": false
           }
@@ -500,15 +500,15 @@
             "pass": false,
             "fail": true,
             "pending": false,
-            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [section] was:\\n- h2\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n\\nPlease make sure these elements are ordered properly within your code\"\n}",
+            "context": "{\n  \"title\": \"Hints\",\n  \"value\": \"The expected order of the children inside [section] was:\\n- h2\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n----------\\nA portion of your code that matches the selector [section] has this order:\\n- h2\\nThis portion has the following elements misplaced:\\n- h4\\n\\nPlease make sure these elements are ordered properly within your code.\"\n}",
             "code": "expect(found, errorStatement).to.equal(true)\ndone();",
             "err": {
               "message": "Parent element found, but order of children is incorrect!",
-              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:187:37)",
+              "estack": "AssertionError: Parent element found, but order of children is incorrect!: expected false to equal true\n    at Context.<anonymous> (001-100/004-element-order.js:178:37)",
               "diff": "- false\n+ true\n"
             },
             "isRoot": false,
-            "uuid": "dc258c38-c361-409d-9ab3-f4db06108b74",
+            "uuid": "24cc1ce4-0535-4e2c-911a-dc0061b3e1b5",
             "isHook": false,
             "skipped": false
           }
@@ -516,11 +516,81 @@
         "suites": [],
         "passes": [],
         "failures": [
-          "dc258c38-c361-409d-9ab3-f4db06108b74"
+          "24cc1ce4-0535-4e2c-911a-dc0061b3e1b5"
         ],
         "pending": [],
         "skipped": [],
         "duration": 1,
+        "root": false,
+        "rootEmpty": false,
+        "_timeout": 20000
+      },
+      {
+        "uuid": "1435807d-5d5b-46e0-85b6-f5958b8b71b0",
+        "title": "004 - Order of children within 'body' / SUCCESS",
+        "fullFile": "/Users/RK/Desktop/MAMP_WEB/cis54x/cis54xPackages/runner.js",
+        "file": "/runner.js",
+        "beforeHooks": [
+          {
+            "title": "\"before all\" hook",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS \"before all\" hook",
+            "timedOut": false,
+            "duration": 9,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "/*\n// fileCOntents = getting the contents of the HTML file we're looking at\n*/\nvar fileContents = fs.readFileSync(htmlPath, 'utf-8');\n/* --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' --- */\nif ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {\n\t/*\n\t// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';\n\t// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object \n\t// \t\trepresenting <html> if there is an <html> tag within student code\n\t// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.\n\t// Then, done\n\t*/\n\tvar root = htmlParser.parse(fileContents);\n\tvar rootHTML = root['childNodes'][0];\n\tfilterSelector(selector, res=>{\n\t\tparentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());\n\t\tif (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/[\"']/g, '\"') == res['lang'].toLowerCase().replace(/[\"']/g, '\"'));\n\t\tif (parentFound) {\n\t\t\tvalidateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {\n\t\t\t\tfound = orderValid;\n\t\t\t\tif (!orderValid) {\n\t\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\t\thintsStatement = \n\t\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t\t});\n\t\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t\t}\n\t\t\t\tdone();\n\t\t\t});\n\t\t} else {\n\t\t\tdone();\n\t\t}\n\t});\n} else {\n\t/*\n\t// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':\n\t// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector\n\t// Then, done;\n\t*/\n\tvar $ = cheerio.load(fileContents);\n\tel = $(selector);\n\tconsole.log(el.children());\n\tparentFound = ( el.length > 0 );\n\tif (parentFound) {\n\t\tvalidateChildrenOrder($, selector, order, (orderValid, parentInfo) => {\n\t\t\tfound = orderValid;\n\t\t\tif (!orderValid) {\n\t\t\t\terrorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';\n\t\t\t\thintsStatement = \n\t\t\t\t\t'The expected order of the children inside [' + selector + '] was:\\n- ' \n\t\t\t\t\t+ order.join('\\n- ');\n\t\t\t\tparentInfo.forEach(info=>{\n\t\t\t\t\thintsStatement += '\\n----------\\nA portion of your code that matches the selector [' + selector + '] has this order:\\n- ' + info.valid.join('\\n- '); \n\t\t\t\t\thintsStatement += '\\nThis portion has the following elements misplaced:\\n- ' + info.notValid.join('\\n- ');\n\t\t\t\t});\n\t\t\t\thintsStatement += '\\n\\nPlease make sure these elements are ordered properly within your code.';\n\t\t\t}\n\t\t\tdone();\n\t\t});\n\t} else {\n\t\tdone();\n\t}\n}",
+            "err": {},
+            "isRoot": false,
+            "uuid": "449089ad-2a64-40ea-ab1d-bb44ad01c19d",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "afterHooks": [
+          {
+            "title": "\"after each\" hook",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS \"after each\" hook",
+            "timedOut": false,
+            "duration": 0,
+            "pass": false,
+            "fail": false,
+            "pending": false,
+            "code": "if (hintsStatement != null && found != true)\tthis.currentTest.context = {'title':'Hints','value':hintsStatement};\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "8b2c9bb7-e981-4121-a176-4c5831bad928",
+            "isHook": true,
+            "skipped": false
+          }
+        ],
+        "tests": [
+          {
+            "title": "Expect parent element that matches [html body] to contain children in the order of [article, footer]",
+            "fullTitle": "004 - Order of children within 'body' / SUCCESS Expect parent element that matches [html body] to contain children in the order of [article, footer]",
+            "timedOut": false,
+            "duration": 0,
+            "state": "passed",
+            "speed": "fast",
+            "pass": true,
+            "fail": false,
+            "pending": false,
+            "code": "expect(found, errorStatement).to.equal(true)\ndone();",
+            "err": {},
+            "isRoot": false,
+            "uuid": "35bf4d90-a86c-4456-a2fa-46061250a5d6",
+            "isHook": false,
+            "skipped": false
+          }
+        ],
+        "suites": [],
+        "passes": [
+          "35bf4d90-a86c-4456-a2fa-46061250a5d6"
+        ],
+        "failures": [],
+        "pending": [],
+        "skipped": [],
+        "duration": 0,
         "root": false,
         "rootEmpty": false,
         "_timeout": 20000

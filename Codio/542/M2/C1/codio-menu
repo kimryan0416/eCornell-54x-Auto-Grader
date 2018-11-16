@@ -1,0 +1,30 @@
+{
+    "Codio": false,
+    "Project": {
+      "Settings": false,
+      "Stack": false,
+      "Permissions": false,
+      "Reset Box": false,
+      "Resync File Tree": false,
+      "Share": false,
+      "Export as Zip": false,
+      "Delete": false,
+      "Exit": false
+    },
+    "File": false,
+    "Edit": true,
+    "Find": {
+      "Replace in Project":false
+    },
+    "View": true,
+    "Tools": false,
+    "Education": false,
+    "Help": false,
+    "Run": false,
+    "Preview": false,
+    "Debugger": false,
+    "Status": false,
+    "Project Index (static)": true,
+    "Toggle sections list": false,
+    "Online": true
+}

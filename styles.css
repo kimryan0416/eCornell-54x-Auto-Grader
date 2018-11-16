@@ -1203,7 +1203,8 @@ html {
 
 body {
   margin: 0 60px 30px;
-  font-size: 18px;
+  /*font-size: 18px;*/
+  font-size:15px !important;
   line-height: 1.5;
 }
 

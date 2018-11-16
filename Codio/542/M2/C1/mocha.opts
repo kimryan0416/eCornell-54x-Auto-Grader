@@ -1,0 +1,5 @@
+# mocha.opts
+
+--reporter .guides/cis54x/node_modules/mochawesome/dist/mochawesome.js
+--reporter-options showPending=false,enableCode=false,reportDir=.guides/testReport/,reportFilename=report,charts=false
+--timeout 20000
