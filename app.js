@@ -1,12 +1,7 @@
 const exec = require('child_process').exec;
-//const common = require('./common.js');
-
 const fs = require('fs');
 const path = require('path');
-/*
-const getDirs = common.getDirectories;
-const getFileDirectory = common.getFileDirectory;
-*/
+
 
 const isDirectory = source => fs.lstatSync(source).isDirectory()
 const getChildrenDirectories = source =>
@@ -23,18 +18,11 @@ This application takes *3* environmental variables:
 var tests = process.env.TESTS;
 var singleDirectory = ( process.env.SINGLEDIR && typeof process.env.SINGLEDIR === "string" ) ? process.env.SINGLEDIR : false;
 var submissionsDirectory = ( process.env.SUBMISSIONS && typeof process.env.SUBMISSIONS === "string" ) ? process.env.SUBMISSIONS : false;
-/*
-var commandQueue = [];
-var finalResults = {
-	successes:[],
-	failures:[]
-}
-*/
 
-/* --- Functions --- */
+/* ---------------------------- */
+/* --- Helper Functions --- */
 
 function createCommand(tests,directoryToTest) {
-	//var directoryToTest = (directoryToTest) ? directoryToTest + '/' : getFileDirectory(tests) + '/' ;
 	var directoryToTest = (directoryToTest) ? directoryToTest + '/' : path.dirname(tests) + '/' ;
 	// directoryToTest = the location of our test submission; If 'directoryToTest' is not given, we use the same location as 'tests' as our test location
 	var cmdString = "env TESTS="+tests+" DIR="+directoryToTest+" mocha --timeout 20000 --reporter node_modules/mochawesome/dist/mochawesome.js --reporter-options showPending=false,enableCode=false,reportDir="+directoryToTest+"/testReport/,reportFilename=report,charts=false runner.js"
@@ -71,9 +59,7 @@ async function performTests(cmds) {
 		.catch(e => {console.log(e)});
 }
 
-/* --- END Functions --- */
-
-
+/* ---------------------------- */
 /*
 How the process works:
 If SUBMISSIONS is set, then we'll need to look at a bunch of submissions - otherwise, we're looking at a single submission
@@ -86,28 +72,7 @@ In the case of multiple submissions, we have a more complicated set of processes
 	3) END PROCESS 0
 */
 
-
 if (submissionsDirectory) {
-	/*
-	getDirs(submissionsDirectory,(errs,dirs)=>{
-		if (errs instanceof Error) {
-			console.log(errs);
-			process.exit(1);
-		}
-		else {
-			commandQueue = dirs.reduce((directChildren, dir) => {
-				if (fs.statSync(dir).isDirectory() && dir.indexOf('testReport') == -1) {
-					directChildren.push(createCommand(tests,dir));
-				}
-				return directChildren;
-			}, []);
-			performTests(commandQueue).then(()=>{
-				console.log('* All Tests Completed *');
-				process.exit(0);
-			});
-		}
-	});
-	*/
 	var dirs = getChildrenDirectories(submissionsDirectory);
 	if (dirs.length == 0) {
 		console.log('No submissions detected within the directory path given by SUBMISSIONS');
@@ -123,12 +88,12 @@ if (submissionsDirectory) {
 	var singleCommand = (singleDirectory) ? createCommand(tests,singleDirectory) : createCommand(tests);
 	var child = exec(singleCommand.command, (error, stdout, stderr)=>{
 		if (error) {
-			console.log("Errors detected");
+			console.log("\nErrors detected\n");
 			console.log(error);
 			process.exit(1);
 			
 		} else {
-			process.stdout.write("Well Done!");
+			console.log("\nWell Done!\n");
 			process.exit(0);
 		}
 	});
