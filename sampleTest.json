@@ -1,0 +1,14 @@
+{
+	"tests":[
+		{
+			"title":"HTML validation / SUCCESS:",
+			"test":"./001-100/001-validate-html.js",
+			"statement":"Expecting no HTML errors",
+			"error_message":"Errors found! Click to see more.",
+			"variables":{
+				"HTML_PATH":"index.html",
+				"SUPPRESS":false
+			}
+		}
+	]
+}

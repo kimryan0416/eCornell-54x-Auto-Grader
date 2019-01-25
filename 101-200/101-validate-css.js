@@ -5,7 +5,7 @@ const expect = common.expect;
 const forceUnicodeEncoding = common.forceUnicodeEncoding;
 const vnuPath = common.vnuPath;
 
-function main(title, variables, statement, errorMessage, hints=null) {
+function main(title, variables, statement, errorMessage, testDirectory, hints=null) {
 
 	var itStatement = (statement.length != 0) ? statement : 'Expecting no CSS errors';
 	var errorStatement = (errorMessage.length != 0) ? errorMessage : 'Errors found! Click to see more.';
@@ -16,7 +16,7 @@ function main(title, variables, statement, errorMessage, hints=null) {
 
 		before(function(done) {
 			this.timeout(20000);
-			var cssPath = variables['CSS_PATH'];
+			var cssPath = ( variables && variables['CSS_PATH']!=null ) ? testDirectory + '/' + variables['CSS_PATH'] : testDirectory + '/';
 
 			var child = exec('java -jar '+vnuPath+' --skip-non-css --format json --errors-only '+ cssPath, function (error, stdout, stderr){
 				var parsedErrors = JSON.parse(stderr);

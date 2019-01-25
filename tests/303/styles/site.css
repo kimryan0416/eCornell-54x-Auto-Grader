@@ -1,0 +1,13 @@
+body {font-family: "sans-serif", Times New Roman; background-color: /*light salmon*/ #FADBD8;}
+li{list-style: none;}a{ color: /*red/#B03A2E;}
+H1{font-size: 42px text-align: centre;
+}
+headerimg {
+  width: 100px;
+}stress{font-weight: bold, font-size: 18px;}
+footer {
+  color: #7B241C;
+  background-color: white;
+  font-size: 10px;
+  vertical-align: center
+}

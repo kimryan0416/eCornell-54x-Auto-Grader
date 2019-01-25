@@ -1,0 +1,19 @@
+{
+	"tests":[
+		{
+			"title":"Validate HTML File NO SUPPRESS",
+			"test":"./001-100/001-validate-html.js",
+			"variables":{
+				"HTML_PATH":"tests/finalProject/"
+			}
+		},{
+			"title":"Validate CSS File(s)",
+			"test":"./101-200/101-validate-css.js",
+			"statement":"Expecting no CSS errors for sure",
+			"error_message":"Check your CSS files for errors",
+			"variables":{
+				"CSS_PATH":"tests/finalProject/"
+			}
+		}
+	]
+}

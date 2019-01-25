@@ -16,6 +16,7 @@
     "testcafe": "^0.21.1"
   },
   "dependencies": {
+    "asyncawait": "^1.0.7",
     "css": "^2.2.3",
     "cssbeautify": "^0.3.1",
     "diff": "^3.5.0",

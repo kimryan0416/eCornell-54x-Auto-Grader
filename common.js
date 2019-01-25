@@ -29,7 +29,6 @@ function forceUnicodeEncoding(string) {
   return decodeURIComponent(string.replace(/\\x/g,"%"));
 }
 
-
 function determineValid(url, callback) {
 	fs.lstat(url, (err, stats)=>{
 		if ( err ) callback(new Error(err));
@@ -55,7 +54,18 @@ const getDirectories = (src, callback) => {
 	glob(src + "/**/*", callback);
 }
 
+function getFileDirectory (url,callback) {  return path.dirname(url); }
+
 function isArray(a) { return Object.prototype.toString.call(a) === "[object Array]";  }
+function isFile(url) {
+  return new Promise((resolve,reject)=>{
+    fs.lstat(url, (err, stats)=>{
+      if ( err ) reject(new Error(err));
+      else if (stats.isFile()) resolve(1);
+      else resolve(0);
+    });
+  });
+}
 
 
 exports.fs = fs;
@@ -70,7 +80,9 @@ exports.escapeHTML = escapeHTML;
 exports.determineFileDir = determineValid;
 exports.determineFileOrDir = determineFileOrDir;
 exports.getDirectories = getDirectories;
+exports.getFileDirectory = getFileDirectory;
 exports.forceUnicodeEncoding = forceUnicodeEncoding;
 exports.isArray = isArray;
+exports.isFile = isFile;
 
 exports.vnuPath = vnuPath;

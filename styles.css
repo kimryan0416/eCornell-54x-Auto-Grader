@@ -517,7 +517,8 @@ textarea {
 /* CHANGED */
 /* originally part of above, now overwriting with changed paddings */
 .codio-challenge {
-  padding: 0px 20px 12px 65px;
+  padding: 2em;
+  margin:3em 0 3em 0;
 }
 
 .codio-warning h1,
@@ -614,6 +615,9 @@ textarea {
 .codio-challenge::before {
   background-image: url("/assets/images/guides/blocks/challenge.svg");
   margin-left: -109px;
+  /**/
+  display:none;
+  /**/
 }
 
 .codio-guidance::before {
@@ -1457,4 +1461,15 @@ mark {
 .codio-button-type-assessment,
 .codio-assessment-last-run {
   font-family: 'Nunito Sans';
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }

@@ -448,7 +448,9 @@ Open the ``.settings`` file. Right below the ``[editor]`` (line 1), is an exampl
 ````
 automatic_completions = false
 auto_close_tags_when_opening = false
+auto_close_tags_when_closing = false
 smart_indent = false
+auto_close_brackets = false
 ````
 
 These values will suppress behavior that can act like shortcuts, preventing students from accessing these while typing out code.

@@ -7,13 +7,14 @@ const fs = common.fs;
 const isArray = common.isArray;
 const expect = common.expect;
 
-function main(title, variables, statement, errorMessage, hints) {
+function main(title, variables, statement, errorMessage, testDirectory, hints) {
 
 	var itStatement = (statement.length > 0) ? statement : 'Expect all resources to be present and loaded properly';
 	var errorStatement = (errorMessage.length > 0) ? errorMessage : "Some or all resources haven't loaded!";
 	var hintsStatement = (hints != null) ? (hints && hints.length > 0) ? hints : null : '';
 
-	var dirPath = (variables['DIR_PATH'].substr(variables['DIR_PATH'].length - 1) == '/') ? variables['DIR_PATH'] : variables['DIR_PATH'] + '/';
+	//var dirPath = (variables['DIR_PATH'].substr(variables['DIR_PATH'].length - 1) == '/') ? variables['DIR_PATH'] : variables['DIR_PATH'] + '/';
+	var dirPath = ( variables['DIR_PATH'] != null) ? testDirectory + '/' + variables['DIR_PATH'] : testDirectory + '/';
 	var files = (variables['FILES'] && isArray(variables['FILES']) ) ? variables['FILES'] : ['index.html'];
 	var selector = variables['SELECTOR'];
 	var found;
@@ -31,7 +32,7 @@ function main(title, variables, statement, errorMessage, hints) {
 					fileContents = fs.readFileSync(filePath, 'utf-8');
 					$ = cheerio.load(fileContents);
 					if ( $(selector).length == 0 ) {
-						if (hintsStatement != null) hintsStatement += '['+file+'] -- HTML elements do not exist!\n- Make sure you have added the necessary HTML elements into the code.';
+						if (hintsStatement != null) hintsStatement += '['+file+'] -- HTML elements do not exist!\n- Check for any mispelled tags\n- Make sure that the necessary HTML elements are present based on instructions';
 						loop(index+1,array,successes,callback);
 					}
 					else {
@@ -41,9 +42,9 @@ function main(title, variables, statement, errorMessage, hints) {
 							total = results['total'];
 							passed = results['passed'];
 							if (passed == total) successes += 1;
-							else if (hintsStatement != null) {
+							else if (hintsStatement == null || hintsStatement.length == 0) {
 								hintsStatement += '['+file+'] -- Some resources did not load... Some common mistakes tend to be:\n';
-								hintsStatement += '- The "src" attribute does not link to a proper file\n';
+								hintsStatement += '- The "src" or "href" attribute does not link to a proper file\n';
 								hintsStatement += '- A resource file is missing or does not exist\n';
 								hintsStatement += '- There is at least one HTML error present\n';
 							}

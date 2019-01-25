@@ -3,8 +3,8 @@ const common = require('../common.js');
 const fs = common.fs;
 const expect = common.expect;
 
-function main(title, variables, statement, errorMessage, hints) {
-	var thisPath = variables['PATH'];
+function main(title, variables, statement, errorMessage, testDirectory, hints) {
+	var thisPath = testDirectory + '/' + variables['PATH'];
 
 	var itStatement = (statement.length > 0) ? statement : 'Expect path/file to exist';
 	var errorStatement = (errorMessage.length > 0) ? errorMessage : "Path/file does not exist!";
@@ -14,16 +14,12 @@ function main(title, variables, statement, errorMessage, hints) {
 
 	describe(title, function() {
 
-		before(function(done) {
+		it(itStatement, function(done) {
 			fs.access(thisPath, err=>{
 				res = (err) ? false : true;
+				expect(res, errorStatement).to.be.true;
 				done();
 			});
-		});
-
-		it(itStatement, function(done) {
-			expect(res, errorStatement).to.be.true;
-			done();
 		});
 
 		afterEach(function(done) {

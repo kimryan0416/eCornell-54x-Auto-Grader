@@ -1,53 +1,30 @@
 {
 	"tests":[
-		{
-			"title":"HTML validation:",
-			"test":"./001-validate-html.js",
-			"statement":"No HTML errors should be present",
-			"error_message":"HTML errors found! Click to see more...",
+    {
+      "title":"HTML validation:",
+      "test":"./001-validate-html.js",
+      "statement":"No HTML errors should be present",
+      "error_message":"HTML errors found! Click to see more...",
+      "variables":{
+        "HTML_PATH":"assignment/index.html",
+        "SUPPRESS":true
+      }
+    },{
+			"title":"Check if the general order of elements is correct:",
+			"test":"./004-element-order.js",
+      "statement":"Expect that there is an <article> tag and a <footer> tag in that order",
 			"variables":{
 				"HTML_PATH":"assignment/index.html",
-				"SUPPRESS":true
-			}
-		},{
-			"title":"Check for <section> within <article> tag:",
-			"test":"./002-element-exists.js",
-			"statement":"A <section> tag inside an <article> tag should be present",
-			"error_message":"No <section> tag found!",
-			"hints":false,
-			"variables":{
-				"HTML_PATH":"assignment/index.html",
-				"SELECTOR":"article section"
+        "ORDER":["article","footer"]
 			}
 		}, {
-			"title":"Check for <h3> within <section> tag:",
-			"test":"./002-element-exists.js",
-			"statement":"An <h3> tag inside a <section> tag should be present",
-			"error_message":"No <h3> tag found!",
-			"hints":false,
+			"title":"Check for the order of elements within <section>:",
+			"test":"./004-element-order.js",
+      "statement":"Expect that there is an <h3> tag and a <p> tag in that order within a <section> tag",
 			"variables":{
 				"HTML_PATH":"assignment/index.html",
-				"SELECTOR":"article section h3"
-			}
-		}, {
-			"title":"Check for <p> within <section> tag:",
-			"test":"./002-element-exists.js",
-			"statement":"A <p> tag inside a <section> tag should be present",
-			"error_message":"No <p> tag found!",
-			"hints":false,
-			"variables":{
-				"HTML_PATH":"assignment/index.html",
-				"SELECTOR":"article section p"
-			}
-		}, {
-			"title":"Check for <footer> tag:",
-			"test":"./002-element-exists.js",
-			"statement":"A <footer> tag should be present",
-			"error_message":"No <footer> tag found!",
-			"hints":false,
-			"variables":{
-				"HTML_PATH":"assignment/index.html",
-				"SELECTOR":"footer"
+				"SELECTOR":"article section",
+        "ORDER":["h3","p"]
 			}
 		}
 	]

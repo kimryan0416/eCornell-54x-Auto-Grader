@@ -9,8 +9,9 @@ const expect = common.expect;
 // This function is necessary only in the case where we're looking for the tag <html>
 // The only attributes we usually find with the <html> tag is "lang" and "manifest"... though "manifest is now deprecated"
 // For now' we just separate the 'html' part of the selector with any possible reference to the ':lang()', which is used to determine the 'lang' attribute in '<html lang="__">'
-function filterSelector(sel, callback) {
-	var thisSelector = sel, thisLang = null;
+
+function filterSelector(sel) {
+	var thisSelector = sel, thisLang = null, thisContains = null;
 	if (thisSelector.match(/:lang/)) {
 		var spl = thisSelector.split(':');
 		regExp = /\(["']([^)]+)["']\)/
@@ -18,159 +19,143 @@ function filterSelector(sel, callback) {
 
 		thisSelector = spl[0];
 		thisLang = 'lang="'+matches[1].toLowerCase()+'"';
-	}
-	callback({selector:thisSelector,lang:thisLang});
-}
+	} else if (thisSelector.match(/:contains/)) {
+		var spl = thisSelector.split(':');
+		regExp = /\(["']([^)]+)["']\)/
+		matches = regExp.exec(spl[1]);
 
-function validateChildrenOrder($, selector, order, callback) {
+		thisSelector = spl[0];
+		thisContains = 'contains("'+matches[1]+'")';
+	}
+	callback({selector:thisSelector,lang:thisLang,contains:thisContains});
+}
+function validateChildrenNew($, selector, children, callback) {
 	var parentInfo = [];
 	var el = $(selector);
-	var orderValid = false;
+	var orderValid = false;	// boolean, tells if we found an instance where the order defined in "children" matches
 
-	el.each((i,obj)=>{
-
+	el.each(function() {
+		// We are now looking at all the children of our parent selector
 		if (orderValid) return false;
-
 		var validChildren = [];
 		var notValidChildren = [];
+		var thisChildrenIndex = -1;
+		var thisObj = $(this);
 
-		var children = el.children();
-		var currentKey = 0;
-		order.forEach(sel=>{
-			var curValid = false;
-			for(currentKey; currentKey < children.length; currentKey++) {
-				if ( children[currentKey].name.trim().toLowerCase() == sel.trim().toLowerCase() ) {
-					currentKey += 1;
-					curValid = true;
-					break;
-				}
-			}
-			if (curValid) validChildren.push(sel);
-			else notValidChildren.push(sel);
-		});
+		// We loop through our given list of selectors
+		children.forEach(function(globalChildSelector) {
+			var tempGlobalChildSelector = (typeof globalChildSelector === 'object') ? globalChildSelector['PARENT'] : globalChildSelector;
 
-		parentInfo.push({
-			valid:validChildren,
-			notValid:notValidChildren
-		});
+			// If any immediate descendents match the selector provided, then we'll know by length
+			var findings = thisObj.children(tempGlobalChildSelector);
 
-		orderValid = (validChildren.length == order.length);
-
-	});
-
-	callback(orderValid, parentInfo);
-}
-
-/* --- Main test runs via this function --- */
-function main(title, variables, statement, errorMessage, hints) {
-
-	// htmlPath = gets path of a particular HTML file
-	// selector = the CSS selector for the HTML element we're looking for
-	// itStatement = conditions for success, unless specified via 'tests.json'
-	// errorStatement = error message if failure, unless specified via 'tests.json'
-	// hintsStatement = hints for getting a successful test, unless specified via 'tests.json'
-	var htmlPath = variables['HTML_PATH'];
-	var selector = (variables['SELECTOR']) ? variables['SELECTOR'] : 'html body';
-	var order = (variables['ORDER']) ? variables['ORDER'] : [];
-	var itStatement = (statement.length != 0) ? statement : 'Expect parent element that matches ['+selector+'] to contain children in the order of [' + order.join(', ') + ']';
-	var errorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element does not exist when it should!';
-	var hintsStatement = 'Make sure the parent element exists first.';
-
-	// --- STEP 1: wraps 002 Unit Test within wrapper 'describe' - uses 'title' specified within 'tests.json' ---
-	describe(title, function () {
-
-		// found = boolean, used as a global delimiter to detect if an HTML element that fits the selector was found
-		// parentFound = boolean: is there an html element found using 'selector' variable? - if false, found = false by default
-		// el = global variable used to store the element(s) that match the selector, if any
-		// useCheerio = boolean, tells the unit test if they should use 'Cheerio' or 'node-html-parser' as their HTML parser
-		var found = false;
-		var parentFound = false;
-
-		var el = null;
-
-		// STEP 2: 'before()' gets file contents, determines if we should use 'Cheerio' or 'node-html-parser', returns any elements that match the selector
-		// We MUST use 'node-html-parser' in the case of <html> - this is because by default, DOM parsers like 'Cheerio' automatically wrap all contents of an HTML with an <html> tag if it's missing
-		//		- this makes it very hard to actually check if we have the <html> tag within student code or not, which is necessary for some cases.
-		before(function(done) {
-
-			// fileCOntents = getting the contents of the HTML file we're looking at
-			var fileContents = fs.readFileSync(htmlPath, 'utf-8');
-
-			// --- Step 2.1: determine if we should use 'Cheerio' or 'node_html_parser' ---
-
-			if ( selector.toLowerCase().indexOf('html') == 0 && selector.substring(4,5) != ' ' ) {
-				// In this situation, our selector IS just an HTML tag and just that - in this case, we must use 'node_html_parser';
-				// We first grab the parsed version of our 'fileContents', and from that extract the first item, which SHOULD be an object 
-				// 		representing <html> if there is an <html> tag within student code
-				// We then first check if that first object we just extracted matches that of our selector ('html'), then if we have to check the 'lang' attribute we check that as well.
-				// Then, done
-				var root = htmlParser.parse(fileContents);
-				var rootHTML = root['childNodes'][0];
-				filterSelector(selector, res=>{
-					parentFound = (rootHTML['tagName'].toLowerCase() == res['selector'].toLowerCase());
-					if (res.lang != null) parentFound = parentFound && (rootHTML['rawAttrs'].toLowerCase().replace(/["']/g, '"') == res['lang'].toLowerCase().replace(/["']/g, '"'));
-					if (parentFound) {
-						validateChildrenOrder(cheerio.load(fileContents), selector, order, (orderValid, parentInfo) => {
-							found = orderValid;
-							if (!orderValid) {
-								errorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';
-								hintsStatement = 
-									'The expected order of the children inside [' + selector + '] was:\n- ' 
-									+ order.join('\n- ');
-								parentInfo.forEach(info=>{
-									hintsStatement += '\n----------\nA portion of your code that matches the selector [' + selector + '] has this order:\n- ' + info.valid.join('\n- '); 
-									hintsStatement += '\nThis portion has the following elements misplaced:\n- ' + info.notValid.join('\n- ');
-								});
-								hintsStatement += '\n\nPlease make sure these elements are ordered properly within your code.';
-							}
-							done();
-						});
-					} else {
-						done();
+			if (findings.length > 0) {
+				var currentlyFound = false;
+				// We'll have to iterate through each of our findings and check their indexes - if there are any indexes that ...
+				// ... happen to be greater than or equal to our current "thisChildrenIndex" value, then we'll know that we're on the right path
+				findings.each(function(){
+					var find = $(this);
+					if ( !currentlyFound && find.index() > thisChildrenIndex ) {
+						thisChildrenIndex = find.index();
+						if (typeof globalChildSelector === 'object') {
+							validateChildrenNew($,selector + ' ' + globalChildSelector['PARENT'],globalChildSelector['CHILDREN'], (res)=>{
+								if(res == true) {
+									validChildren.push(globalChildSelector);
+									currentlyFound = true;
+								} else {
+									notValidChildren.push(globalChildSelector);
+								}
+							});
+						} else {
+							validChildren.push(globalChildSelector);
+							currentlyFound = true;
+						}
 					}
 				});
-			} else {
-				// In this situation, our selector is not an HTML tag - in this case, we must use 'Cheerio':
-				// We first grab the parsed version of our 'fileContents' and that, use the jQuery syntax to find any elements based on our selector
-				// Then, done;
-				var $ = cheerio.load(fileContents);
-				el = $(selector);
-				console.log(el.children());
-				parentFound = ( el.length > 0 );
-				if (parentFound) {
-					validateChildrenOrder($, selector, order, (orderValid, parentInfo) => {
-						found = orderValid;
-						if (!orderValid) {
-							errorStatement = (errorMessage.length != 0) ? errorMessage : 'Parent element found, but order of children is incorrect!';
-							hintsStatement = 
-								'The expected order of the children inside [' + selector + '] was:\n- ' 
-								+ order.join('\n- ');
-							parentInfo.forEach(info=>{
-								hintsStatement += '\n----------\nA portion of your code that matches the selector [' + selector + '] has this order:\n- ' + info.valid.join('\n- '); 
-								hintsStatement += '\nThis portion has the following elements misplaced:\n- ' + info.notValid.join('\n- ');
-							});
-							hintsStatement += '\n\nPlease make sure these elements are ordered properly within your code.';
-						}
+				if (!currentlyFound) {
+					notValidChildren.push(globalChildSelector);
+				}
+			}
+			else {
+				notValidChildren.push(globalChildSelector);
+			}
+		});
+
+		orderValid = orderValid || (validChildren.length == children.length);
+	});
+
+	callback(orderValid);
+}
+
+
+/* --- Main test runs via this function --- */
+function main(title, variables, statement, errorMessage, testDirectory, hints) {
+	var htmlPath = testDirectory + '/' + variables['HTML_PATH'];	//gets path of a particular HTML file
+	var order = variables['ORDER'];
+
+	var itStatement = (statement.length != 0) ? statement : 'Expecting the order of elements to follow what is specified by the instructions';	// conditions for success, unless specified via 'tests.json'
+	var errorStatement = (errorMessage.length != 0) ? errorMessage : 'HTML elements were not in the expected order.'; // error message if failure, unless specified via 'tests.json'
+	var hintsStatement = (hints && hints.length > 0) ? hints : ''; // hints for getting a successful test, unless specified via 'tests.json'
+
+	var startingParent = (order['PARENT']) ? order['PARENT'] : 'html body';
+	var startingChildren = (order['CHILDREN']) ? order['CHILDREN'] : [];
+	
+	var fileContents = null;	// getting the contents of the HTML file we're looking at
+	var $ = null;	// Cheerio
+	var parentFound = false;	// boolean: is there an html element found using 'selector' variable? - if false, found = false by default
+	var found = false;	// boolean, used as a global delimiter to detect if an HTML element that fits the selector was found
+
+
+	// --- STEP 1: wraps 004 Unit Test within wrapper 'describe' - uses 'title' specified within 'tests.json' ---
+	describe(title, function () {
+		
+		// var el = null;	// local variable used to detect 
+
+		before( function(done) {
+
+			try {
+				fileContents = fs.readFileSync(htmlPath, 'utf-8');
+				$ = cheerio.load(fileContents);
+				if ( startingParent.toLowerCase().indexOf('html') == 0 && startingParent.substring(4,5) != ' ' ) {
+					var root = htmlParser.parse(fileContents);
+					var rootHTML = root['childNodes'][0];
+					filterSelector(startingParent,parentAttributes=>{
+						parentFound = (rootHTML['tagName'].toLowerCase() == parentAttributes['selector'].toLowerCase());
 						done();
 					});
-				} else {
+				} 
+				else {
+					parentFound = ( $(startingParent).length > 0 );
 					done();
 				}
+			} catch(error) {
+				done();
 			}
 		});
 
 		/* --- STEP 3: IT statement performs our test - self-explanatory */
 		it(itStatement, function(done) {
-			expect(found, errorStatement).to.equal(true)
-			done(); 
+			validateChildrenNew($, startingParent, startingChildren, res=>{
+				found = res;
+				if ( (!parentFound || !found) && hintsStatement.length == 0) {
+					hintsStatement = 'Your code has some elements either misplaced or missing:\n';
+					hintsStatement += '- Check for any mispelled tags\n';
+					hintsStatement += '- Make sure that HTML elements are properly ordered based on instructions\n';
+					hintsStatement += '- Make sure that any elements that are nested are inside the proper parent elements';
+				}
+
+				expect(fileContents, 'HTML file contents could not be retrieved.').to.not.be.null;
+				expect(parentFound, 'Starting Parent Selector could not be found.').to.equal(true);
+				expect(found, errorStatement).to.equal(true);
+				done();
+			});
 		});
 
 		/* --- STEP 4: If the test fails, we must print out the hints into Mochawesome --- */
 		afterEach(function(done) {
-			if (hintsStatement != null && found != true)	this.currentTest.context = {'title':'Hints','value':hintsStatement};
+			if (hintsStatement.length > 0 && !found)	this.currentTest.context = {'title':'Hints','value':hintsStatement};
 			done();
 		});
-
 	});
 
 	/* --- 004 UNIT TEST FINISHED --- */

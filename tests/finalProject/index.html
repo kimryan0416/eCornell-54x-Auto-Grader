@@ -1,0 +1,77 @@
+<!-- 
+  Changes: 
+  - added new classes "leftOfLogo" and "rightOfLogo" to <nav> <a> tags + new id 'navLogo' to navigation logo <a> tag
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home | Studio 54x</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="styles/site.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat%7COswald%7CRaleway" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class='leftOfLogo'><a href="index.html" class="current_page">Home</a></li>
+      <li class='leftOfLogo'><a href="services.html">Services</a></li>
+      <li class='leftOfLogo'><a href="featured.html">Featured</a></li>
+      <li id='navLogo'><a href="index.html" class="current_page"><img alt="Studio 54x Logo" src="images/studio_logo.png"/></a></li>
+      <li class='rightOfLogo'><a href="faq.html">FAQs</a></li>
+      <li class='rightOfLogo'><a href="about.html">About</a></li>
+      <li class='rightOfLogo'><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <div class="homepage">
+      <figure>
+        <img alt="Getting ready to take a photo" src="images/taking-photos.jpg"/>
+      </figure>
+      <div class="welcome">
+        <h1>Welcome!</h1>
+        <hr class="shorter"/>
+        <p class="slogan">
+          Capture the precious moments to be later retold.
+        </p>
+        <p>
+          Studio 54x is a portrait, event, and commercial photography studio located in Ithaca, NY offering an array of services from weddings to maternity to graduation photos. Servicing the Finger Lakes Region, you can come to us or we can go to you.
+          Please enjoy browsing our website and reach out if you have any comments or questions!
+        </p>
+      </div>
+    </div>
+    <div class="flexbox">
+      <div class="shortcut">
+        <a href="weddings.html">
+          <img alt="Hands making hearts" src="images/hand-heart.jpg"/>
+          <span>Weddings</span>
+        </a>
+      </div>
+      <div class="shortcut">
+        <a href="portraits.html">
+          <img alt="Portrait of 3 girls" src="images/portrait.jpg"/>
+          <span>Portraits</span>
+        </a>
+      </div>
+      <div class="shortcut">
+        <a href="events.html">
+          <img alt="Hands and color in air" src="images/color_event.jpg"/>
+          <span>Events</span>
+        </a>
+      </div>
+      <div class="shortcut">
+        <a href="services.html">
+          <img alt="Camera" src="images/camera.jpg"/>
+          <span>All Services</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>
+      All images on this site are solely the property of Studio 54x. These photographs are protected by copyright laws, and are not to be downloaded, printed, or reproduced without express written permission.
+    </p>
+    <p>&#169; 2018 <span class="copyright">Studio 54x</span></p>
+  </footer>
+</body>
+</html>

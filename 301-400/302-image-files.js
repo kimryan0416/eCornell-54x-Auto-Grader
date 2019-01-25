@@ -36,15 +36,15 @@ function findCommon(paths, rootDir, imagesDir, callback) {
 	else {
 		var tempCommonBaseString = commonBaseString.replace(rootDir, '');
 		var tempCommonBase = tempCommonBaseString.split(path.sep);
-		if ( imagesDir != null && tempCommonBase[0] != imagesDir ) same = false;
+		if ( imagesDir != null && tempCommonBase[tempCommonBase.length-1] != imagesDir ) same = false;
 	}
-	
+
 	callback(same, commonBaseString);
 }
 
-function main(title, variables, statement, errorMessage, hints) {
-	var rootDir = ( variables['ROOT_DIR'].substr(variables['ROOT_DIR'].length - 1) != path.sep ) ? variables['ROOT_DIR'] + path.sep : variables['ROOT_DIR'];
-	var imagesDir = ( variables['IMAGES_DIR'] != null ) ? ( variables['IMAGES_DIR'].substr(variables['IMAGES_DIR'].length - 1) != path.sep ) ? variables['IMAGES_DIR'] : variables['IMAGES_DIR'].substring(0, variables['IMAGES_DIR'].length - 1) : null;
+function main(title, variables, statement, errorMessage, testDirectory, hints) {
+	var rootDir = ( variables && variables['ROOT_DIR']!=null ) ? testDirectory + '/' + variables['ROOT_DIR'] + '/' : testDirectory + '/';
+	var imagesDir = ( variables && variables['IMAGES_DIR']!=null ) ? ( variables['IMAGES_DIR'].substr(variables['IMAGES_DIR'].length - 1) != path.sep ) ? variables['IMAGES_DIR'] : variables['IMAGES_DIR'].substring(0, variables['IMAGES_DIR'].length - 1) : null;
 
 	var itStatement = (statement.length > 0) ? statement : 'Expect all images are in an image directory';
 	var errorStatement = (errorMessage.length > 0) ? errorMessage : (variables['IMAGES_DIR'] != null) ? "All images aren't in the \""+variables['IMAGES_DIR']+"\" directory" : "All images aren't in the same directory!";
@@ -59,18 +59,17 @@ function main(title, variables, statement, errorMessage, hints) {
 				images = files.filter(function(file) {
 					if (isImage(file)) return file;
 				});
-
-				findCommon(images, rootDir, imagesDir, (same, base)=>{
-					common = same;
-					done();
-				});
+				done();
 
 			});
 		});
 
 		it(itStatement, function(done) {
-			expect(common, errorStatement).to.be.true;
-			done();
+			findCommon(images, rootDir, imagesDir, (same, base)=>{
+				common = same;
+				expect(common, errorStatement).to.be.true;
+				done();
+			});
 		});
 
 		afterEach(function(done) {
