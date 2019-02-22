@@ -6,7 +6,8 @@ const assert = require('chai').assert;
 const expect = require('chai').expect;
 const should = require('chai').should();
 
-var vnuPath = "vnu.jar";
+var vnuPath = ".guides/cis54x/tests/vnu.jar";
+//var vnuPath = './tests/vnu.jar'
 
 function escapeHTML(text) {
   var map = {
@@ -29,13 +30,12 @@ function forceUnicodeEncoding(string) {
   return decodeURIComponent(string.replace(/\\x/g,"%"));
 }
 
+
 function determineValid(url, callback) {
-	fs.lstat(url, (err, stats)=>{
-		if ( err ) callback(new Error(err));
-		else {
-			if (stats.isFile()) callback(1);
-			else callback(0);
-		}
+	fs.lstat(url,(err,stats)=>{
+		if (err) callback(err);
+		else if (stats.isFile()) callback(1);
+		else callback(0);
 	});
 }
 
@@ -50,23 +50,11 @@ function determineFileOrDir(url, callback) {
   });
 }
 
-const getDirectories = (src, callback) => {
-	glob(src + "/**/*", callback);
+function getDirectories (src, callback) {
+  glob(src + "/**/*",callback);
 }
-
-function getFileDirectory (url,callback) {  return path.dirname(url); }
 
 function isArray(a) { return Object.prototype.toString.call(a) === "[object Array]";  }
-function isFile(url) {
-  return new Promise((resolve,reject)=>{
-    fs.lstat(url, (err, stats)=>{
-      if ( err ) reject(new Error(err));
-      else if (stats.isFile()) resolve(1);
-      else resolve(0);
-    });
-  });
-}
-
 
 exports.fs = fs;
 exports.glob = glob;
@@ -80,9 +68,7 @@ exports.escapeHTML = escapeHTML;
 exports.determineFileDir = determineValid;
 exports.determineFileOrDir = determineFileOrDir;
 exports.getDirectories = getDirectories;
-exports.getFileDirectory = getFileDirectory;
 exports.forceUnicodeEncoding = forceUnicodeEncoding;
 exports.isArray = isArray;
-exports.isFile = isFile;
 
 exports.vnuPath = vnuPath;

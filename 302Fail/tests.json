@@ -1,0 +1,132 @@
+{
+	"tests":[
+		{
+			"name":"001-validate-html",
+			"test":"./tests/001-validate-html.js",
+			"title":"Expecting no HTML errors",
+			"message":"Not going to be processed",
+			"variables":{
+				"HTML_PATH":"sampleSubmission/",
+				"SUPPRESS":false
+			}
+		},{
+			"name":"002-element-exists",
+			"test":"./tests/002-element-exists.js",
+			"title":"Expecting <body> to exist: Success",
+			"message":null,
+			"variables":{
+				"HTML_PATH":"sampleSubmission/index.html",
+				"SELECTOR":"body",
+				"EXISTS":true
+			}
+		},{
+			"name":"002-element-exists",
+			"test":"./tests/002-element-exists.js",
+			"title":"Expecting <article> to exist",
+			"message":null,
+			"variables":{
+				"HTML_PATH":"sampleSubmission/index.html",
+				"SELECTOR":"article",
+				"EXISTS":false
+			}
+		},{
+			"name":"003-resource-exists",
+			"test":"./tests/003-resource-exists.js",
+			"title":"Expecting Tigger and Panda resources to exist",
+			"message":null,
+			"variables":{
+				"DIR_PATH":"./sampleSubmission/",
+				"FILES":["index.html"],
+				"SELECTOR":"section img"
+			}
+		},{
+			"name":"004-element-order",
+			"test":"./tests/004-element-order.js",
+			"title":"Expecting Element Order: Success",
+			"message":null,
+			"variables":{
+				"HTML_PATH":"./sampleSubmission/index.html",
+				"ORDER":{
+					"PARENT":"section",
+					"CHILDREN":["h2","img"]
+				}
+			}
+		},{
+			"name":"004-element-order",
+			"test":"./tests/004-element-order.js",
+			"title":"Expecting Element Order: Failure",
+			"message":null,
+			"variables":{
+				"HTML_PATH":"./sampleSubmission/index.html",
+				"ORDER":{
+					"PARENT":"section",
+					"CHILDREN":["img","h1"]
+				}
+			}
+		},{
+			"name":"101-validate-css",
+			"test":"./tests/101-validate-css.js",
+			"title":"Expecting no CSS errors",
+			"message":"Not going to be processed",
+			"variables":{
+				"CSS_PATH":"sampleSubmission/styles/site.css"
+			}
+		},{
+			"name":"102-declaration-exists",
+			"test":"./tests/102-declaration-exists.js",
+			"title":"Expect declaration \"header img\" to exist: Success",
+			"message":null,
+			"variables":{
+				"CSS_PATH":"./sampleSubmission/styles/site.css",
+				"SELECTOR":"header img",
+				"PROPERTY":"width",
+				"VALUE":"100px"
+			}
+		},{
+			"name":"102-declaration-exists",
+			"test":"./tests/102-declaration-exists.js",
+			"title":"Expect declaration \"header img\" to exist: Failure",
+			"message":"\"header img\" doesn't have a \"height\" property",
+			"variables":{
+				"CSS_PATH":"./sampleSubmission/styles/site.css",
+				"SELECTOR":"header img",
+				"PROPERTY":"height",
+				"VALUE":"100px"
+			}
+		},{
+			"name":"301-file-exists",
+			"test":"./tests/301-file-exists.js",
+			"title":"Expect \"index.html\" to exist: Success",
+			"message":null,
+			"variables":{
+				"PATH":"./sampleSubmission/index.html"
+			}
+		},{
+			"name":"301-file-exists",
+			"test":"./tests/301-file-exists.js",
+			"title":"Expect \"education.html\" to exist: Failure",
+			"message":null,
+			"variables":{
+				"PATH":"./sampleSubmission/education.html"
+			}
+		},{
+			"name":"302-image-files",
+			"test":"./tests/302-image-files.js",
+			"title":"Expect images to be in the same directory: Success",
+			"message":null,
+			"variables":{
+				"ROOT_DIR":"./sampleSubmission/",
+				"IMAGES_DIR":"images/"
+			}
+		},{
+			"name":"302-image-files",
+			"test":"./tests/302-image-files.js",
+			"title":"Expect images to be in the same directory: Failure",
+			"message":null,
+			"variables":{
+				"ROOT_DIR":"./sampleSubmission/",
+				"IMAGES_DIR":"no_images/"
+			}
+		}
+	]
+}

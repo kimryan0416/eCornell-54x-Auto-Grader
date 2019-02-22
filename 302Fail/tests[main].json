@@ -1,0 +1,63 @@
+{
+	"tests":[
+		{
+			"name":"001-validate-html",
+			"test":"./tests/001-validate-html.js",
+			"title":"Expecting no HTML errors",
+			"message":"Not going to be processed",
+			"hints":"Not going to be processed",
+			"variables":{
+				"HTML_PATH":"sampleSubmission/",
+				"SUPPRESS":false
+			}
+		},
+		{
+			"name":"002-element-exists",
+			"test":"./tests/002-element-exists.js",
+			"title":"Expecting <body> to exist",
+			"message":"<body> does not exist",
+			"hints":null,
+			"variables":{
+				"HTML_PATH":"sampleSubmission/index.html",
+				"SELECTOR":"body",
+				"EXISTS":true
+			}
+		},
+		{
+			"name":"002-element-exists",
+			"test":"./tests/002-element-exists.js",
+			"title":"Expecting <code> to not exist",
+			"message":"<code> does exist",
+			"hints":null,
+			"variables":{
+				"HTML_PATH":"sampleSubmission/index.html",
+				"SELECTOR":"code",
+				"EXISTS":false
+			}
+		},
+		{
+			"name":"002-element-exists",
+			"test":"./tests/002-element-exists.js",
+			"title":"Expecting <article> to exist",
+			"message":"<article> does not exist",
+			"hints":null,
+			"variables":{
+				"HTML_PATH":"sampleSubmission/index.html",
+				"SELECTOR":"article",
+				"EXISTS":false
+			}
+		},
+		{
+			"name":"003-resource-exists",
+			"test":"./tests/003-resource-exists.js",
+			"title":"Expecting Tigger and Panda resources to exist",
+			"message":"Tigger and/or Panda resources don't exist",
+			"hints":null,
+			"variables":{
+				"DIR_PATH":"./sampleSubmission/",
+				"FILES":["index.html"],
+				"SELECTOR":"section img"
+			}
+		}
+	]
+}
