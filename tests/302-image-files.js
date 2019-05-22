@@ -13,8 +13,8 @@ function main(name, custom_title, custom_message, variables, done) {
 	var imagesDir = (variables['IMAGES_DIR']) ? path.normalize(variables['IMAGES_DIR']) : '';
 	if (imagesDir && imagesDir.charAt(imagesDir.length-1) == '/') imagesDir = imagesDir.substring(0,imagesDir.length-1);
 
-	var testTitle = (custom_title) ? escapeHTML(custom_title): 'Expect all images are in an image directory';
-	var testMessage = (custom_message) ? escapeHTML(custom_message) : (imagesDir.length > 0) ? "All images aren't in the \""+imagesDir+"\" directory" : "All images aren't in the same directory!";
+	var testTitle = (custom_title) ? escapeHTML(custom_title): 'Expect all images are in an image directory.';
+	var testMessage = (custom_message) ? escapeHTML(custom_message) : (imagesDir.length > 0) ? "All images aren't in the \""+imagesDir+"\" directory." : "All images aren't in the same directory.";
 
 	var combinedRootPath = rootDir+imagesDir, files = [], images = [], cPath;
 
@@ -25,24 +25,37 @@ function main(name, custom_title, custom_message, variables, done) {
 	const commonPath = (input, sep = '/') => rotate(splitStrings(input, sep)).filter(allElementsEqual).map(elAt(0)).join(sep);
 
 	getDirectories(rootDir,(err,files)=>{
-		if (err) done({
-			name: name,
-			title: testTitle,
-			success: false,
-			message: err,
-			console_message: err
-		});
-		images = files.filter(file => {
-			return isImage(file);
-		});
-		cPath = commonPath(images);
-		done({
-			name: name,
-			title: testTitle,
-			success: cPath.indexOf(combinedRootPath) > -1,
-			message: testMessage,
-			console_message: testMessage
-		});
+		if (err) {
+			done({
+				name: name,
+				title: testTitle,
+				success: false,
+				message: err,
+				console_message: err
+			});
+		} else {
+			images = files.filter(file => {
+				return isImage(file);
+			});
+			if(images.length == 0) {
+				done({
+					name: name,
+					title: testTitle,
+					success: true,
+					message: "No images detected.",
+					console_message: "no images detected."
+				})
+			} else {
+				cPath = commonPath(images);
+				done({
+					name: name,
+					title: testTitle,
+					success: cPath.indexOf(combinedRootPath) > -1,
+					message: testMessage,
+					console_message: testMessage
+				});
+			}
+		}
 	});
 
 

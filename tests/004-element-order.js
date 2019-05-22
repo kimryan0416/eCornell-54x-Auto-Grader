@@ -93,8 +93,8 @@ function main(name, custom_title, custom_message, variables, done) {
 	var htmlPath = variables['HTML_PATH'];	//gets path of a particular HTML file
 	var order = variables['ORDER'];
 
-	var testTitle = (custom_title) ? escapeHTML(custom_title) : 'Expecting the order of elements to follow what is specified by the instructions';	// conditions for success, unless specified via 'tests.json'
-	var testMessage = (custom_message) ? escapeHTML(custom_message) : 'HTML elements were not in the expected order.\n- Check for any mispelled tags\n- Make sure that HTML elements are properly ordered based on instructions\n- Make sure that any elements that are nested are inside the proper parent elements'; // error message if failure, unless specified via 'tests.json'
+	var testTitle = (custom_title) ? escapeHTML(custom_title) : 'Expecting the order of elements to follow what is specified by the instructions.';	// conditions for success, unless specified via 'tests.json'
+	var testMessage = (custom_message) ? escapeHTML(custom_message) : "HTML elements were not in the expected order.\n\n- Check for any mispelled tags.\n- Make sure HTML elements are properly ordered based on instructions.\n- Make sure that any elements that are nested are inside the proper parent elements.";
 
 	var startingParent = (order['PARENT']) ? order['PARENT'] : 'html body';
 	var startingChildren = (order['CHILDREN']) ? order['CHILDREN'] : [];

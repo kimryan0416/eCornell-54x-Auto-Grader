@@ -1,0 +1,99 @@
+// An example of what the node-html-parser outputs...
+// Only for reference's sake, doesn't play any particular role
+{
+	"classNames":[],
+	"nodeType":1,
+	"tagName":null,
+	"rawAttrs":"",
+	"childNodes":[
+		{
+			"classNames":[],
+			"nodeType":1,
+			"tagName":"html",
+			"rawAttrs":"lang=\"en\"",
+			"childNodes":[
+				{
+					"classNames":[],
+					"nodeType":1,
+					"tagName":"head",
+					"rawAttrs":"",
+					"childNodes":[
+						{
+							"childNodes":[],
+							"classNames":[],
+							"nodeType":1,
+							"tagName":"meta",
+							"rawAttrs":"charset=\"utf-8\" "
+						},{
+							"classNames":[],
+							"nodeType":1,
+							"tagName":"title",
+							"rawAttrs":"",
+							"childNodes":[
+								{
+									"childNodes":[],
+									"nodeType":3,
+									"rawText":"Test"
+								}
+							]
+						},{
+							"childNodes":[],
+							"classNames":[],
+							"nodeType":1,
+							"tagName":"script",
+							"rawAttrs":"type=\"text/javascript\" src=\"jquery-example.js\"",
+							"_attrs":{
+								"type":"text/javascript",
+								"src":"jquery-example.js"
+							},
+							"_rawAttrs":{
+								"type":"text/javascript",
+								"src":"jquery-example.js"
+							}
+						},{
+							"childNodes":[],
+							"classNames":[],
+							"nodeType":1,
+							"tagName":"script",
+							"rawAttrs":"",
+							"_attrs":{},
+							"_rawAttrs":{}
+						}
+					]
+				},{
+					"classNames":[],
+					"nodeType":1,
+					"tagName":"body",
+					"rawAttrs":"",
+					"childNodes":[
+						{
+							"classNames":[],
+							"nodeType":1,
+							"tagName":"ul",
+							"rawAttrs":"id=\"list\" style=\"list-style-type:none;\"",
+							"id":"list",
+							"childNodes":[
+								{
+									"classNames":[],
+									"nodeType":1,
+									"tagName":"li",
+									"rawAttrs":"",
+									"childNodes":[
+										{
+											"childNodes":[],
+											"nodeType":3,
+											"rawText":"Hello World"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
+
+
+

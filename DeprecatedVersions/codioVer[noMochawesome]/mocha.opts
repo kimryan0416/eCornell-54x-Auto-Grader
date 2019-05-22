@@ -1,0 +1,4 @@
+# mocha.opts
+
+--reporter json
+--timeout 20000

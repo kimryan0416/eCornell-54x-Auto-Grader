@@ -4,6 +4,7 @@ const common = require('../common.js');
 
 const fs = common.fs;
 const escapeHTML = common.escapeHTML;
+const isArray = common.isArray;
 
 /* --- Helper function, grabs the particular selector specified within 'tests.json' and returns a breakdown of it in object form --- */
 /*
@@ -24,27 +25,106 @@ function filterSelector(sel) {
 	return {selector:thisSelector,lang:thisLang};
 }
 
+function findSelector(s,r,c) {
+
+	var originalSelector,				// the original selector inputted						
+		sSplit,							// the selector, split by " ", useful to determine if cheerio or nodehtmlparser is needed
+		exists,
+		selFiltered,					// filtered selector
+		rootHTML,						// html of file, if using htmlParser
+		tempFound;						// temporary boolean, used only to track if "html" tag exists
+
+	if (typeof s === 'object') {
+		originalSelector = s.selector;
+		sSplit = originalSelector.split(' ');
+		exists = (s.exists != null && typeof s.exists === 'boolean') ? s.exists : true;
+	} else {
+		originalSelector = s;
+		sSplit = originalSelector.split(' ');
+		exists = true;
+	}
+	tempFound = exists;
+
+	if (sSplit.indexOf('html') > -1) {
+		// Use node-html-parser to first check if html exists
+		selFiltered = filterSelector(sSplit[sSplit.indexOf('html')]);
+		rootHTML= r.querySelector('html');
+		tempFound = (rootHTML != null);
+	}
+	if (sSplit.indexOf('head') > -1) {
+		// Use node-html-parser to first check if html exists
+		selFiltered = filterSelector(sSplit[sSplit.indexOf('head')]);
+		rootHTML= r.querySelector('head');
+		tempFound = (rootHTML != null);
+	}
+	if (sSplit.indexOf('body') > -1) {
+		// Use node-html-parser to first check if html exists
+		selFiltered = filterSelector(sSplit[sSplit.indexOf('body')]);
+		rootHTML= r.querySelector('body');
+		tempFound = (rootHTML != null);
+	}
+	
+	if (tempFound != exists) return {success:false,selector:originalSelector,should:exists};
+	else {
+		var found = c(originalSelector).length > 0 ;
+		return {success:found==exists,selector:originalSelector,should:exists};
+	}
+}
+
 /* --- Main test runs via this function --- */
 function main(name, custom_title, custom_message, variables, done) {
 
 	var htmlPath = variables['HTML_PATH'];	// gets path of a particular HTML file
-	var selector= variables['SELECTOR'];	// the CSS selector for the HTML element we're looking for
-	var exists = (variables['EXISTS'] != null) ? variables['EXISTS'] : true;	// should the element we're looking for exist or not? - optionally specified via 'tests.json'
+	var selectors = (isArray(variables['SELECTORS'])) ? variables['SELECTORS'] : [ variables['SELECTORS'] ];	// the CSS selector for the HTML element we're looking for
 	
-	var testTitle = (custom_title) ? escapeHTML(custom_title) : (exists) ? 'Expect element to exist' : 'Expect element to NOT exist';	// stated conditions for success, unless specified via 'tests.json'
-	var testMessage = (custom_message) ? escapeHTML(custom_message) : '- Check for any mispelled tags\n- Make sure that the necessary HTML elements are present (or not) based on instructions';	// error message if failure, unless specified via 'tests.json'
-
-	var fileContents, 		// getting the contents of the HTML file we're looking at
-		selectorSplit,		// the selector, split by " ", useful to determine if cheerio or nodehtmlparser is needed
-		sel_filtered,		// filtered selector
-		root, 				// root of file, if using htmlParser
-		tempFound = exists,	// temporary boolean, used only to track if "html" tag exists
-		$,					// variable for Cheerio
-		rootHTML,			// html of file, if using htmlParser
-		found = false;		// boolean, used as a global delimiter to detect if an HTML element that fits the selector was found
+	var testTitle = (custom_title != null) ? escapeHTML(custom_title) : (exists) ? 'Expect element to exist' : 'Expect element to NOT exist';	// stated conditions for success, unless specified via 'tests.json'
+	var testMessage = (custom_message != null) ? escapeHTML(custom_message) : "";	// error message if failure, unless specified via 'tests.json'
 			
 	try {
-		fileContents = fs.readFileSync(htmlPath, 'utf-8');
+		var fileContents = fs.readFileSync(htmlPath, 'utf-8');	// getting the contents of the HTML file we're looking at
+		var root = htmlParser.parse(fileContents);				// root of file, if using htmlParser
+		var $ = cheerio.load(fileContents);						// variable for Cheerio
+
+		var promises = Promise.all(selectors.map(sel=>{
+			return new Promise(resolve=>{
+				resolve(findSelector(sel,root,$));
+			});
+		}));
+		promises.then(res=>{
+			var success = res.reduce((filtered,r)=>{
+				filtered = filtered && r.success;
+				return filtered;
+			},true);
+			if (custom_message == null) {
+				var testMessagePrototype = res.reduce((filtered,r)=>{
+					if (r.success == false) {
+						/*
+						if (r.should) filtered["The following selectors should exist but couldn't be found:"] = (filtered["The following selectors should exist but couldn't be found:"]) ? filtered["The following selectors should exist but couldn't be found:"] + "\n- " + String(r.selector) : "- " + String(r.selector);
+						else filtered["The following selectors shouldn't exist but were found:"] = (filtered["The following selectors shouldn't exist but were found:"]) ? filtered["The following selectors shouldn't exist but were found:"] + "\n- " + String(r.selector) : "- " + String(r.selector);
+						*/
+						if (r.should) filtered["true"] = (filtered["true"]) ? filtered["true"] + "\n- " + String(r.selector) : "\n- " + String(r.selector);
+						else filtered["false"] = (filtered["false"]) ? filtered["false"] + "\n- " + String(r.selector) : "\n- " + String(r.selector);
+					}
+					return filtered;
+				},{});
+				if (testMessagePrototype["true"] && testMessagePrototype["true"].length > 0) {
+					testMessage += "The following selectors should exist but couldn't be found:\n" + testMessagePrototype["true"];
+				}
+				if (testMessagePrototype["false"] && testMessagePrototype["false"].length > 0) {
+					if (testMessage.length > 0) {
+						testMessage += "\n\n";
+					}
+					testMessage += "The following selectors shouldn't exist but were found:\n" + testMessagePrototype["false"];
+				}
+			}
+			done({
+				name: name,
+				title: testTitle,
+				success: success,
+				message: testMessage,
+				console_message: testMessage
+			});
+		});
 	} catch(error) {
 		done({
 			name: name,
@@ -54,50 +134,6 @@ function main(name, custom_title, custom_message, variables, done) {
 			console_message: 'HTML file contents could not be retrieved.'
 		});
 	}
-
-	root = htmlParser.parse(fileContents);
-	selectorSplit = selector.split(' ');
-
-	if (selectorSplit.indexOf('html') > -1) {
-		// Use node-html-parser to first check if html exists
-		sel_filtered = filterSelector(selectorSplit[selectorSplit.indexOf('html')]);
-		rootHTML= root.querySelector('html');
-		tempFound = (rootHTML != null)
-	}
-	if (selectorSplit.indexOf('head') > -1) {
-		// Use node-html-parser to first check if html exists
-		sel_filtered = filterSelector(selectorSplit[selectorSplit.indexOf('head')]);
-		rootHTML= root.querySelector('head');
-		tempFound = (rootHTML != null)
-	}
-	if (selectorSplit.indexOf('body') > -1) {
-		// Use node-html-parser to first check if html exists
-		sel_filtered = filterSelector(selectorSplit[selectorSplit.indexOf('body')]);
-		rootHTML= root.querySelector('body');
-		tempFound = (rootHTML != null)
-	}
-	
-	if (tempFound != exists) {
-		done({
-			name: name,
-			title: testTitle,
-			success: false,
-			message: testMessage,
-			console_message: testMessage
-		});
-	} else {
-		$ = cheerio.load(fileContents);
-		found = ( $(selector).length > 0 );
-
-		done({
-			name: name,
-			title: testTitle,
-			success: found == exists,
-			message: testMessage,
-			console_message: testMessage
-		});
-	}
-
 }
 
 /* --- Allows for this unit test to be used within 'runner.js' --- */

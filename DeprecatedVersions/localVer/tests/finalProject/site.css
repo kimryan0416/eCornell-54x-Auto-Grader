@@ -1,0 +1,700 @@
+/*
+Changes:
+- added display:block
+- added width, height, and min-height property
+- add "box-sizing" property, used for pushing footer to bottom of screen;
+*/
+html, body {
+  height:100%;
+}
+/*
+Changes:
+- added display:flex;
+- added flex-direction:column;
+- added width:100%;
+- added position:relative
+*/
+body {
+  display:flex;
+  flex-direction: column;
+  width:100%;
+
+  margin: 0;
+  background-color: #f7f7f6;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*
+Changes:
+- added display:block;
+- added width:100%;
+- added flex:1 0 auto; (flex-grow = 1, flex-shrink = 0, flex-basis = auto)
+- changed max-width to 900px;
+*/
+.content {
+  display:block;
+  width:100%;
+  flex: 1 0 auto;
+
+  background-color: white;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0px 30px 15px 30px;
+}
+
+/* navbar starts here */
+
+/*
+Changes:
+- added width:100%; and height:75px;
+- added flex:0 0 75px (flex-grow:0, flex-shrink=0; flex-basis:75px;)
+- removed padding
+- removed any display:flex properties - this shouldn't be a flexbox
+*/
+nav {
+  width:100%;
+  height:75px;
+  flex:0 0 75px;
+
+  background-color: #72aabe;
+
+  /*padding: 3px 0;*/
+}
+
+/*
+Changes:
+- added flex-direction: row;
+- added height = 100%
+- added position:relative;
+*/
+nav ul {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  height:100%;
+  position:relative;
+}
+/*
+Changes:
+- removed padding
+- added flex:0 1 14% (flex-grow:0; flex-shrink=1; flex-basis:14%;)
+*/
+nav li {
+  flex:0 1 14%;
+  list-style: none;
+  font-variant: all-small-caps;
+
+  /*padding: 0 20px;*/
+}
+
+/*
+Changes:
+- added text-align:center
+- reduced font size to 15px
+- added width:auto;
+- added height:100%;
+*/
+nav li a {
+  width:auto;
+  height:100%;
+
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+/*
+Changes:
+- With new 'leftOfLogo' and 'rightOfLogo' classes, we can define how the text appears in relation to the center logo in the nav bar
+*/
+nav li.leftOfLogo {
+  text-align: right;
+}
+nav li.rightOfLogo {
+  text-align: left;
+}
+
+nav li a:hover {
+  text-decoration: underline;
+}
+
+/*
+Changes:
+- added new CSS for website logo
+*/
+#navLogo {
+  padding-left:70px;
+  padding-right:70px;
+}
+#navLogo img {
+  width:100%;
+}
+
+.current_page {
+  color: black;
+  pointer-events: none;
+}
+
+/* navbar ends here */
+
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+h1 {
+  font-variant: small-caps;
+  text-align: center;
+  color: #024258;
+  font-family: 'Raleway', sans-serif;
+}
+
+hr {
+  border-style: solid;
+  color: #7c7b86;
+  margin: 15px auto;
+}
+
+.quicklink {
+  font-family: 'Oswald', sans-serif;
+}
+
+/*
+Changes:
+- figure given no left or right margins
+*/
+figure {
+  margin-left:0;
+  margin-right:0;
+}
+
+/* homepage starts here */
+
+.homepage {
+  display: flex;
+  padding-top: 20px;
+}
+
+.homepage figure {
+  flex-basis: 45%;
+  margin: auto 0;
+}
+
+.homepage figure img {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.slogan {
+  font-style: italic;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  color: #50a2c0;
+}
+
+.welcome {
+  flex-basis: 45%;
+  margin-left: 25px;
+  padding: 10px 30px;
+  background-color: #f7f7f6;
+  border-radius: 5px;
+}
+
+.welcome h1 {
+  font-size: 38px;
+  margin: 0 auto;
+}
+
+hr.shorter {
+  width: 50%;
+}
+
+.shortcut, .shortcut img {
+  width: 180px;
+  height: 125px;
+  border-radius: 5px;
+}
+
+.shortcut {
+  position: relative;
+  margin: 10px;
+}
+
+.shortcut a :hover {
+  opacity: 0.5;
+}
+
+/*
+Changes:
+- changed font-size to 28px
+*/
+.shortcut span {
+  position: absolute;
+  color: #50a2c0;
+  background-color: white;
+  opacity: 0.85;
+  font-size: 28px;
+  font-variant: small-caps;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+/* homepage ends here */
+
+/* services and faq starts here */
+
+.service_section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service_section h1 {
+  flex-basis: 100%;
+  margin-bottom: 0;
+}
+
+/*
+Changes:
+- Apply flex: 1 0 45% (flex-grow:1, flex-shring:0, flex-basis:45%);
+- applied right margin of 40px
+*/
+.service_desc {
+  flex:1 0 45%;
+  margin: 10px 40px 5px 20px;
+}
+
+/*
+Changes:
+- correctly applied class "service_example" to figure
+- changed flex-basis to 30%
+*/
+figure.service_example  {
+  flex-basis: 30%;
+}
+
+.service_section h3{
+  flex-basis: 100%;
+  margin: 0 auto;
+}
+
+/*
+Changes:
+- made image width = 100%
+*/
+.service_example img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.service_section h3, .questions {
+  color: #50a2c0;
+  font-family: 'Oswald', sans-serif;
+  font-variant: small-caps;
+  font-size: 28px;
+}
+
+.service_section ul {
+  color: #424144;
+  font-variant: small-caps;
+  list-style: square;
+}
+
+.service_section a, .faq a {
+  text-decoration: none;
+  color: #3683d2;
+}
+
+/*
+Changes:
+- gave .faq padding and a bottom margin
+*/
+.faq {
+  padding:5px;
+  margin-bottom:10px;
+}
+.faq:hover {
+  box-shadow: 0px 0px 5px 2px #72aabe;
+  border-radius: 3px;
+  cursor:pointer;
+}
+
+/*
+Changes:
+- removed .show class
+- made sure .hide class only applied to faq
+- all <h2> tags in .faq given margin-top of 0 and margin-bottom of 5px
+- all <p> tags in .faq given margin of 0
+*/
+.faq h2 {
+  margin-top:0;
+  margin-bottom:5px;
+}
+.faq p {
+  margin:0;
+}
+.faq .hide {
+  display:none;
+}
+.show {
+  display: inline;
+}
+
+.service_section a:hover, .faq a:hover {
+  text-decoration: underline;
+}
+/* services and faq ends here */
+
+/* weddings starts here */
+
+.example, .example img {
+  width: 300px;
+  border-radius: 5px;
+}
+
+/* weddings ends here */
+
+/* featured starts here */
+
+/*
+Changes:
+- new id #featuredContent for managing this page's flexbox
+*/
+#featuredContent .flexbox {
+  flex-direction: row;
+}
+.logo img {
+  width: 150px;
+  padding-bottom: 10px;
+}
+
+.logo, .featured{
+  color: #424144;
+  text-align: center;
+  font-variant: small-caps;
+}
+
+.featured img {
+  padding-bottom: 10px;
+  width:100%;
+}
+
+/* featured ends here */
+
+/* about starts here */
+.about_content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 35px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 110%;
+}
+
+.about_content p {
+  flex-basis: 50%;
+  padding: 35px 10px;
+  margin: 0;
+}
+
+.about_content figure {
+  flex-basis: 35%;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.about_content figure img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.about_content figcaption {
+  padding: 10px;
+  text-align: center;
+  color: #3e9dbd;
+  font-variant: small-caps;
+}
+
+.mini {
+  display: none;
+}
+
+h4 {
+  text-align: center;
+}
+/* about ends here */
+
+/* contact begins here */
+
+/*
+Changes:
+- changed width from 350px to 100%
+*/
+.contact_content form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/*
+Changes:
+- added margin-bottom to both input and textarea
+- added box-sizing property
+*/
+input, textarea {
+  border: solid;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  font-family: sans-serif;
+
+  margin-bottom:20px;
+  box-sizing: border-box;
+}
+
+/*
+Changes:
+- removed margin-top property
+*/
+input[type="submit"] {
+  /*margin-top: 20px;*/
+  width: 90px;
+  align-self: flex-end;
+}
+
+h3 {
+  color: #3e9dbd;
+  font-variant: small-caps;
+  border-bottom: solid;
+  border-color: #3e9dbd;
+}
+
+.contact_info span {
+  font-weight: bold;
+}
+
+.contact_content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact_form {
+  padding: 0 25px;
+  flex-basis: 45%;
+  margin: 0 auto;
+}
+
+.contact_info {
+  padding: 0 25px;
+  flex-basis: 40%;
+}
+/* contact ends here */
+
+/*
+Changes:
+- removed clear:left
+- removed padding:5px
+- added display:block
+- added width and height property
+- added flex-shrink of 0
+*/
+footer {
+  display:block;
+  width:100%;
+  height:100px;
+  flex-shrink: 0;
+
+  /*padding: 5px;*/
+
+  text-align: center;
+  font-size: 12px;
+  /*clear: left;*/
+  color: #fffff0;
+  background-color: #72aabe;
+  font-variant: small-caps;
+}
+
+/*
+Changes:
+- footer p made width 90% and margin auto
+*/
+footer p {
+  width:90%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.copyright {
+  font-size: 13px;
+  padding-left: 3px;
+}
+
+.media_logo {
+  display: none;
+}
+
+/* Media Queries start here */
+
+/*
+Changes:
+- Combined first two media queries into 1 - now changes in 2nd media query are reflected in first media query
+*/
+@media screen and (max-width: 1000px) {
+  /*
+  Changes:
+  - set fled-basis to 125px for nav bar
+  - added bottom and top padding to nav bar
+  */
+  nav {
+    text-align: center;
+    height:125px;
+    flex-basis:125px;
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+  /*
+  Changes:
+  - new id "navLogo" useful here
+  */
+  #navLogo {
+    position:absolute;
+    top:15px;
+    left:0;
+    right:0;
+    margin:auto;
+    flex-basis: 100%;
+    width:100%;
+    max-width: 300px;
+    padding:0;
+  }
+
+  /*
+  Changes:
+  - added margin-top:;
+  */
+  nav ul li {
+    margin-top:75px;
+    flex-basis: 100%;
+    padding: 0 10px;
+  }
+  /*
+  Changes:
+  - Made .leftOfLogo and .rightOfLogo text-align:center;
+  */
+  nav li.leftOfLogo, nav li.rightOfLogo {
+    text-align: center;
+  }
+
+  nav ul li a {
+    font-size: 22px;
+  }
+
+  .media_logo, .mini {
+    display: initial;
+  }
+  .media_logo img {
+    width: 75%;
+  }
+  .full {
+    display: none;
+  }
+  .about_content figure, .about_content p, .contact_form, .contact_info  {
+    flex-basis: 80%;
+  }
+  .about_content p {
+    padding: 15px 0;
+    margin-bottom: 25px;
+  }
+  .welcome {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  nav ul, .homepage {
+    flex-wrap: wrap;
+  }
+  nav ul li, .welcome, .homepage figure {
+    flex-basis: 100%;
+  }
+  /*
+  Changes:
+  - made flex-basis and height of <nav> to auto
+  */
+  nav {
+    height:auto;
+    flex-basis: auto;
+  }
+  /*
+  Changes:
+  - removed margin-top set by first media query... except for first element li
+  */
+  nav ul li {
+    margin-top:5px;
+    margin-bottom: 5px;
+  }
+  nav ul li:first-child {
+    margin-top:90px;
+  }
+  /*
+  Changes:
+  - removed "nav ul li a" and ".welcome" from this media query - already set in first media query anyways.
+  - footer given extra height of 125px
+  - .content given border-box property
+  */
+  /*
+  nav ul li a {
+    font-size: 24px;
+  }
+  .welcome {
+    margin: 0 auto;
+  }
+  */
+  .content {
+    box-sizing: border-box;
+  }
+
+  /*
+  Changes:
+  - .service_desc given flex-basis of 100%, figure.service_example given flex-basis of 400px
+  */
+  .service_desc {
+    flex-basis:100%;
+    margin:0;
+  }
+  figure.service_example {
+    flex-basis: 400px;
+  }
+
+  /*
+  Changes:
+  - .features given flex-basis of 100%
+  */
+  #featuredContent .flexbox {
+    flex-direction: column;
+  }
+  .featured {
+    width:300px;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  footer {
+    height:125px;
+  }
+}

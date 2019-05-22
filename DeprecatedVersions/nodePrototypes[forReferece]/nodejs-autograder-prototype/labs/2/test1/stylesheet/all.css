@@ -1,0 +1,58 @@
+/*Setting a modern tone for the whole site, through a grey background and sans-serif font*/
+body {
+  font-family: sans-serif;
+  background-color: #f8f8ff;
+  padding-top: 0;
+}
+/*Allowing h1 to float and be in line with the navigation bar, most helpful in the design of the mobile site*/
+h1 {
+  font-size: 40px;
+  max-width: 65%;
+  float: left;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+/*Making the header on each page more noticable, since it has a border and a different background color*/
+header {
+  font-size: 50px;
+  font-weight: bold;
+  border: 1px solid #555;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width:95%;
+  background-color: #d3d3d3;
+}
+/*Creating a vertical navigation bar that is a different color than the rest of the text*/
+ul {
+  list-style-type: none;
+  max-width: 25%;
+  background-color: #ff6347;
+  float: left;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+li a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 10px;
+}
+li a:hover {
+  background-color: #ff4500;
+}
+/* Adjusting all of the images so that they are aligned left and condensing the caption size*/
+#enterance, #people, #kid, #goat, #band, #eat, #pharmacy, #curlygoat, #soho, #crooked {
+  width: 95%;
+  font-size: 8px;
+  text-align: left;
+  margin-left:0;
+}
+/*Adjusting the captions on the first photos so that they are centered on the page under the photos*/
+#enterance figcaption, #kid figcaption, #eat figcaption, #soho figcaption {
+  text-align: center;
+}
+/* Changing the max width of all photos so that they are mobile friendly*/
+figure img{
+  max-width: 95%
+}

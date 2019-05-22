@@ -1,0 +1,53 @@
+{
+	"messages":[
+		{
+			"type":"error",
+			"url":"file:/Users/RK/Desktop/MAMP_WEB/nodejs_tester/grading/labs/1/test4/css/error.html",
+			"lastLine":8,
+			"lastColumn":12,
+			"firstColumn":3,
+			"message":"A slash was not immediately followed by “>”.",
+			"extract":"\t<body>\n\t\t<pHello</p>\n\t</b",
+			"hiliteStart":10,
+			"hiliteLength":10
+		},{
+			"type":"info",
+			"url":"file:/Users/RK/Desktop/MAMP_WEB/nodejs_tester/grading/labs/1/test4/css/error.html",
+			"lastLine":8,
+			"lastColumn":13,
+			"subType":"warning",
+			"message":"Element name “phello<” cannot be represented as XML 1.0.",
+			"extract":"<pHello</p>\n\t</bo",
+			"hiliteStart":10,
+			"hiliteLength":1
+		},{
+			"type":"error",
+			"url":"file:/Users/RK/Desktop/MAMP_WEB/nodejs_tester/grading/labs/1/test4/css/error.html",
+			"lastLine":8,
+			"lastColumn":13,
+			"message":"Element “phello<” not allowed as child of element “body” in this context. (Suppressing further errors from this subtree.)",
+			"extract":"<pHello</p>\n\t</bo",
+			"hiliteStart":10,
+			"hiliteLength":1
+		},{
+			"type":"error",
+			"url":"file:/Users/RK/Desktop/MAMP_WEB/nodejs_tester/grading/labs/1/test4/css/error.html",
+			"lastLine":9,
+			"lastColumn":8,
+			"firstColumn":2,
+			"message":"End tag for  “body” seen, but there were unclosed elements.",
+			"extract":"ello</p>\n\t</body>\n</htm",
+			"hiliteStart":10,
+			"hiliteLength":7
+		},{
+			"type":"error",
+			"url":"file:/Users/RK/Desktop/MAMP_WEB/nodejs_tester/grading/labs/1/test4/css/error.html",
+			"lastLine":8,
+			"lastColumn":13,
+			"message":"Unclosed element “phello<”.",
+			"extract":"<pHello</p>\n\t</bo",
+			"hiliteStart":10,
+			"hiliteLength":1
+		}
+	]
+}

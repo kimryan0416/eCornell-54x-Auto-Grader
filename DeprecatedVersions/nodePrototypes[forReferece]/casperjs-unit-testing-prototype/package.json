@@ -1,0 +1,25 @@
+{
+  "name": "ui-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha-casperjs test.js"
+  },
+  "author": "Ryan Kim",
+  "license": "ISC",
+  "devDependencies": {
+    "casper-chai": "^0.3.0",
+    "casperjs": "^1.1.4",
+    "chai": "^4.1.2",
+    "chai-jquery": "^2.0.0",
+    "chai-style": "^1.0.3",
+    "mocha": "^4.1.0",
+    "mocha-casperjs": "^0.6.0",
+    "nightmare": "^3.0.1",
+    "phantomjs": "^2.1.7"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}

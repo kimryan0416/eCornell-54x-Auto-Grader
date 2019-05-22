@@ -1,0 +1,263 @@
+body {
+  background-image: url("../images/applesss.jpg");
+  background-size: 100%;
+  color: white;
+  font-family: sans-serif;
+}
+/*citing for how to make an image a background: https://www.w3schools.com/css/css_background.asp*/
+
+/*.para {
+width: 800px;
+margin-right: 300px;
+text-align: center;
+margin-left: 250px;
+}*/
+
+.center {
+  text-align: center;
+}
+
+.navigationbar a {
+  text-decoration: none;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.navigationbar a:visited {
+  color: white;
+}
+
+#abouttitle {
+  /*font-size: 30px;*/
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+#indextitle {
+  font-size: 63px;
+  width: 20px;
+  margin-left: 400px;
+  margin-top: -50px;
+  margin-bottom: -80px;
+  text-align: center;
+}
+
+#datestimes {
+  font-size: 25px;
+}
+
+#aboutfestival {
+  margin-top: -30px;
+  text-align: center;
+}
+
+#map {
+  margin-top: 2%;
+  /*padding-left: 25%;*/
+}
+
+#gallery {
+  /*margin-left: 25px;*/
+  margin-top: 15px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.caption img {
+  width: 100%;
+}
+
+.caption {
+  max-width: 300px;
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+  vertical-align: top;
+}
+
+/*.food {
+float: left;
+width: 50%;
+}
+#farmer {
+float: left;
+width: 50%;
+}*/
+
+.woodvendorcolumn {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+}
+
+footer {
+  font-size: 10px;
+  right: 0;
+  bottom: 0;
+  opacity: .5;
+  position: relative;
+  margin: 1%;
+}
+/*citing for opacity: https://www.w3schools.com/cssref/css3_pr_opacity.asp*/
+
+#first {
+  font-size: 10px;
+  right: 0;
+  bottom: 0;
+  opacity: .5;
+  position: relative;
+  margin-top: 6%;
+}
+
+#secondfooter {
+  font-size: 10px;
+  right: 0;
+  bottom: 0;
+  opacity: .5;
+  position: relative;
+  margin-top: 8%;
+}
+
+#aboutspacefooter {
+  height: 110px;
+}
+
+#content {
+  position: relative;
+  height: 100%;
+}
+
+.woodabout {
+  background-image: url("../images/woodd.jpg");
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 25px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: -40px;
+}
+/*citing for how to make rounded corners: https://www.w3schools.com/css/css3_borders.asp */
+
+.woodvendor {
+  background-image: url("../images/woodd.jpg");
+  border-radius: 25px;
+  /*height: 1000px;*/
+  /*width: 1000px;*/
+  /*margin-left: 130px;*/
+  text-align: center;
+  padding-top: 30px;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 10px;
+}
+
+.woodlocation {
+  background-image: url("../images/woodd.jpg");
+  border-radius: 25px;
+  /*height: 1100px;*/
+  width: 80%;
+  /*margin-left: 10%;*/
+  text-align: center;
+  padding-top: 1%;
+  /*padding-left: 2%;*/
+  width: 90%;
+  margin-left: 5%;
+  display: block;
+  padding-bottom: 3%;
+}
+
+.location-page h2, h1{
+  text-align: center;
+}
+
+.gallery h2, h1 {
+  text-align: center;
+}
+
+.vendors h2, h1 {
+  text-align: center;
+}
+
+#address {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+
+  #indextitle {
+    margin-left: 0px;
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .woodabout {
+    width: auto;
+    margin: 10px;
+  }
+
+  .para, #questions {
+    width: 360px;
+    margin-left: 0;
+  }
+
+  .navigationbar a {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #map {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  #aboutspacefooter {
+    height: 0px;
+  }
+
+  #spaces {
+    height: 0px;
+  }
+
+  .woodvendor {
+    width: 100%;
+    margin-left: -.1px;
+    margin-right: -.3px;
+    padding-bottom: 30px;
+  }
+
+  .woodvendorcolumn {
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  #secondfooter {
+    font-size: 10px;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+    position: relative;
+    margin-top: 40%;
+  }
+
+  #locationfooter {
+    padding-top: 80px;
+  }
+
+  .woodlocation {
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-left: 2%;
+  }
+  #abouttitle {
+    padding-bottom: .5px;
+  }
+}

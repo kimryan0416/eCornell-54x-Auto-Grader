@@ -6,7 +6,7 @@ var thisFile = process.env.FILE;
 fixture (`fixture`)
     .page('http://localhost:8080/'+thisFile);
 
-test('Check if all images exist', async t => {
+test(thisFile, async t => {
         var elements      = Selector(thisSelector);
         var count         = await elements.count;
         var requestsCount = 0;
@@ -33,16 +33,22 @@ test('Check if all images exist', async t => {
 
             if (srcUrl && !srcUrl.startsWith('data')) {
                 requestsCount++;
-                statuses.push(await getRequestResult(srcUrl));
+                statuses.push({
+                  src:srcUrl,
+                  res:await getRequestResult(srcUrl)
+                });
             }
-            if (hrefUrl && !hrefUrl.startsWith('data')) {
+            else if (hrefUrl && !hrefUrl.startsWith('data')) {
                 requestsCount++;
-                statuses.push(await getRequestResult(hrefUrl));
+                statuses.push({
+                  src:hrefUrl,
+                  res:await getRequestResult(hrefUrl)
+                });
             }
         }
 
         await t.expect(requestsCount).eql(statuses.length);
 
         for (const status of statuses)
-            await t.expect(status).eql(200);
+            await t.expect(status.res).eql(200,JSON.stringify(statuses));
 });

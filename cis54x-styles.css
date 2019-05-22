@@ -1,0 +1,110 @@
+.cis54x-bolded {
+	font-weight:bold;
+}
+.cis54x-mainContainer {
+	width:100%;
+	font-size:0;
+	font-family: 'Open Sans', Helvetica,Arial,sans-serif;
+}
+.cis54x-header {
+	font-size:12px;
+	width:100%;
+	margin-bottom:30px;
+	color:#FFFFFF;
+	box-sizing:border-box;
+	padding:15px;
+	box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.5);
+}
+
+/* BEGIN NEW CONTENT */
+.cis54x-header.failure {
+	background-color: #B31B1B;
+}
+.cis54x-header.success {
+	background-color: #005f3c;
+}
+/* END NEW CONTENT */
+
+.cis54x-headerh1 {
+	margin:0;
+	font-size:1.5em;
+	color:white!important;
+}
+.cis54x-body {
+	font-size:12px;
+	box-sizing:border-box;
+	padding-left:15px;
+	padding-right:15px;
+}
+.cis54x-box {
+	margin-bottom:45px;
+}
+.cis54x-boxTitle {
+
+	/* BEGIN MODIFYING CONTENT */
+	font-size: 20px !important;
+	margin-top:15px !important;
+	margin-bottom:15px !important;
+	/* END MODIFIED CONTENT */
+	
+	border-bottom:1px solid rgb(230,230,230);
+	color: rgb(0,0,0);
+}
+.cis54x-boxContents {
+	text-align:left;
+	box-sizing:border-box;
+}
+.cis54x-passTest-title {
+	margin:0;
+	border-bottom:1px solid rgb(230,230,230);
+	font-size: 16px;
+	line-height:24px;
+	color:rgb(0,95,60);
+}
+.cis54x-failTest-container {
+	margin-bottom:30px;
+}
+.cis54x-failTest-title {
+	margin:0;
+	padding-top:2px;
+	padding-bottom:2px;
+	font-size:16px;
+	border-bottom:1px solid rgb(230,230,230);
+	line-height: 24px;
+	color: rgb(255,65,45);
+}
+.cis54x-failTest-messageBox {
+	box-sizing:border-box;
+	padding-left:5px;
+	padding-top:5px;
+	border-left:1px solid rgb(230,230,230);
+	margin-bottom:15px;
+}
+.cis54x-failTest-message {
+	margin-top:0;
+	margin-bottom:15px;
+	font-size:12px;
+	word-wrap:break-word;
+	overflow-wrap:break-word;
+	white-space:pre-wrap;
+}
+.cis54x-failTest-code {
+	display:block;
+	width:100%;
+	box-sizing:border-box;
+	padding:5px;
+	margin-bottom:10px;
+	border-radius:0;
+	font-size:10px;
+	line-height:15px;
+}
+.cis54x-failTest-subtitle {
+	border:1px solid #c7d5f6;
+	background-color:#f7f9fc;
+}
+.cis54x-failTest-submessage {
+	border:none;
+	background-color:transparent;
+	font-family: 'Open Sans', Helvetica,Arial,sans-serif;
+	font-size: 14px;
+}

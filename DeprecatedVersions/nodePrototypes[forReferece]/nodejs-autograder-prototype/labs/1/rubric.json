@@ -1,0 +1,34 @@
+{
+	"validation":{
+		"toggle":true,
+		"html":true,
+		"css":true,
+		"js":false
+	},
+	"inline":{
+		"toggle":true,
+		"css":true,
+		"js":false
+	},
+	"best_practices":{
+		"toggle":true,
+		"html":true,
+		"css":true
+	},
+	"formatting":{
+		"toggle":true
+	},
+	"necessary_files":{
+		"toggle":true,
+		"necessary_files_list":["index.html","all.css"],
+		"care_about_directory":false
+	},
+	"points":{
+		"total":16,
+		"validation":4,
+		"inline":2,
+		"formatting":2,
+		"necessary_files":4,
+		"best_practices":4
+	}
+}

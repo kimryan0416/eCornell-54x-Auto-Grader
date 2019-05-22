@@ -1,0 +1,159 @@
+/* Main CSS - DO NOT EDIT */
+body {
+  text-align: center;
+  font-family: arial;
+  margin: 0px;
+}
+.background {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+footer{
+  font-style: italic;
+  font-size: 10px;
+}
+
+h1{
+  color: #add8e6;
+}
+
+ul {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    top: 0;
+    list-style-type: none;
+    display: block;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FE2E2E;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.application {
+    width: 180px;
+    float: left;
+    Padding: 10px;
+    Margin: 5px;
+    Align-items: center;
+    Background-color:#3AB749;
+    border: black 3px;
+    border-radius: 10px;
+}
+
+li a:hover {
+    background-color: #ff8c00;
+}
+
+.appRow {
+    height: 250px;
+    padding-bottom: 50px;
+    display: block;
+    margin: auto;
+}
+
+li {
+    float: left;
+}
+.logo{
+  width: 100%;
+  display: block;
+  margin: auto;
+  height: auto;
+}
+
+.home {
+  width: 90%;
+  margin: auto;
+  display: block;
+  height: auto;
+}
+li a {
+    padding: 14px 16px;
+    text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+}
+
+.hotels {
+  height: 250px;
+  margin: 0px auto 40px auto;
+  padding-bottom: 100px;
+  align-items: center;
+}
+
+.place {
+  width: 180px;
+  height: 320px;
+  float: left;
+  border: solid black 3px;
+  border-radius: 10px;
+  padding: 2px;
+  margin: 5px;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.place img {
+  width: 180px;
+  overflow: hidden;
+  margin: 0px auto;
+}
+
+.place p{
+  font-size: 18px;
+  font-style: italic;
+  text-align: center;
+}
+
+.contact{
+  font-size: 10px;
+  text-decoration: underline;
+  font-style: italic;
+  text-align: center;
+}
+
+.footer{
+  font-style: italic;
+  font-size: 8px;
+  text-align: center;
+}
+
+
+
+
+/* Phone modified CSS */
+
+@media screen and (max-width: 700px)
+{
+#content{
+  width: 375px;
+  font-size: 18px;
+}
+
+#titleText{
+  margin: 5px;
+  font-size: 34px;
+}
+
+.place, .application {
+  height: auto;
+  width: 350px;
+  align-content: center;
+  border: solid black 3px;
+  border-radius: 10px;
+  padding: 2px;
+  margin: 5px;
+}
+
+.place img{
+  width: 350px;
+  height: auto;
+}
+
+}

@@ -1,0 +1,352 @@
+body {
+  font-family: system-ui;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 0;
+  background-image: url("../images/grey.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*Things on all Pages*/
+.white-back {
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px;
+}
+
+.white-back-vendors {
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px;
+  height: 3000px;
+}
+
+.white-back-photos {
+  background-color: white;
+  border-radius: 25px;
+  padding: 30px;
+  height: 4000px;
+  text-align: center;
+}
+
+.round-back {
+  background-image: url("../images/apples.jpg");
+  width: 740px;
+  height: 500px;
+  background-size: initial;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+#home-all {
+  margin-top: 12%;
+}
+
+/*Navigation Bar*/
+.nav-bar2 {
+  background-color: black;
+  padding: 20px;
+  text-align: center;
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+/*source for overriding body padding:
+https://stackoverflow.com/questions/19601507/how-to-override-body-style*/
+
+.nav-bar2 a {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-bar2 a:hover {
+  background-color: rgb(163, 10, 41);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+.nav-bar2 a:link {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-bar2 a:visited{
+  color: white;
+}
+
+.dropbtn {
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(163, 10, 41);
+  min-width: 98px;
+  z-index: 1;
+  border-radius: 10px;
+  margin-left: -5px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 0, 0, 0.47);
+  padding: 12px 16px;
+  margin-left: 0;
+  margin-right: 0;
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: rgb(163, 10, 41);
+}
+/*dropdown source:
+https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_button*/
+
+/*Home Page*/
+#home-page {
+  background-image: url("../images/grey.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#empty-top {
+  width: 100%;
+  height: 70px;
+}
+
+#home-heading {
+  color: rgb(255, 255, 255);
+  font-size: 100px;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+/*source for text-indent:
+https://stackoverflow.com/questions/6241400/moving-text-around-in-a-div-without-moving-the-div
+!!find a better way to do this!!*/
+
+.container {
+  position: relative;
+  border-radius: 25px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 18px;
+}
+
+#apple-hand img {
+  width: 100%;
+  height: auto;
+  opacity: 0.3;
+}
+
+#dates {
+  color: white;
+  text-align: center;
+  height: auto;
+}
+p a:link {
+  color: rgb(144, 138, 141);
+  text-decoration: none;
+}
+
+p a:visited {
+  color: rgb(144, 138, 141);
+  text-decoration: none;
+}
+
+#background-source {
+  float: right;
+  width: auto;
+  padding-top: 100px;
+  opacity: .5;
+}
+
+#here {
+  color: black;
+  text-decoration: underline;
+}
+
+/*About Page*/
+#about-images {
+  text-align: center;
+}
+
+#about-images img {
+  margin: 10px;
+}
+/*source for centering images: https://www.w3schools.com/css/css3_images.asp*/
+
+/*All Other Pages*/
+.page-headings {
+  text-align: center;
+}
+
+.source {
+  font-size: 8px;
+  margin-left: 12%;
+}
+
+/*Location page*/
+#google-map {
+  max-width: 100%;
+  height: auto;
+}
+/*source for image resizing w page:
+https://stackoverflow.com/questions/4684304/how-can-i-resize-an-image-dynamically-with-css-as-the-browser-width-height-chang*/
+/*Did NOT embed google map! it is a screenshot*/
+
+/*Vendors*/
+.column {
+  width: 25%;
+  float: left;
+}
+
+#vend-source {
+  text-decoration: underline;
+  color: rgb(172, 172, 172);
+  width: 100%;
+  float: left;
+}
+
+/*Location*/
+.map {
+  float: left;
+}
+
+/*Photos*/
+.images {
+  margin-left: 8%;
+}
+/*centering images source:
+http://matthewjamestaylor.com/blog/beautiful-css-centered-menus-no-hacks-full-cross-browser-support#*/
+
+
+.img-capt {
+  width: 300px;
+  float: left;
+  margin-left: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.img-capt p {
+  margin-top: 0px;
+}
+
+#photo-space {
+  height: 100%;
+  width: 110%;
+}
+
+#h-2015 {
+  width: 100%;
+  float: left;
+  margin-top: 10%;
+}
+
+/*mobile layout*/
+@media screen and (max-width: 800px) {
+
+  body {
+    margin: 10px;
+    padding: 0;
+  }
+
+  #empty-top {
+    width: 0%;
+    height: 0;
+    background-color: rgb(163, 219, 205);
+  }
+
+  .nav-bar2 {
+    background-color: black;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+  }
+
+  .nav-bar2 a {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  .round-back {
+    width: auto;
+    margin: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #map img{
+    width: 100%;
+  }
+
+  .column {
+    width: 50%;
+    float: left;
+  }
+
+  .images {
+    margin-left: 0;
+  }
+
+  .white-back-photos {
+    height: 10000px;
+  }
+
+
+}
+
+/*Mobile layout between phone and desktop*/
+@media screen and (min-width: 801px) and (max-width: 1103px) {
+
+  .nav-bar2 {
+    background-color: black;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+  }
+
+  .nav-bar2 a {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}

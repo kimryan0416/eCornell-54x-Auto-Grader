@@ -1,0 +1,17 @@
+{
+	"name":"54_m_c_",
+	"options":{
+		"silent":false,
+		"console_silent":true,
+		"inline_styling":false,
+		"save_html":false,
+		"save_json":false,
+		"save_with_assignment":false,
+		"save_dir":"assessment/testReport/",
+		"timeout":60000,
+		"synchronous":false,
+		"abs_dir":".guides/cis54x/",
+		"grade":false
+	},
+	"tests":[]
+}

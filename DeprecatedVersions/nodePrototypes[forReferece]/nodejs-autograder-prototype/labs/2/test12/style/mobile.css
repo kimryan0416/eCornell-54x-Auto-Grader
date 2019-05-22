@@ -1,0 +1,416 @@
+@media screen and (max-width: 768px) {
+  /* in the mobile version, the content will be more vertically positioned so that the user
+  does not have to horizontally scroll at all to read the webpage*/
+  body{
+    background: white;
+    color: maroon;
+    max-width: 100%;
+    height: 100%;
+    padding: 0px;
+    border-style: solid;
+    border: 25px;
+    border-color: #E8A2A2;
+    margin: 0px;
+  }
+
+  ul{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+  }
+
+  li {
+    display: inline;
+    width: 100%;
+    text-align: center;
+    color: maroon;
+    background-color: white;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  a {
+    text-align: center;
+    width: 100%;
+    color: maroon;
+    background-color: white;
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  h1{
+    margin: 0px;
+    font-size: 18px;
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+    text-decoration: underline;
+  }
+  h2{
+    font-size: 18px;
+    margin: 10px;
+    display: block;
+  }
+  h3{
+    font-size: 18px;
+    margin: 10px;
+    display: block;
+  }
+  h4{
+    font-size: 18px;
+    margin: 10px;
+    text-align: left;
+    display: block;
+  }
+
+  .bydest{
+    font-size: 22px;
+  }
+
+  .header{
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    text-align: center;
+  }
+  .source{
+    text-align: center;
+    font-size: 5px;
+  }
+  .source2{
+    text-align: center;
+    font-size: 4px;
+  }
+
+  .links{
+    margin-bottom: 50px;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    text-align: center;
+    color: maroon;
+    background-color: white;
+  }
+
+  .links:hover{
+    background-color:#A4CB7D ;
+    color: green;
+  }
+
+  .things1link{
+    width: 100%;
+    margin: 0px;
+  }
+
+  .things2link{
+    width: 100%;
+    margin: 0px;
+  }
+
+  .things3link{
+    width: 100%;
+    margin: 0px;
+  }
+
+  .homepage{
+    display:block;
+  }
+
+  .welcome{
+    width: 100%;
+  }
+
+  .date{
+    font-size: 14px;
+    text-align: center;
+  }
+  .date2{
+    font-size: 18px;
+    text-align: center;
+  }
+  /* no lindsey before*/
+
+  #lindsey{
+    margin: 0px;
+    text-align: center;
+  }
+
+  #comecelebrate{
+    margin: 10px;
+    font-size: 18px;
+  }
+  #meetour{
+    margin: 10px;
+    font-size: 18px;
+    padding-top: 20px;
+  }
+  /* no entertainment before */
+
+
+  /*no food before*/
+  #entertainment{
+    margin: 0px;
+    padding-top: 10px;
+    border: 0px;
+  }
+  #saturday{
+    display: block;
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+    padding: 0px;
+  }
+
+  #sunday{
+    display: block;
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+    padding: 0px;
+  }
+
+  .daycategory{
+    text-align: left;
+    display: block;
+    padding: 0px;
+    border: 0px;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .day{
+    display: block;
+    margin-left: 5%;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 95%;
+  }
+  #kids{
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .onefood{
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 31.3%;
+    height: 500px;
+    background-color: #E7BC90;
+    color: maroon;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .twofood{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 31.3%;
+    height: 500px;
+    background-color: #E7BC90;
+    color: maroon;
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .threefood{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    height: 500px;
+    width: 32.3%;
+    background-color: #E7BC90;
+    color: maroon;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .onevendor{
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 31.3%;
+    background-color: #E8A2A2;
+    color: maroon;
+    height: 1800px;
+
+  }
+  .twovendor{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 31.3%;
+    background-color: #E8A2A2;
+    color: maroon;
+    margin: 0px;
+    height: 1800px;
+  }
+  .threevendor{
+    height: 1800px;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 32.3%;
+    background-color: #E8A2A2;
+    color: maroon;
+    margin: 0px;
+  }
+
+  .homepage1{
+    background-color: #E8A2A2;
+    color: maroon;
+    display: block;
+  }
+
+  #hotel{
+    width: 90%;
+  }
+
+  .article1{
+    font-size: 12px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+  }
+  .article2{
+    font-size: 12px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    height: 90px;
+  }
+  .article3{
+    font-size: 12px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    height: 90px;
+  }
+
+  .history{
+    float: left;
+    width: 40%;
+    margin-left: 5px;
+    margin-right: 0px;
+  }
+
+  /*no article*/
+
+  .homepage2{
+    background-color: #A4CB7D;
+    color: maroon;
+    display: block;
+    height: 100%;
+  }
+
+  .homepage3{
+    color: maroon;
+    background-color: #E7BC90;
+    display: block;
+  }
+
+  .ithaca{
+    font-size: 20px;
+  }
+
+  #car{
+    display: block;
+    width: 100%;
+    height: 600px;
+    background-color: #E8A2A2;
+    color: maroon;
+  }
+
+  .picturemobile2{
+    width:100%;
+  }
+
+  #bus{
+    display: block;
+    width: 100%;
+    height: 600px;
+    background-color: #A4CB7D;
+    color: maroon;
+  }
+
+  .bustype{
+    padding-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  .busback{
+    background-color: #A4CB7D;
+    color: maroon;
+    font-size: 18px;
+    text-decoration: underline;
+  }
+
+  #contact1{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    margin: 5px;
+    width: 40%;
+  }
+
+  .contact{
+    margin: 5px;
+  }
+
+  #contact2{
+    width: 50%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .contactpic{
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+  }
+
+  .phonepic{
+    width: 100%;
+    margin: 0px;
+  }
+
+  p{
+    margin: 5px;
+  }
+
+  .picturemobile{
+    width: 90%;
+  }
+  #comevisitmobile{
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .italics{
+    font-style: italic;
+  }
+
+  .boldly{
+    font-weight: bold;
+  }
+
+}

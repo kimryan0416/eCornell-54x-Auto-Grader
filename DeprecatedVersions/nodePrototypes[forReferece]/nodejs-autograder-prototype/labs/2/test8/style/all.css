@@ -1,0 +1,244 @@
+body{
+  background: rgba(0,0,0,0);
+  font-family: sans-serif;
+  text-align: center;
+  margin-right: 150px;
+  margin-left: 150px;
+  color: #424242;
+}
+
+h1{
+  text-align: left;
+  font-size: 30px;
+  font-family: sans-serif;
+  margin-left: 30px;
+  font-weight: normal;
+}
+
+#when{
+  padding-left: 15px;
+  text-align: left;
+}
+
+#info{
+  float: left;
+  width: 550px;
+  margin-left:10px;
+  text-align: left;
+}
+
+#time{
+  font-weight: bold;
+}
+
+.navbar li{
+  list-style:none;
+  display: inline;
+  padding: 20px;
+}
+
+.navbar a{
+  color: #424242;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar{
+  color: white;
+  padding: 1px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.navbar a:hover{
+  color: rgb(91, 91, 91);
+}
+
+img{
+  width: 400px;
+  height: auto;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+p,img{
+  margin: 20px;
+}
+
+.citations{
+  font-size: 12px;
+  font-style: italic;
+  display: inline-block;
+}
+
+#where{
+  display: block;
+  text-align: left;
+  margin-left: 10px;
+}
+
+#where h2{
+  margin-left: 20px;
+}
+
+#where h2 p{
+  margin-left: 15px;
+}
+
+#bus{
+  float: left;
+  width: 500px;
+}
+
+#hotel{
+  float: left;
+  width: 300px;
+}
+
+#where img{
+  width: 100%;
+}
+
+
+#cider{
+  width: 400px;
+  height: auto;
+
+}
+
+.actimg{
+  width:400px;
+  height: 275px;
+}
+
+#taugh, #botanic{
+  float: left;
+  width: 400px;
+  margin-right: 5%;
+  margin-left: 50px;
+}
+
+#indian, #catherine{
+  float: left;
+  width: 400px;
+  margin-left: 5%;
+}
+
+#map img{
+  width: 100%;
+  height:auto;
+  float: none;
+}
+
+.vendors img{
+  width: 27%;
+  display: inline-block;
+  float: left;
+}
+
+.floatpics img{
+  float: left;
+}
+
+.bus{
+  text-indent: 30px;
+}
+
+#busroute{
+  text-decoration: underline;
+}
+
+#logo{
+  border: none;
+  width: 100%;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+footer{
+  float: none;
+}
+
+@media only screen and (max-width: 480px){
+body{
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img{
+  float: none;
+  width: 100%;
+  height: auto;
+}
+
+.navbar li{
+  list-style:none;
+  display: block;
+  padding: 5px;
+}
+
+.navbar a{
+  color: black;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar{
+  color: white;
+  padding: 1px;
+  text-align: center;
+}
+
+.vendors img{
+  float: none;
+  width: 100%;
+  height: auto;
+}
+
+.floatpics img{
+  float: none;
+  width: 100%;
+  height: auto;
+}
+
+#map img{
+  width: 100%;
+  height:auto;
+  float: none;
+}
+
+#info{
+  width: 100%;
+  float:none;
+}
+
+#hotel{
+    float: none;
+    width: 100%;
+  }
+
+#bus{
+  float: none;
+  width: 100%;
+}
+
+#taugh, #botanic{
+  float: none;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#indian, #catherine{
+  float: none;
+  width: 100%;
+  margin-left: auto;
+}
+
+}

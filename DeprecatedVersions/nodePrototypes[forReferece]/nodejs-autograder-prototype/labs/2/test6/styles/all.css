@@ -1,0 +1,575 @@
+header {
+  background-image: url('../image/header_background.jpg');
+background-repeat: space;
+padding-top: 400px;
+margin: auto;
+width: 960px;
+float: none;
+}
+
+body{
+  background-image: url('../image/lightwood.jpg');
+}
+
+li{
+  padding: 3px;
+}
+
+footer{
+  text-align: center;
+  float: left;
+  font-size: 11px;
+  width: 725px;
+  border-style: ridge;
+  border-radius: 5px;
+}
+
+.show{
+  text-decoration: none;
+  color: #E88B00;
+}
+
+.map{
+  font-size: 17.5px;
+  text-align: center;
+}
+
+.vendors{
+  text-decoration: none;
+  color: #E88B00;
+}
+
+.content{
+  width: 725px;
+}
+
+.ads{
+  margin: 2px;
+  float: left;
+  width: 200px;
+  height: 200px;
+}
+
+.downtown-pic{
+  margin-top: 15px;
+  width: 725px;
+  float: left;
+}
+
+.container{
+  overflow: hidden;
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  width: 940px;
+}
+.event-list{
+  margin-top: 30px;
+  margin-left: 15px;
+}
+.schedule{
+  font-size: 18px;
+  margin-left: 5px;
+}
+.citation{
+  font-size: 12px;
+}
+.cv{
+  list-style: none;
+}
+.dropdown{
+  display: none;
+}
+
+#google-map-address{
+  font-weight: bold;
+  text-decoration: none;
+  color: #66ad37;
+}
+
+#weather{
+  color: red;
+  font-weight: bolder;
+  font-size: 13px;
+}
+
+#contact-name{
+  color: green;
+  font-style: normal;
+  font-weight: bold;
+}
+
+#address{
+  color: #66ad37;
+  font-weight: lighter;
+  text-decoration: none;
+}
+
+#contact-division{
+  color: gray;
+  font-size: 14px;
+}
+
+#schedule-1{
+  float: left;
+  width: 350px;
+  border: 1px solid white;
+  margin: 10px;
+}
+
+#schedule-2{
+  float: right;
+  width: 350px;
+  border: 1px solid white;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#map{
+  width: 725px;
+}
+
+#sun-schedule{
+  text-align: center;
+}
+
+#sat-schedule{
+  text-align: center;
+}
+
+#apple-pie{
+  padding: 5px;
+  background-color: #adaaa2;
+  border: 10px solid;
+  border-color: #a39191;
+  width: 695px;
+}
+
+#tcat{
+  width: 350px;
+  border: 1.5px solid white;
+  float: left;
+}
+
+#tcat a{
+  text-decoration: none;
+}
+
+#ads2{
+  margin-top: 10px;
+}
+
+#tcatlogo{
+  width: 350px;
+}
+
+#parking{
+  width: 306px;
+}
+
+#author1{
+  font-size: 18px;
+  color: #afafaf;
+}
+
+#ads{
+  float: left;
+  width: 210px;
+}
+
+#date{
+  text-align: center;
+  color: #82290e;
+
+}
+
+#image_one{
+  width: 300px;
+  margin-right: 10px;
+  float: left;
+}
+
+#sidebar {
+  float: right;
+  width: 200px;
+}
+
+#sidebar ul li {
+  color: #4682B4;
+  font-weight: bold;
+}
+
+#menu {
+  background-color: #aa3220;
+width:960px;
+padding-top: 4px;
+padding-bottom: 0;
+padding-left: 0;
+}
+
+#menu a{
+  color: white;
+  margin: 32px;
+  text-decoration: none;
+}
+
+#menu a:hover{
+    background-color: #c4c3c0;
+    padding: 3px;
+}
+
+#green-street-garage{
+  text-decoration: none;
+  color: orange;
+  font-weight: bolder;
+  font-family: monospace;
+}
+
+#green-street-garage p:hover{
+  background-color: #edefe3;
+  padding: 1px;
+}
+
+#location{
+margin-top: 20px;
+height: 117px;
+  width: 340px;
+  border-top: 1.5px solid black;
+  float: left;
+  padding-left: 5px;
+  padding-right:5px;
+  padding-top: 14px;
+  padding-bottom: 5px;
+}
+
+#garage{
+  float: right;
+  position: relative;
+  overflow: hidden;
+  display: block;
+margin-right: 15px;
+padding-left: 20px;
+padding-right: 5px;
+}
+
+#tags{
+  float: left;
+}
+
+#attractions{
+  font-size: 18px;
+  border: 0px solid black;
+  width: 714px;
+  padding: 5px;
+  float: left;
+  margin-top:20px;
+}
+
+#attractions a{
+  text-decoration: none;
+  color: orange;
+  font-weight: bolder;
+}
+
+#title-1{
+  text-align: center;
+}
+
+#west{
+  margin: 30px;
+  float: left;
+  font-size: 20px;
+}
+
+#west-div{
+  margin-top: 20px;
+  width: 400px;
+  float: left;
+}
+
+#menu ul {
+  margin: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+#menu li {
+  margin: 0;
+  display: inline;
+}
+
+#berlin{
+  text-align: center;
+}
+
+#craft{
+  width: 350px;
+  margin: auto;
+  float: left;
+}
+
+#cvtitle{
+  text-align: center;
+}
+
+#bank{
+  font-weight: bolder;
+  color: #424240;
+  padding-left: 0px;
+}
+
+#food{
+  width: 350px;
+  float:left;
+  margin: auto;
+}
+
+#mtt{
+  width: 725px;
+}
+
+#vendorcitation{
+  float: left;
+  font-size: 11px;
+  margin: auto;
+}
+
+#bankdiv{
+  float: left;
+  display: inline-block;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}
+
+#mttbank-logo{
+  padding-top: 40px;
+  width: 220px;
+}
+
+#foodlist{
+  text-align: center;
+}
+
+#farmertitle{
+  margin-top: 20px;
+  text-align: center;
+}
+
+#farmers{
+  float: left;
+  margin: auto;
+  width: 350px;
+}
+
+
+@media only screen and (max-width: 480px) {
+
+body{
+    background-image: url('../image/lightwood-phone.jpg');
+}
+
+nav{
+    display: none;
+}
+
+header{
+    width: auto;
+    display:contents;
+}
+
+footer{
+    width: auto;
+    float: none;
+}
+
+.dropbtn {
+    background-color: #aa3220;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px;
+}
+
+.dropdown-content a {
+    color: black;
+    font-family: sans-serif;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #960606;
+}
+
+.container{
+  width: auto;
+  float: none;
+}
+
+.ads{
+  display: none;
+}
+
+.content{
+  width: auto;
+  float: none;
+}
+
+.downtown-pic{
+  float: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#visit-logo{
+  width: 100%;
+  float: none;
+}
+
+#date{
+  display: inline-block;
+  float: none;
+  width: auto;
+}
+
+#sidebar {
+    float: none;
+    width: auto;
+}
+
+
+#menu{
+  width: auto;
+}
+
+#tcat{
+  border-bottom: 1px solid;
+  float: none;
+  width: auto;
+}
+
+#vendorcitation{
+  float: none;
+  width: auto;
+}
+
+#mtt{
+  float: none;
+  width: auto;
+}
+
+#bankdiv{
+  float: none;
+  width: auto;
+}
+
+#tcatlogo{
+  float: none;
+  width: 100%;
+}
+
+#parking{
+  float: none;
+  width: auto;
+}
+
+#ads{
+  display: none;
+}
+
+#date{
+  font-size: 20px;
+}
+
+#apple-pie{
+  width: 100%;
+  box-sizing: border-box;
+  float: none;
+}
+
+#garage{
+  border-bottom: 1px solid;
+}
+
+#location{
+  border-bottom: 1px solid;
+  border-top: none;
+}
+
+#attractions{
+  float: none;
+  width: auto;
+  box-sizing: border-box;
+}
+
+#tags{
+  display: none;
+}
+
+#west-div{
+  float: none;
+  width: auto;
+  box-sizing: border-box;
+}
+
+#west, #berlin{
+  font-size: 25px;
+  text-align: center;
+}
+
+#schedule-2{
+  float: none;
+  width: auto;
+  box-sizing: border-box;
+}
+
+#schedule-1{
+  float: none;
+  width: auto;
+  box-sizing: border-box;
+}
+
+#map{
+  float: none;
+  width: 100%;
+}
+
+#craft{
+  float: none;
+  width: auto;
+}
+
+#food{
+  float: none;
+  width: auto;
+}
+
+#farmers{
+  float: none;
+  width: auto;
+}
+
+
+}

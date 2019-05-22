@@ -1,0 +1,104 @@
+{
+	"tests":[
+		{
+			"title":"75%, HTML only, Indentation Only",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":0.75,
+				"INDENTATION_ONLY":true,
+				"FILETYPES":"html"
+			}
+		}, {
+			"title":"75%, HTML only, Whole format",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":75,
+				"INDENTATION_ONLY":false,
+				"FILETYPES":"html"
+			}
+		}, {
+			"title":"85%, HTML only, Whole format",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":"85%",
+				"INDENTATION_ONLY":false,
+				"FILETYPES":["html"]
+			}
+		}, {
+			"title":"75%, CSS only, Indentation only",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":0.75,
+				"INDENTATION_ONLY":true,
+				"FILETYPES":"css"
+			}
+		}, {
+			"title":"75%, CSS only, Whole format",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":"0.75",
+				"INDENTATION_ONLY":false,
+				"FILETYPES":["css"]
+			}
+		}, {
+			"title":"95%, CSS only, Indentation only",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":0.95,
+				"INDENTATION_ONLY":true,
+				"FILETYPES":"css"
+			}
+		}, {
+			"title":"75%, Both HTML and CSS, Indentation Only",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":0.75,
+				"INDENTATION_ONLY":true,
+				"FILETYPES":["html","css"]
+			}
+		}, {
+			"title":"95%, Both HTML and CSS, Whole format",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/",
+				"SIMILARITY":"95%",
+				"INDENTATION_ONLY":false,
+				"FILETYPES":["html","css"]
+			}
+		}, {
+			"title":"95%, Testing CSS of 'site.css'",
+			"test":"./301-400/303-formatting.js",
+			"statement":"Checking Indentation",
+			"errorMessage":"Indentation not up to par with readability expectations",
+			"variables":{
+				"PATH":"tests/303/styles/site.css",
+				"SIMILARITY":0.95,
+				"INDENTATION_ONLY":true,
+				"FILETYPES":"css"
+			}
+		}
+	]
+}

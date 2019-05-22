@@ -1,0 +1,91 @@
+html{
+  font-family: Georgia;
+  background-color: #bed5ed;
+}
+
+nav a{
+  color: #383e70;
+}
+
+nav{
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+
+}
+#home-tab:hover a{
+  font-size: 40px;
+}
+#about-tab:hover a{
+  font-size: 40px;
+}
+#portfolio-tab:hover a{
+  font-size: 40px;
+}
+
+h1{
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 2px 2px #3a46b0;
+}
+
+#Intro{
+  text-align: center;
+  padding: 25px;
+  border-style: ridge;
+  margin: 50px;
+}
+
+#about{
+  text-align: center;
+  font-size: 20px;
+}
+
+ h2{
+   font-size: 40px;
+   text-align: center;
+   padding: 10px;
+   border-style: dotted;
+   border-color: #3a46b0
+ }
+.interests {
+  font-size: 30px;
+  text-align: center;
+}
+.list{
+  text-align: center;
+}
+#social {
+  margin-left: 40%;
+}
+#social img:hover{
+  width: 120px;
+  height: 120px;
+}
+#photos{
+  text-align: center;
+}
+
+#photos img{
+  width:500px;
+}
+#photos img:hover{
+  width:50%;
+  height:50%;
+}
+
+.subj-info{
+  text-align: center;
+  font-size:22px;
+}
+
+.caption{
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  border-style: solid;
+}
+footer{
+  font-size: 15px;
+  text-align: center;
+}

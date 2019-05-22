@@ -1,0 +1,870 @@
+/* Start of default styling -- do NOT edit */
+
+body {
+  background-color: #FFF;
+  line-height: 26.4px;
+  letter-spacing: 1px;
+  font-family: Helvetica, Helvetica , Arial ,sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0;
+
+}
+
+.content {
+
+  width: 100%;
+  background-color: #FFF;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+
+/*headings*/
+
+h1 {
+  color: #00b400;
+  font-size: 45px;
+  text-align: center;
+  line-height: 80px;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #DB2929;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/*NAVIGATION MENU */
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  margin: 0;
+  background-color: #FFF;
+}
+
+nav li {
+  float: left;
+  padding: 1.5% 2.5%;
+}
+
+nav li a {
+  display: block;
+  color: gray;
+  text-align: center;
+  text-decoration: none;
+}
+
+nav li:hover {
+  background-color: #d6d6d6;
+  color: white;
+}
+
+.active {
+  background-color: #111;
+}
+
+.blackborder {
+  width: 100%;
+
+}
+/*link nav*/
+#linknav {
+  padding-left: 50px;
+}
+
+#linknav a {
+  color: #d3d3d3;
+}
+
+#linknav a:hover {
+  color: #111;
+}
+
+a {
+  color: #a6dbe1;
+}
+
+a:hover {
+  color: #d6d6d6;
+}
+
+/*Quote*/
+
+#quote2 {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 0 auto;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  width: 60%;
+}
+
+#quote2:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+
+}
+
+#quote2 p {
+  font-size: 72px;
+  font-weight: bold;
+  line-height: normal;
+  color: #ffa500;
+}
+
+
+.quoted {
+
+  font-size: 14px;
+  padding-left: 65%;
+  color: #111;
+}
+
+.quoted a {
+  color:#111;
+}
+
+.quoted a:hover {
+  color: #d6d6d6;
+}
+
+/*main content, top and main part*/
+.top{
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  box-sizing: border-box;
+}
+
+.main {
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+  background-color: #FFF;
+  box-sizing: border-box;
+
+}
+
+.content #banner {
+  width: 100%;
+  height: auto;
+}
+
+#banner2 {
+  width: 100%;
+  height: auto;
+}
+
+/*the photo icons on the bottom of the index.html*/
+
+.mainicon::before {
+  border-top: 3px;
+  border-top-color: #d6d6d6;
+  border-top-style: solid;
+  width: 75%;
+}
+
+.mainicon {
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  float: left;
+  padding-top: 100px;
+  box-sizing: border-box;
+
+}
+
+.mainicons {
+  width: 25%;
+  float: left;
+}
+
+.mainicons img {
+    width: 80%;
+    border-radius: 70%;
+
+  }
+
+.mainicons:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+/*used for citing outside sources*/
+.creds {
+  text-align: center;
+  font-size: 10px;
+}
+
+/*brings out the date on index page*/
+#date::before{
+  width: 60%;
+  border-top: 3px;
+  border-top-color: #d6d6d6;
+  border-top-style: solid;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+#date::after{
+  width: 60%;
+  border-bottom: 3px;
+  border-bottom-color: #d6d6d6;
+  border-bottom-style: solid;
+  content: "";
+  display: block;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.description {
+  padding-bottom: 5%;
+}
+
+.description p{
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+#caption {
+  text-align: center;
+  font-size: 10px;
+}
+
+
+/*Schedule 3 column layout*/
+
+
+.mediaicon::after {
+  margin-top: 20%;
+  width: 60%;
+  border-top: 3px;
+  border-top-color: #d6d6d6;
+  border-top-style: solid;
+  content: "";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.schedule {
+
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+
+}
+
+.schedule1 {
+  float: left;
+  padding-left: 2%;
+  width: 30%;
+}
+.schedule2{
+  float: left;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 28%;
+  border-left: 3px;
+  border-left-color: #d6d6d6;
+  border-left-style: solid;
+  border-right: 3px;
+  border-right-color: #d6d6d6;
+  border-right-style: solid;
+}
+
+.schedule3 {
+  float: left;
+  padding-left: 3%;
+  width: 30%;
+}
+
+/*Vendors 3 column layout*/
+.vendors {
+  padding-top: 5%;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.vendor1 {
+  float: left;
+  width: 29%;
+  padding-right: 3%;
+  text-align: center;
+}
+.vendor2{
+  float: left;
+  width: 31%;
+  border-left: 3px;
+  border-left-color: #d6d6d6;
+  border-left-style: solid;
+  border-right: 3px;
+  border-right-color: #d6d6d6;
+  border-right-style: solid;
+  text-align: center;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+.vendor3 {
+
+  float: left;
+  padding-left: 3%;
+  width: 29%;
+  text-align: center;
+}
+
+.vendors ul {
+  list-style: none;
+  padding: 0;
+}
+
+/*Picture Editing*/
+.locationpic {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+
+/*Hotel links*/
+.buttons {
+  margin: 0 auto;
+  text-align: center;
+}
+.button {
+  background-color: #111;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  width: 50%;
+}
+.button:hover {
+  background: #46494a;
+  color: #ccc;
+}
+
+.button:active {
+  background: #a0a2a3;
+}
+
+
+
+/*for location: two column structure*/
+.twocol {
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  box-sizing: border-box;
+
+}
+
+.sided {
+  float: left;
+  width: 42%;
+  padding: 6%;
+  height: auto;
+  background-color: #FFF;
+
+}
+
+.sided2 {
+  float: left;
+  width: 39%;
+  padding: 3%;
+  height: auto;
+  background-color: #FFF;
+
+}
+
+/*Personal Experiences: 2 column, 5 rows*/
+.twocol3 {
+  width: 95%;
+  height: 100%;
+  background-color: #FFF;
+  box-sizing: border-box;
+}
+.name {
+  background-color: #FFFBCC;
+}
+.person{
+  float: left;
+  width: 40%;
+  padding-left: 15%;
+  height: auto;
+  background-color: #FFF;
+
+}
+.rows1 {
+  float: left;
+  width: 100%;
+}
+
+.rows2 {
+  float: left;
+  width: 100%;
+
+}
+.rows3 {
+  float: left;
+  width: 100%;
+  margin-top: 1%;
+}
+.rows4 {
+  float: left;
+  width: 100%;
+  margin-top: 1%;
+}
+.rows5 {
+  float: left;
+  width: 100%;
+  margin-top: 1%;
+}
+
+.person img {
+  width: 100%;
+}
+
+.story {
+  float: left;
+  width: 30%;
+  padding-left: 2%;
+  padding-right: 10%;
+  height: auto;
+  background-color: #FFF;
+
+}
+
+/*Social Media Icons*/
+.mediaicons {
+  float: left;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 5%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.mediaicon {
+  padding: 1%;
+  width: 2%;
+}
+
+.mediaicon:hover{
+  opacity: .5;
+}
+/*Photo Gallery Grid*/
+
+#colthree {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#col1 {
+  width: 3%;
+  float: left;
+  padding-left: 5%;
+  padding-top: 27%;
+
+}
+
+#col2 {
+  width: 84%;
+  float: left;
+  margin: 0 auto;
+  padding: 0;
+
+}
+
+#col3 {
+  width: 3%;
+  float: right;
+  padding-right: 5%;
+  padding-top: 27%;
+}
+
+.arrow {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.arrow:hover{
+  opacity: .5;
+}
+
+.tworow {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#row1 {
+  float:left;
+  width: 100%;
+  text-align: center;
+
+}
+
+#row1 img {
+  width: 32%;
+}
+
+
+#row2 img {
+  width: 97.5%;
+}
+
+#row2{
+  float: left;
+  width: 100%;
+  text-align: center;
+
+}
+#row3 {
+  float:left;
+  width: 100%;
+  text-align: center;
+
+}
+
+#row3 img {
+  width: 23.9%;
+}
+
+/*footer that is included in the content div*/
+footer {
+  float: left;
+  width: 100%;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+
+  background-color: #f1f1f1;
+}
+
+/************MOBILE VIEW*****************/
+
+/*This view is meant for ipads, tablets that are in landscape mode*/
+@media only screen and (max-device-width: 768px) {
+
+  body {
+    letter-spacing: 1px;
+    font-family: Helvetica, Helvetica , Arial ,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+  h1 {
+    font-size: 25px;
+    /*line-height: 26.4px;*/
+
+
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  .creds {
+    font-size: 10px;
+  }
+
+  /*navigation menu w/ help from CSStricks.com*/
+  .onclick-menu {
+    position: relative;
+    display: inline-block;
+    background-color: #FFF;
+  }
+  .onclick-menu:before {
+    content: url(../images/menu.png);
+    width: 5%;
+    padding: 3px;
+  }
+
+  .onclick-menu:focus {
+    /* clicking on label should toggle the menu */
+    background-color: #FFF;
+
+  }
+  .onclick-menu:focus .onclick-menu-content {
+    /*  opacity is 1 in opened state (see below) */
+    opacity: 1;
+    visibility: visible;
+    background-color: #FFF;
+  }
+  .onclick-menu-content {
+    width: 150px;
+    position: absolute;
+    z-index: 1;
+
+
+    /* use opacity to fake immediate toggle */
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s;
+    background-color: #FFF;
+  }
+
+  .onclick-menu-content ul {
+    border: 1px solid #555;
+    width: 150px;
+    background-color: #FFF;
+  }
+
+  .onclick-menu-content li {
+    width: 150px;
+    border-bottom: 1px solid #555;
+    background-color: #FFF;
+  }
+
+  nav li a {
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+  }
+}
+@media only screen and (max-width: 480px) {
+
+/*the major content of the mobile view for portrait mode and namely, phones*/
+  body {
+    width: 100%;
+    background-color: #FFF;
+    font-family: Helvetica, Helvetica , Arial ,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    box-sizing: border-box;
+
+  }
+
+  .content {
+    width: 100%;
+    padding: 1%;
+    margin: 0;
+    height: 100%;
+
+  }
+
+  /*Font Size Changes*/
+  h1{
+    font-size: 25px;
+    line-height: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p{
+    font-size: 15px;
+  }
+
+  .creds {
+    font-size: 10px;
+  }
+
+  .description {
+    font-size: 15px;
+
+    }
+
+  /*Meant to undo the layout structure, and change everything to fill the screen*/
+  .main {
+    width: 100%;
+    padding: 0;
+  }
+
+  .top {
+    width: 100%;
+    height: 5%;
+  }
+
+  .twocol{
+    width: 100%;
+
+    height: 100%;
+
+  }
+
+  .twocol2 {
+    width: 100%;
+
+    height: 100%;
+  }
+
+  .twocol3 {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+  }
+
+  .side , .side2 , .sided, .sided2, .person, .story , .schedule1, .schedule2, .schedule3, .vendor1, .vendor2, .vendor3{
+    float: left;
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  .vendor2, .schedule2 {
+    border-color: #FFF;
+  }
+
+  #quote2 {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  #quote2 p{
+    font-size: 20px;
+  }
+
+  #row3 img{
+    width: 48%;
+  }
+
+  .person img {
+    width: 99%;
+    text-align: left;
+  }
+
+
+  .linknav {
+    margin: 0;
+    padding-left: 1%;
+
+  }
+
+  #banner {
+    width: 100%;
+  }
+
+  .quoted {
+    font-size: 12px;
+  }
+
+  .button {
+    background-color: #111;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+
+  }
+
+  /*Image size changes*/
+  .mediaicon {
+    padding: 3%;
+    width: 10%;
+  }
+
+  .mainicons {
+    width: 100%;
+    float: left;
+  }
+
+  .mainicons img {
+      width: 80%;
+      border-radius: 70%;
+
+    }
+
+  .locationpic {
+    width: 100%;
+  }
+
+  /*navigation menu w/ help from CSStricks.com*/
+  .onclick-menu {
+    position: relative;
+    display: inline-block;
+    background-color: #FFF;
+  }
+  .onclick-menu:before {
+    content: url(../images/menu.png);
+    width: 5%;
+    padding: 5px;
+  }
+
+  .onclick-menu:focus {
+    /* clicking on label should toggle the menu */
+    background-color: #FFF;
+
+  }
+  .onclick-menu:focus .onclick-menu-content {
+    /*  opacity is 1 in opened state (see below) */
+    opacity: 1;
+    visibility: visible;
+    background-color: #FFF;
+  }
+  .onclick-menu-content {
+    width: 150px;
+    position: absolute;
+    z-index: 1;
+
+
+    /* use opacity to fake immediate toggle */
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.5s;
+    background-color: #FFF;
+  }
+
+  .onclick-menu-content ul {
+    border: 1px solid #555;
+    width: 150px;
+    background-color: #FFF;
+  }
+
+  .onclick-menu-content li {
+    width: 150px;
+    border-bottom: 1px solid #555;
+    background-color: #FFF;
+  }
+
+  nav li a {
+    display: block;
+    color: gray;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+  }
+
+  footer {
+    width: 100%;
+    float: none;
+    margin-top: 10px;
+
+  }
+}

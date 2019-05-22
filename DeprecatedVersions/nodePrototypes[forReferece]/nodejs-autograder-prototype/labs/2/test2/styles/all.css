@@ -1,0 +1,758 @@
+/* p2m1 - cc736 */
+
+/* style guide
+  light grey: #9B9B9B
+  red: #F06652
+  green: #8DC446;
+*/
+
+/* general css */
+  body {
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: "Helvetica Neue";
+    font-size: 30px;
+    background-color: #FFFFFF;
+    color: #4A4A4A;
+    overflow-x: hidden;
+  }
+  h1{
+    font-family: "Impact";
+    font-size: 36px;
+    color: #F06652;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  h2{
+    font-family: "Impact";
+    font-size: 30px;
+    color: #9B9B9B;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  p{
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+    font-size: 26px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #4A4A4A;
+    letter-spacing: 2px;
+  }
+
+/* navigation bar */
+  #navBar{
+    display: flex;
+    width: 100%;
+    height: 150px;
+    margin: auto;
+  }
+
+  #navLeft{
+    flex: 2;
+    margin-top: 65px;
+  }
+
+  #navleft nav{
+    float: right;
+  }
+
+  .centeredIcon {
+    flex: 1;
+    margin: 100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 100px;
+    width: 147.5px;
+  }
+
+  #navRight{
+    flex: 2;
+    margin-top: 65px;
+  }
+
+  #navRight nav{
+    float: left;
+  }
+
+  nav li{
+    float: right;
+    list-style-type: none;
+    text-decoration: none;
+  }
+  nav li a{
+    text-decoration: none;
+    color: #828282;
+    margin: 50px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+    font-size: 20px;
+  }
+  nav li a:hover {
+    color: #8DC446;
+  }
+  .active{
+    color: #F17858;
+  }
+  nav ul{
+    margin: 0px;
+    padding: 0px;
+  }
+
+.mobileNavBar{
+  display: none;
+}
+
+/* cover photo styling */
+#coverPhoto {
+  float: left;
+  width: 100%;
+}
+
+/* footer styling */
+#flexFooter{
+  display: flex;
+  background: #F7F7F7;
+  height: auto;
+  width: 100%;
+  float: left;
+  padding-bottom: 20px;
+  margin-bottom: 0px;
+}
+#flexFooterLeft{
+  flex: 1;
+  margin-left: 75px;
+  margin-top: 25px;
+  width: 100%;
+}
+  #flexFooterLeft p{
+    margin: 2px;
+    margin: 5px;
+    font-size: 12px;
+    float: left;
+  }
+  .flexFooterLeftSources:hover{
+    color: #8DC446;
+  }
+#flexFooterRight{
+  flex: 1;
+  margin-right: 75px;
+}
+.footerIcons{
+  float: right;
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  margin-top: 95px;
+  margin-left: 10px;
+}
+.footerIcons:hover{
+  opacity: 0.5
+}
+
+/* end footer styling */
+
+
+/* index.html styling */
+#flexIndexDetail{
+  display: flex;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+  #flexIndexDetailLeft{
+    flex: 1;
+    float: right;
+    margin-right: 35px;
+    margin-top: 60px;
+  }
+    #flexIndexDetailLeft h1{
+      width: 100%;
+      text-align: right;
+    }
+    #flexIndexDetailLeft p{
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  #flexIndexDetail hr{
+    width: 0.5px;
+    height: 260px;
+    color: #9B9B9B;
+    margin-top: 77px;
+  }
+  #flexIndexDetailRight{
+    flex: 2;
+    margin-top: 60px;
+  }
+    #flexIndexDetailRight h1{
+      width: 100%;
+      margin-left: 35px;
+    }
+    #flexIndexDetailRight p{
+      font-family: "Helvetica Neue";
+      font-weight: lighter;
+      margin-top: 13px;
+      margin-bottom: 14px;
+      margin-left: 35px;
+    }
+/*end details styling*/
+
+
+/* line styling */
+  .pageBreak{
+    display: flex;
+    width: 87.5%;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #9b9b9b;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+/*end line styling*/
+
+/* resizing pictures */
+#indexPictures{
+  width: 90%;
+  margin-left: 6.4%;
+}
+#indexPictures h1{
+  margin-bottom: 1%;
+}
+#indexPictures p{
+  float: right;
+  font-size: 12px;
+  margin-right: 3%;
+}
+.indexPortraitPicture{
+  width: 31.85%;
+  height: 20%;
+}
+.indexLandscapePicture{
+  width: 23.75%;
+  height: 20%;
+}
+
+/* news styling */
+  #indexNewsTitle{
+    width: 100%;
+    margin-left: 6.35%;
+  }
+  #flexIndexNews{
+    display: flex;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+  }
+  .newsText{
+    width: 400px;
+  }
+  .newsText a{
+    text-decoration: none;
+  }
+  .newsText p{
+    font-size: 16px;
+    margin: 1px;
+  }
+  .flexIndexThirds{
+    flex: 1;
+    margin: 5px;
+    margin-left: 20px;
+  }
+    .flexIndexThirds:hover img{
+      opacity: 0.75;
+    }
+    .flexIndexThirds:hover p{
+      color: #F06652;
+    }
+/*end index.html styling*/
+
+
+/*about styling*/
+.divAbout{
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 60px;
+  float: left;
+}
+.divAbout p{
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-weight: lighter;
+  font-family: "Helvetica Neue";
+  font-weight: lighter;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+#divAboutImg{
+margin-bottom: 5%;
+}
+#divAboutImg h1{
+  margin-left: 20%;
+}
+#divAboutImg img{
+  margin-left: 32.5%;
+  width: 35%;
+  height: 20%;
+}
+#aboutAboutTitle{
+  margin-top: 60px;
+}
+#aboutSponsor{
+  text-align: center;
+  text-decoration: none;
+  font-size: 9px;
+}
+
+/*end about styling*/
+#schedule{
+  display: flex;
+  width: 1060px;
+  margin-bottom: 60px;
+  margin-left: 17.5%;
+}
+  #schedule h1{
+    margin-top: 60px;
+  }
+  #schedule h2{
+    float: left;
+    width: 100%
+  }
+  .scheduleTimes{
+    width: 200px;
+    float: left;
+  }
+    .scheduleTimes p{
+      width: 100%;
+      float: left;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+  #flexScheduleSaturday{
+    flex:4;
+    margin-right: 30px;
+  }
+    .scheduleEventsSaturday{
+      width: 200px;
+      float: left;
+    }
+      .scheduleEventsSaturday p{
+        float: left;
+        width: 100%;
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+  #flexScheduleSunday{
+    flex: 5;
+    margin-left: 30px;
+  }
+    .scheduleEventsSunday{
+      width: 300px;
+      float: left;
+    }
+      .scheduleEventsSunday p{
+        float: left;
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+
+
+/* schedule.html styling*/
+  /* vendors navigation bar*/
+  #vendorsNavBar{
+    width: 850px;
+    height: 40px;
+    margin-left: 20.5%;
+    background-color: #ffffff;
+  }
+    #vendorsNavBar p{
+      width: 25%;
+      font-family: "Impact";
+      font-size: 36px;
+      color: #9B9B9B;
+      margin-top: 25px;
+      margin-bottom: 5px;
+      float: left;
+    }
+    #vendorsNavBar p:hover{
+      color: #8DC446;
+    }
+    #vendorsNavBar p.activeTwo{
+      color: #F06652;
+      text-decoration: underline;
+    }
+
+  /*vendors list*/
+  .vendorsContainer{
+    width: 850px;
+    height: auto;
+    margin-left: 20.5%;
+    background-color: #F06652;
+    float: left;
+    margin-bottom: 60px;
+  }
+    .vendorsList{
+      width: 400px;
+      float: left;
+      margin-left: 16.7px;
+    }
+      .vendorsList li{
+        color: white;
+        font-weight: lighter;
+        font-size: 20px;
+        margin-top:3px;
+        margin-bottom:3px;
+        letter-spacing: 2px;
+      }
+
+/* ^^^^^ DESKTOP VIEW ABOVE ^^^^^ /
+
+
+
+
+
+
+/* ||||| MOBILE VIEW BELOW ||||| */
+
+@media only screen and (max-width: 480px) {
+
+/* general styling */
+h1{
+  font-size: 24px;
+}
+
+/* navigation bar */
+#navBar{
+  display: none;
+}
+.mobileNavBar{
+  display: block;
+  position: absolute;
+  top: 0;
+  margin: 0px;
+  padding-bottom: 20px;
+  width: 100%;
+  height: 20px;;
+  background-color: #F7F7F7;
+}
+.mobileNavBar p{
+  font-size: 12px;
+}
+#mobileNavBarText{
+  float: left;
+  margin-left: 5%;
+  font-size: 14px;
+  margin-top: 11px;
+}
+#mobileNavBarIcon{
+  float: right;
+  margin-top: 15px;
+  margin-right: 5%;
+  height: 10px;
+  width: 14px;
+}
+  #mobileNavBarIcon:hover{
+    opacity: 0.6;
+  }
+
+/* menu page */
+#mobileMenuTop{
+  width: 100%;
+  height: 40px;
+  margin-top: 0px;
+  padding-top: 0px;
+  background-color: #f7f7f7;
+}
+  #mobileMenuTopText{
+    float: left;
+    margin-left: 5%;
+    font-size: 14px;
+    margin-top: 11px;
+  }
+
+#mobileMenuOptions{
+  margin-top: 40%;
+}
+  #mobileMenuOptions li{
+    width: 100%;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+/* fix cover photo styling */
+#coverPhoto{
+  margin-top: 40px;
+}
+
+/* pageBreak mobile styling */
+.pageBreak{
+  width: 90%;
+  margin-left: 5%;
+}
+
+/* mobile footer styling */
+#flexFooter{
+  display: block;
+  width: 100%;
+  height: auto;
+  padding-bottom: 2%;
+  padding-top: 2%;
+}
+#flexFooterLeft{
+  display: block;
+  float: left;
+  width: 100%;
+  height: auto;
+  margin: 1%;
+}
+#flexFooterRight{
+  display: block;
+  float: left;
+  width: 100%;
+  margin: auto;
+}
+#flexFooter p{
+  font-size: 5px;
+  margin-left: 5%;
+}
+#flexFooterRight{
+  margin: auto;
+  width: 70%;
+}
+#flexFooterRight img{
+  margin: 5%;
+}
+
+/* mobile index styling */
+#flexIndexDetail{
+  display: block;
+  float: left;
+  width: 100%;
+  margin-bottom: 4%;
+}
+#flexIndexDetail hr{
+  display: none;
+}
+#flexIndexDetailLeft {
+  display: none;
+  width: 0px;
+  height: 0px;
+  margin: 0px;
+}
+#flexIndexDetailRight{
+  display: block;
+  float: left;
+  width: 100%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-bottom: 4%;
+}
+  #flexIndexDetailRight h1{
+    display: block;
+    width: 100%;
+    float: left;
+    margin-top: 0px;
+    height: 36px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  #flexIndexDetailRight p{
+    font-size: 12px;
+    margin: 0px;
+    margin-top: 3%;
+    margin-left: 0px;
+  }
+
+#indexPictures{
+  width: 90%;
+  margin-left: 5%;
+}
+#indexPictures h1{
+  margin-bottom: 1%;
+}
+#indexPictures p{
+  float: right;
+  font-size: 8px;
+  margin-right: 0.2%;
+  margin-bottom: 5%
+}
+.indexPortraitPicture{
+  width: 100%;
+  height: 20%;
+}
+.indexLandscapePicture{
+  width: 100%;
+  height: 20%;
+}
+
+
+#flexIndexNews{
+  display: block;
+  margin: 0px;
+  width: 100%;
+}
+  #indexNewsTitle{
+    width: 100%;
+    margin: 5%;
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+.flexIndexThirds{
+  display: block;
+  float: left;
+  margin: 5%;
+  width: 100%;
+}
+.flexIndexThirds img{
+  width: 90%;
+  height: 90%;
+}
+.flexIndexThirds p{
+  font-size: 12px;
+  width: 75%
+}
+
+/* mobile about styling */
+.divAbout{
+  display: block;
+  width: 90%;
+  margin: 5%;
+}
+.divAbout h1{
+  display: block;
+  width: 100%;
+  font-size: 24px;
+  margin-top: 0px;
+}
+.divAbout p{
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.pageBreak{
+  margin: 5%;
+}
+#divAboutImg{
+margin-bottom: 5%;
+}
+  #divAboutImg h1{
+    margin-left: 5%;
+    font-size: 24px;
+  }
+  #divAboutImg img{
+    margin-left: 20%;
+    margin-right: 20%;
+    width: 60%;
+    height: 40%;
+    text-shadow: 2px 2px;
+  }
+#aboutAboutTitle{
+  margin-top: 0px;
+}
+#aboutSponsor{
+  text-align: center;
+  text-decoration: none;
+  font-size: 9px;
+}
+
+/* mobile schedule styling */
+#schedule{
+  display: block;
+  float: left;
+  margin: 5%;
+}
+#schedule h1{
+  font-size: 24px;
+  margin-top: 0px;
+}
+#schedule h2{
+  font-size: 20px;
+}
+#schedule p{
+  font-size: 16px;
+  width: 145px;
+}
+#flexScheduleSaturday{
+  display: block;
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.scheduleTimes{
+  width: 130px;
+}
+.scheduleEventsSunday{
+  display: block;
+  width: 200px;
+}
+#flexScheduleSunday{
+  display: block;
+  float: left;
+  width: 100%;
+  margin: 0px;
+}
+.scheduleEventsSunday{
+  display: block;
+  width: 200px;
+}
+
+/* mobile vendors styling */
+#vendorsNavBar{
+  float: left;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+  height: 30px;
+}
+  #vendorsNavBar p{
+    width: auto;
+    font-family: "Impact";
+    font-size: 18px;
+    color: #9B9B9B;
+    margin-top: 0px;
+    margin-left: 5%;
+    float: left;
+  }
+  #vendorsNavBar li{
+    width: 25%;
+    height: 18px;
+  }
+.vendorsContainer{
+  margin-left: 0px;
+  background-color: white;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  float: left;
+}
+  .vendorsList{
+    width: 100%;
+    float: left;
+    margin-left: 0px;
+    color: #9B9B9B;
+  }
+    .vendorsList ul{
+      width: 100%;
+      float: left;
+      margin-left: 0px;
+      color: #9B9B9B;
+      margin: 0px;
+    }
+    .vendorsList li{
+      width: 32%;
+      font-weight: lighter;
+      font-size: 14px;
+      margin-top:1%;
+      margin-bottom:1%;
+      letter-spacing: 2px;
+      color: #9B9B9B;
+    }
+}

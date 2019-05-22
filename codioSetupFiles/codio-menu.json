@@ -1,0 +1,34 @@
+{
+    "Logo": false,
+    "Codio": false,
+    "Project": false,
+    "File": false,
+    "Edit": {
+      "Show completions": false
+    },
+    "Find": {
+      "Replace in Project":false
+    },
+    "View": {
+      "File Tree": false,
+      "Panels": false,
+      "Layouts": false,
+      "Full Screen": false,
+      "Terminal Theme": false,
+      "Terminal Font Size": false,
+      "Play Guide": false
+      
+    },
+    "Tools": false,
+    "Education": false,
+    "Help": false,
+    "Run": false,
+    "Preview": {
+      "Configure....":false 
+    },
+    "Debugger": false,
+    "Status": false,
+    "Project Index (static)": true,
+    "Toggle sections list": false,
+    "Online": true
+}

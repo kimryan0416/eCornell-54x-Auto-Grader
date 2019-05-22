@@ -1,0 +1,63 @@
+<!-- 
+  Changes: 
+  - added new classes "leftOfLogo" and "rightOfLogo" to <nav> <a> tags + new id 'navLogo' to navigation logo <a> tag
+  - new id "featuredContent"
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Featured | Studio 54x</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="styles/site.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat%7COswald%7CRaleway" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class='leftOfLogo'><a href="index.html">Home</a></li>
+      <li class='leftOfLogo'><a href="services.html">Services</a></li>
+      <li class='leftOfLogo'><a href="featured.html" class="current_page">Featured</a></li>
+      <li id='navLogo'><a href="index.html"><img alt="Studio 54x Logo" src="images/studio_logo.png"/></a></li>
+      <li class='rightOfLogo'><a href="faq.html">FAQs</a></li>
+      <li class='rightOfLogo'><a href="about.html">About</a></li>
+      <li class='rightOfLogo'><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content" id='featuredContent'>
+    <h1>Featured</h1>
+    <div class="flexbox">
+      <figure class="featured">
+        <img alt="Newlyweds dancing" src="images/couple-dance.jpg"/>
+        <figcaption>Jane and John's First Dance</figcaption>
+      </figure>
+      <figure class="featured">
+        <img alt="Couple in Woods" src="images/couple-woods3.jpg"/>
+        <figcaption>Ashley and Jacob's Wedding Shoot</figcaption>
+      </figure>
+      <figure class="featured">
+        <img alt="Newlyweds exiting church" src="images/exiting-church.jpg"/>
+        <figcaption>Featured in NY Weddings</figcaption>
+      </figure>
+      <figure class="featured">
+        <img alt="Wedding Reception" src="images/wedding-party.jpg"/>
+        <figcaption>The Johnson Wedding</figcaption>
+      </figure>
+      <figure class="featured">
+        <img alt="Walking the aisle" src="images/ceremony.jpg"/>
+        <figcaption>Featured in Brides of Ithaca</figcaption>
+      </figure>
+      <figure class="featured">
+        <img alt="Newlyweds showing rings" src="images/wedding-bands.jpg"/>
+        <figcaption>Featured in NY Weddings</figcaption>
+      </figure>
+    </div>
+  </div>
+  <footer>
+    <p>
+      All images on this site are solely the property of Studio 54x. These photographs are protected by copyright laws, and are not to be downloaded, printed, or reproduced without express written permission.
+    </p>
+    <p>&#169; 2018 <span class="copyright">Studio 54x</span></p>
+  </footer>
+</body>
+</html>

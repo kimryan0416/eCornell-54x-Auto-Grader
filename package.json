@@ -9,19 +9,19 @@
   "author": "Ryan Kim",
   "license": "ISC",
   "devDependencies": {
-    "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
-    "mocha": "^5.2.0",
-    "mochawesome": "^3.0.3",
+    "eslint": "^5.16.0",
     "testcafe": "^0.21.1"
   },
   "dependencies": {
+    "beautify": "0.0.8",
     "css": "^2.2.3",
     "cssbeautify": "^0.3.1",
     "diff": "^3.5.0",
     "html": "^1.0.0",
     "indent.js": "^0.3.4",
     "is-image": "^2.0.0",
+    "jshint": "^2.10.2",
     "node-html-parser": "^1.1.10",
     "node-promise": "^0.5.14",
     "request": "^2.88.0",
