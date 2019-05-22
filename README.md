@@ -88,7 +88,7 @@ However, each test does have a basic list of values you can adjust for each unit
 ````json
 {
 	"name":"The name of the unit test - only for organization purposes",
-	"test":"path/to/testfile.js",	// Required
+	"test":"path/to/testfile.js",
 	"title":"The printed title of the unit test - printed into the terminal and HTML output - most unit tests have a default printed title, but setting this value will override any default titles",
 	"message":"The error message that ought to be printed should a unit test return an error - most unit tests have a default error message, but setting this value will override any default error messages",
 	"variables":{}
