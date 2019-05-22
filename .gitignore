@@ -1,0 +1,7 @@
+# Ignore all files, except .gitignore files.
+
+!.gitignore
+/**/.DS_Store
+/**/node_modules/
+/**/testReport/
+/**/*-ignore*
