@@ -1,1 +1,0 @@
-{"totals":{"error":1,"info":0,"files":[null]},"undefined":{"error":[{"type":"error","lastLine":1,"lastColumn":54,"firstColumn":48,"message":"Element “head” is missing a required instance of child element “title”.","extract":"set=utf-8></head><body>","hiliteStart":10,"hiliteLength":7}],"info":[]}}
