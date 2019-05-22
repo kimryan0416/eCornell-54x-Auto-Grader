@@ -125,7 +125,7 @@ To know about the variables unique to each unit test, read the document named ``
 
 To know about how to utilize the Autograder for use on **Codio**, an online IDE's that allows for students to work on code projects online through virtual machines, please read the document named ``codioGuide.md`` located within the ``documents`` folder.
 
-If you have any questions on how to customize the Autograder for your personal usage, please contact me directly via email, which is available on [my website]("https://www.ryankimdev.com"). 
+If you have any questions on how to customize the Autograder for your personal usage, please contact me directly via email, which is available on [my website](https://www.ryankimdev.com). 
 
 
 *This package is intended to be used for eCornell's CIS54x online web design course.*
