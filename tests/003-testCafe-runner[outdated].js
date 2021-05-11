@@ -2,10 +2,9 @@ import { Selector, ClientFunction } from 'testcafe';
 
 var thisSelector = process.env.SELECTOR;
 var thisFile = process.env.FILE;
-var thisPort = process.env.PORT;
 
 fixture (`fixture`)
-    .page('http://localhost:'+thisPort+'/'+thisFile);
+    .page('http://localhost:8080/'+thisFile);
 
 test(thisFile, async t => {
         var elements      = Selector(thisSelector);
