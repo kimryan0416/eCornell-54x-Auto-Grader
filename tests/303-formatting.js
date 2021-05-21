@@ -1,7 +1,5 @@
 const common = require('../common.js');
 var jsdiff = require('diff');
-//var html = require('html');
-//var indent = require('indent.js');
 var beautify = require('beautify');
 var detectIndent = require('detect-indent');
 
