@@ -44,7 +44,8 @@ function main(name, custom_title, custom_message, variables, done) {
 			"jquery": true
 		} : {},
 		stdout = null, 
-		errors = {};
+		errors = {},
+		errorsRaw = {};
 
 	// NEED TO DO:
 	// 2) Make so that it recursively checks all JS files in given directory, if jsPath is directory
@@ -67,22 +68,38 @@ function main(name, custom_title, custom_message, variables, done) {
 					JSHINT(source, options, predef);
 					var stdout = JSHINT.data();
 					if (typeof stdout.errors !== 'undefined') {
-						errors[f] = stdout.errors.reduce((filtered,e)=>{
+						errors[f] = '';
+						errorsRaw[f] = [];
+						stdout.errors.forEach(e=>{
 							if (e.id == '(error)') {
 								let location = 'Line ' + e.line + ':' + e.character;
 								let reason = e.reason;
-								filtered += '\n- ' + location + " - " + reason;
+								errors[f] += '\n- ' + location + " - " + reason;
+								errorsRaw[f].push(e);
 							}
-							return filtered;
-						},'');
+						});
 					}
 				} catch(e) {
 					errors[f] = "Could not read the following JavaScript file";
+					errorsRaw[f] = null;
 				}
 			});
 
-			var printMessage = (testMessage != null) ? testMessage : errors;
-			var conMessage = (testMessage != null) ? testMessage : JSON.stringify(errors);
+			var printMessage, conMessage;
+			if (testMessage != null) {
+				var newMessage = testMessage.replace(/{{NUM_ERRORS}}/g, Object.keys(errorsRaw).reduce((filtered,f)=>{
+					filtered += errorsRaw[f].length;
+					return filtered;
+				},0));
+				newMessage = newMessage.replace(/{{ERRORS}}/g,JSON.stringify(errors));
+
+				printMessage = newMessage;
+				conMessage = newMessage;
+			} else {
+				printMessage = errors;
+				conMessage = JSON.stringify(errors);
+			}
+
 			done({
 				name: name,
 				title: testTitle,
