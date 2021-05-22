@@ -1,5 +1,6 @@
 import { Selector, ClientFunction } from 'testcafe';
 const fs = require('fs');
+const path = require('path');
 
 var file = process.env.FILE;
 var dataPath = process.env.DATAPATH;
@@ -12,7 +13,7 @@ const getWindowInnerHeight = ClientFunction(() => window.innerHeight);
 const getPageUrl = ClientFunction(() => window.location.href);
 
 fixture (`fixture`)
-	.page('http://localhost:8080/'+file);
+  .page('http://localhost:8080/'+file);
 
   var waitTime = data.waitTime;
   var submitSelector = data.submitSelector;
@@ -106,7 +107,7 @@ fixture (`fixture`)
                 } 
                 else if (curResult.unexpected != null) success = endStyle !== curResult.unexpected;
               }
-              await t.expect(success).eql(true);
+              await t.expect(success).eql(true, curResult.end_selector);
               break;
             case('has_class'):
               for (let j = 0; j < endSelectorCount && success == false; j++) {
@@ -121,11 +122,13 @@ fixture (`fixture`)
               break;
             case('redirect'):
               for (let j = 0; j < endSelectorCount && success == false; j++) {
+                var thisPageURL = await getPageUrl();
+                var thisPageURLBase = path.basename(thisPageURL);
                 if (curResult.expected != null) {
-                  success = getPageUrl() === curResult.expected;
-                  if (curResult.unexpected != null) success = success && getPageUrl() !== curResult.unexpected;
+                  success = thisPageURLBase === path.basename(curResult.expected);
+                  if (curResult.unexpected != null) success = success && thisPageURLBase !== path.basename(curResult.unexpected);
                 } 
-                else if (curResult.unexpected != null) success = getPageUrl() !== curResult.unexpected;
+                else if (curResult.unexpected != null) success = thisPageURLBase !== path.basename(curResult.unexpected);
               }
               await t.expect(success).eql(true);
               break;
