@@ -11,7 +11,7 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^5.16.0",
-    "testcafe": "^0.21.1"
+    "testcafe": "^2.2.0"
   },
   "dependencies": {
     "beautify": "0.0.8",
